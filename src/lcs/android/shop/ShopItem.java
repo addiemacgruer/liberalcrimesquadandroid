@@ -133,7 +133,7 @@ import android.util.Log;
   private int adjustedPrice() {
     int p = price;
     if (increasePricesWithIllegality && itemclass == ItemClassEnum.WEAPON && validItem()) {
-      for (int j = Game.type.weapon.get(itemtypename).get_legality(), k = i.issue(Issue.GUNCONTROL)
+      for (int j = Game.type.weapon.get(itemtypename).legality_, k = i.issue(Issue.GUNCONTROL)
           .law().trueOrdinal(); j < k; ++j) {
         p *= 2;
       }

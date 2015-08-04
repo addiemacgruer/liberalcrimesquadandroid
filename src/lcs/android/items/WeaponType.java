@@ -117,29 +117,36 @@ public @NonNullByDefault class WeaponType extends AbstractItemType {
 
   private final List<Attack> attacks_ = new ArrayList<Attack>();
 
-  private final boolean auto_break_lock_;
+  /** Returns if the weapon type should always succeed breaking locks. */
+  final boolean auto_break_lock_;
 
-  private final float bashstrengthmod_;
+  final float bashstrengthmod_;
 
-  private final boolean can_graffiti_;
+  /** Returns if the weapon type can be used to make graffiti. */
+  final boolean can_graffiti_;
 
-  private final boolean can_take_hostages_;
+  /** Returns if the weapon type can be used to take hostages without causing alarm. */
+  final boolean can_take_hostages_;
 
-  private final boolean can_threaten_hostages_;
+  final boolean can_threaten_hostages_;
 
-  private final boolean instrument_;
+  /** Returns whether the weapon type is considered an instrument when fund raising with music. */
+  final boolean instrument_;
 
-  private final int legality_;
+  /** Returns the most liberal gun control law for the weapon to be legal. -2, -1, 0, 1 and 2 for C+,
+   * C, M, L and L+ respectively. -3 always illegal. */
+  public final int legality_;
 
-  private final boolean musical_attack_;
+  /** Returns if the weapon will use a musical attack in combat. */
+  final boolean musical_attack_;
 
-  private final boolean protects_against_kidnapping_;
+  final boolean protects_against_kidnapping_;
 
-  private final int size_;
+  final int size_;
 
-  private final boolean suspicious_;
+  final boolean suspicious_;
 
-  private final boolean threatening_;
+  final boolean threatening_;
 
   @Override public void displayStats(final int viewID) {
     maybeAddText(viewID, "Size: " + size_, size_ > 0);
@@ -165,13 +172,6 @@ public @NonNullByDefault class WeaponType extends AbstractItemType {
     maybeAddText(viewID, "Threatening.", threatening_);
   }
 
-  // Returns the most liberal gun control law for the weapon to be legal.
-  // -2, -1, 0, 1 and 2 for C+, C, M, L and L+ respectively. -3 always
-  // illegal.
-  public int get_legality() {
-    return legality_;
-  }
-
   public boolean is_legal() {
     return i.issue(Issue.GUNCONTROL).lawGTE(Alignment.values()[legality_ + 2]);
   }
@@ -185,53 +185,10 @@ public @NonNullByDefault class WeaponType extends AbstractItemType {
     return false;
   }
 
-  // Returns if the weapon type should always succeed breaking locks.
-  boolean auto_breaks_locks() {
-    return auto_break_lock_;
-  }
-
-  // Checks if the weapon uses ammo in any of its attacks.
-  // Returns if the weapon type can be used to make graffiti.
-  boolean can_graffiti() {
-    return can_graffiti_;
-  }
-
-  // Returns if the weapon type can be used to take hostages without causing
-  // alarm.
-  boolean can_take_hostages() {
-    return can_take_hostages_;
-  }
-
-  boolean can_threaten_hostages() {
-    return can_threaten_hostages_;
-  }
-
   // Gives a reference to the vector of all possible attacks made by the
   // weapon type.
   List<Attack> get_attacks() {
     return attacks_;
-  }
-
-  // Checks if the weapon type is legal.
-  // Returns the bash bonus provided by the weapon type.
-  float get_bashstrengthmod() {
-    return bashstrengthmod_;
-  }
-
-  // Returns the size of the weapon type. Used for concealment under clothes.
-  int get_size() {
-    return size_;
-  }
-
-  // Returns if the weapon will use a musical attack in combat.
-  boolean has_musical_attack() {
-    return musical_attack_;
-  }
-
-  // Returns whether the weapon type is considered an instrument when fund
-  // raising with music.
-  boolean is_instrument() {
-    return instrument_;
   }
 
   boolean is_ranged() {
@@ -243,18 +200,6 @@ public @NonNullByDefault class WeaponType extends AbstractItemType {
     return false;
   }
 
-  //
-  boolean is_suspicious() {
-    return suspicious_;
-  }
-
-  // Checks if the given clip type is used by any of the weapon's attacks.
-  // Checks if any of the weapon's attacks are ranged.
-  // Returns if the weapon type can be used to threaten landlords.
-  boolean is_threatening() {
-    return threatening_;
-  }
-
   boolean is_throwable() {
     for (final Attack as : attacks_) {
       if (as.thrown()) {
@@ -262,10 +207,6 @@ public @NonNullByDefault class WeaponType extends AbstractItemType {
       }
     }
     return false;
-  }
-
-  boolean protects_against_kidnapping() {
-    return protects_against_kidnapping_;
   }
 
   boolean usesAmmo() {

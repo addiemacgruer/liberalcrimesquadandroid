@@ -54,18 +54,14 @@ public @NonNullByDefault class ClipType extends AbstractItemType {
     ammo = 0;
   }
 
-  private final int ammo;
+  /** The number of bullets contained in a clip of this kind. */
+  final int ammo;
 
   /* (non-Javadoc)
    * @see lcs.android.items.AbstractItemType#displayStats(int) */
   @Override public void displayStats(final int viewID) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException();
-  }
-
-  /** The number of bullets contained in a clip of this kind. */
-  int ammoAmmount() {
-    return ammo;
   }
 
   /**

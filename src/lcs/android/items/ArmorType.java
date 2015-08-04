@@ -201,18 +201,21 @@ public @NonNullByDefault class ArmorType extends AbstractItemType {
 
   private final boolean coverLegs;
 
-  /** whether this item would be worn by a deathsquad, id est is it the deathsquad uniform
-   * @return most likely false: things need to get bad for a deathsquad to appear. */
+  /** whether this item would be worn by a deathsquad, id est is it the deathsquad uniform most
+   * likely false: things need to get bad for a deathsquad to appear. */
   public final boolean deathsquadLegality;
 
   /** A pithy description (of masks only), used when purchasing in shops */
   public final String description;
 
-  private final boolean fireprotection;
+  /** whether the armor protects from fire true if fireman outfit, false otherwise */
+  final boolean fireprotection;
 
   private final int interrogationAssaultbonus;
 
-  private final int interrogationBasepower;
+  /** Bonus to interrogation, due to intimidation or authority. an integer bonus, from 0 (naked) to 8
+   * (death squad armor) */
+  final int interrogationBasepower;
 
   private final int interrogationDrugbonus;
 
@@ -227,12 +230,15 @@ public @NonNullByDefault class ArmorType extends AbstractItemType {
    * bonus */
   public final boolean mask;
 
-  private final boolean police;
+  /** would the police wear this? */
+  final boolean police;
 
-  private final int professionalism;
+  /** The perceived professionalism of this outfit. Ranges from 0 for nakedness, to 4 for an
+   * expensive (suit|dress). an integer from (0 to 4) */
+  final int professionalism;
 
   /** The sneakiness of this outfit. an integer between 0 and 3 (ninja suit) */
-  public final int stealthValue;
+  final int stealthValue;
 
   private final boolean surpriseMask;
 
@@ -321,12 +327,6 @@ public @NonNullByDefault class ArmorType extends AbstractItemType {
     return 0;
   }
 
-  /** Bonus to interrogation, due to intimidation or authority.
-   * @return an integer bonus, from 0 (naked) to 8 (death squad armor) */
-  int interrogationBasepower() {
-    return interrogationBasepower;
-  }
-
   /** bonus to interrogation when our guest is drugged.
    * @return 0 (most things) to 4 (surreal things) */
   int interrogationDrugbonus() {
@@ -334,24 +334,6 @@ public @NonNullByDefault class ArmorType extends AbstractItemType {
       return 4 + interrogationDrugbonus;
     }
     return interrogationDrugbonus;
-  }
-
-  /** whether the armor protects from fire
-   * @return true if fireman outfit, false otherwise */
-  boolean isFireprotection() {
-    return fireprotection;
-  }
-
-  /** would the police wear this? */
-  boolean isPolice() {
-    return police;
-  }
-
-  /** The perceived professionalism of this outfit. Ranges from 0 for nakedness, to 4 for an
-   * expensive (suit|dress)
-   * @return an integer from (0 to 4) */
-  int professionalism() {
-    return professionalism;
   }
 
   private static final long serialVersionUID = Game.VERSION;

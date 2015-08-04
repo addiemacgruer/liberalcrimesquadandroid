@@ -153,7 +153,7 @@ public @NonNullByDefault class Armor extends AbstractItem<ArmorType> {
   /** Bonus to interrogation, due to intimidation or authority.
    * @return an integer bonus, from 0 (naked) to 8 (death squad armor) */
   public int interrogationBasepower() {
-    return platonicIdeal.interrogationBasepower();
+    return platonicIdeal.interrogationBasepower;
   }
 
   /** bonus to interrogation when our guest is drugged.
@@ -175,7 +175,7 @@ public @NonNullByDefault class Armor extends AbstractItem<ArmorType> {
   /** whether the armor protects from fire
    * @return true if fireman outfit, false otherwise */
   public boolean isFireprotection() {
-    return platonicIdeal.isFireprotection();
+    return platonicIdeal.fireprotection;
   }
 
   /** whether the armor is unbloody and undamaged */
@@ -191,7 +191,7 @@ public @NonNullByDefault class Armor extends AbstractItem<ArmorType> {
 
   /** would the police wear this? */
   public boolean isPolice() {
-    return platonicIdeal.isPolice();
+    return platonicIdeal.police;
   }
 
   /** How hard it is for a given creature to create this outfit.
@@ -217,7 +217,7 @@ public @NonNullByDefault class Armor extends AbstractItem<ArmorType> {
    * expensive (suit|dress)
    * @return an integer from (0 to 4) */
   public int professionalism() {
-    return platonicIdeal.professionalism();
+    return platonicIdeal.professionalism;
   }
 
   /** the quality rating of this outfit

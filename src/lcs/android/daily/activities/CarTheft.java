@@ -45,7 +45,7 @@ public @NonNullByDefault class CarTheft extends ArrayList<Creature> implements D
   private static VehicleType carselect(final Creature cr) {
     final List<VehicleType> cart = new ArrayList<VehicleType>();
     for (final VehicleType a : Game.type.vehicle.values()) {
-      if (a.stealDifficultyToFind() < 10) {
+      if (a.steal_difficultytofind_ < 10) {
         cart.add(a);
       }
     }
@@ -58,7 +58,7 @@ public @NonNullByDefault class CarTheft extends ArrayList<Creature> implements D
       for (final VehicleType p : cart) {
         str.append(p.toString());
         str.append(" - ");
-        final int difficulty = p.stealDifficultyToFind();
+        final int difficulty = p.steal_difficultytofind_;
         Color color = Color.BLACK;
         switch (difficulty) {
         case 0:
@@ -119,7 +119,7 @@ public @NonNullByDefault class CarTheft extends ArrayList<Creature> implements D
     VehicleType cartype = carselect(cr);
     if (cartype != null) {
       cr.squad(null); // otherwise they'll not be free to reassign to squads.
-      final int diff = cartype.stealDifficultyToFind() * 2;
+      final int diff = cartype.steal_difficultytofind_ * 2;
       final VehicleType old = cartype;
       cr.skill().train(Skill.STREETSENSE, 5);
       // THEFT SEQUENCE
@@ -131,7 +131,7 @@ public @NonNullByDefault class CarTheft extends ArrayList<Creature> implements D
       if (!cr.skill().skillCheck(Skill.STREETSENSE, diff)) {
         do {
           cartype = i.rng.randFromCollection(Game.type.vehicle.values());
-          if (i.rng.nextInt(10) < cartype.stealDifficultyToFind()) {
+          if (i.rng.nextInt(10) < cartype.steal_difficultytofind_) {
             cartype = old;
           }
         } while (cartype == old);

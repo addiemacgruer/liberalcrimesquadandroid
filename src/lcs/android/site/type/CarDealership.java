@@ -75,15 +75,15 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
         final List<VehicleType> availablevehicle = new ArrayList<VehicleType>();
         final List<String> vehicleoption = new ArrayList<String>();
         for (final VehicleType v : Game.type.vehicle.values()) {
-          if (v.availableatshop()) {
+          if (v.availableatshop_) {
             availablevehicle.add(v);
-            vehicleoption.add(v.toString() + " ($" + v.price() + ")");
+            vehicleoption.add(v.toString() + " ($" + v.price_ + ")");
           }
         }
         do {
           carchoice = Curses.choiceprompt("Choose a vehicle", vehicleoption, true,
               "We don't need a Conservative car");
-          if (carchoice != -1 && availablevehicle.get(carchoice).price() > i.ledger.funds()) {
+          if (carchoice != -1 && availablevehicle.get(carchoice).price_ > i.ledger.funds()) {
             fact("You don't have enough money!");
           } else {
             break;

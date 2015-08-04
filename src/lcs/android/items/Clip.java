@@ -62,7 +62,7 @@ public @NonNullByDefault class Clip extends AbstractItem<ClipType> {
 
   /** The number of bullets contained in a clip of this kind. */
   int ammoAmmount() {
-    return ideal().ammoAmmount();
+    return ideal().ammo;
   }
 
   private static final long serialVersionUID = Game.VERSION;

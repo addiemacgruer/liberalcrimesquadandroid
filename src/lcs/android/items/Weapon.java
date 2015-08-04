@@ -62,23 +62,23 @@ public @NonNullByDefault class Weapon extends AbstractItem<WeaponType> {
   }
 
   public boolean autoBreaksLocks() {
-    return platonicIdeal.auto_breaks_locks();
+    return platonicIdeal.auto_break_lock_;
   }
 
   public float bashstrengthmod() {
-    return platonicIdeal.get_bashstrengthmod();
+    return platonicIdeal.bashstrengthmod_;
   }
 
   public boolean canGraffiti() {
-    return platonicIdeal.can_graffiti();
+    return platonicIdeal.can_graffiti_;
   }
 
   public boolean canTakeHostages() {
-    return platonicIdeal.can_take_hostages();
+    return platonicIdeal.can_take_hostages_;
   }
 
   public boolean canThreatenHostages() {
-    return platonicIdeal.can_threaten_hostages();
+    return platonicIdeal.can_threaten_hostages_;
   }
 
   public void decreaseAmmo(final int d) {
@@ -106,11 +106,11 @@ public @NonNullByDefault class Weapon extends AbstractItem<WeaponType> {
   }
 
   public boolean isInstrument() {
-    return platonicIdeal.is_instrument();
+    return platonicIdeal.instrument_;
   }
 
   public boolean isMusical() {
-    return platonicIdeal.has_musical_attack();
+    return platonicIdeal.musical_attack_;
   }
 
   public boolean isRanged() {
@@ -118,11 +118,11 @@ public @NonNullByDefault class Weapon extends AbstractItem<WeaponType> {
   }
 
   public boolean isSuspicious() {
-    return platonicIdeal.is_suspicious();
+    return platonicIdeal.suspicious_;
   }
 
   public boolean isThreatening() {
-    return platonicIdeal.is_threatening();
+    return platonicIdeal.threatening_;
   }
 
   public boolean isThrowable() {
@@ -142,7 +142,7 @@ public @NonNullByDefault class Weapon extends AbstractItem<WeaponType> {
   }
 
   public boolean protectsAgainstKidnapping() {
-    return platonicIdeal.protects_against_kidnapping();
+    return platonicIdeal.protects_against_kidnapping_;
   }
 
   public boolean reload(final Clip clip) {
@@ -160,7 +160,7 @@ public @NonNullByDefault class Weapon extends AbstractItem<WeaponType> {
   }
 
   public int size() {
-    return platonicIdeal.get_size();
+    return platonicIdeal.size_;
   }
 
   @Override public Weapon split(final int aNumber) throws IllegalArgumentException {

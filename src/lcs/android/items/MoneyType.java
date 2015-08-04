@@ -9,10 +9,8 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
 public @NonNullByDefault class MoneyType extends AbstractItemType {
   private MoneyType() {}
 
-  /* (non-Javadoc)
-   * @see lcs.android.items.AbstractItemType#displayStats(int) */
   @Override public void displayStats(final int viewID) {
-    // TODO Auto-generated method stub
+    // no stats to display on money
     throw new UnsupportedOperationException();
   }
 

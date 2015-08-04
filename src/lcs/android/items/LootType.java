@@ -49,33 +49,21 @@ public @NonNullByDefault class LootType extends AbstractItemType {
     this.stackable = ltb.stackable;
   }
 
-  private final boolean cloth;
+  /** Returns if the loot is usable as cloth when making clothing. */
+  final boolean cloth;
 
-  private final boolean noQuickFencing;
+  /** Returns if the loot should be skipped when quick fencing all loot. */
+  final boolean noQuickFencing;
 
-  private final boolean stackable;
+  /** Returns if the loot type should be stacked or not. Unique things, such as CEO photos, don't
+   * stack, even if you've two sets. */
+  final boolean stackable;
 
   /* (non-Javadoc)
    * @see lcs.android.items.AbstractItemType#displayStats(int) */
   @Override public void displayStats(final int viewID) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException();
-  }
-
-  /** Returns if the loot is usable as cloth when making clothing. */
-  boolean isCloth() {
-    return cloth;
-  }
-
-  /** Returns if the loot type should be stacked or not. Unique things, such as CEO photos, don't
-   * stack, even if you've two sets. */
-  boolean isStackable() {
-    return stackable;
-  }
-
-  /** Returns if the loot should be skipped when quick fencing all loot. */
-  boolean noQuickFencing() {
-    return noQuickFencing;
   }
 
   /**

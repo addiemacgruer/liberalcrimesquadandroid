@@ -167,25 +167,25 @@ public @NonNullByDefault class VehicleType extends AbstractItemType {
     year_startcurrent_ = builder.year_startcurrent_;
   }
 
-  private final boolean availableatshop_;
+  public final boolean availableatshop_;
 
   private final List<String> color_ = new ArrayList<String>();
 
-  private final boolean displaycolor_;
+  final boolean displaycolor_;
 
-  private final int drivebonus_;
+  final int drivebonus_;
 
-  private final int price_;
+  public final int price_;
 
-  private final int sensealarmchance_;
+  final int sensealarmchance_;
 
-  private final int steal_difficultytofind_;
+  public final int steal_difficultytofind_;
 
-  private final int steal_extraheat_;
+  final int steal_extraheat_;
 
-  private final int steal_juice_;
+  final int steal_juice_;
 
-  private final int touchalarmchance_;
+  final int touchalarmchance_;
 
   private final int year_add_;
 
@@ -197,10 +197,6 @@ public @NonNullByDefault class VehicleType extends AbstractItemType {
 
   private final boolean year_startcurrent_;
 
-  public boolean availableatshop() {
-    return availableatshop_;
-  }
-
   public List<String> color() {
     if (color_.size() == 0) {
       color_.add("Translucent");
@@ -211,22 +207,6 @@ public @NonNullByDefault class VehicleType extends AbstractItemType {
   @Override public void displayStats(final int viewID) {
     ui(viewID).text("Driving bonus: " + drivebonus_).add();
     ui(viewID).text("Value: $" + price_).add();
-  }
-
-  public int price() {
-    return price_;
-  }
-
-  public int stealDifficultyToFind() {
-    return steal_difficultytofind_;
-  }
-
-  boolean displayscolor() {
-    return displaycolor_;
-  }
-
-  int drivebonus() {
-    return drivebonus_;
   }
 
   int makeyear() {
@@ -246,22 +226,6 @@ public @NonNullByDefault class VehicleType extends AbstractItemType {
     }
     myear += year_add_;
     return myear;
-  }
-
-  int sensealarmchance() {
-    return sensealarmchance_;
-  }
-
-  int steal_extraheat() {
-    return steal_extraheat_;
-  }
-
-  int steal_juice() {
-    return steal_juice_;
-  }
-
-  int touchalarmchance() {
-    return touchalarmchance_;
   }
 
   /**
