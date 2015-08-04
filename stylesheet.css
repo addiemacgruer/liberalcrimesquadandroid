@@ -1,0 +1,20 @@
+/* Javadoc style sheet */
+
+/* Define colors, fonts and other style attributes here to override the defaults */
+
+/* Page background color */
+body { background-color: #FFF; color:#000;font-family: Arial, Helvetica, sans-serif;font-size:10pt }
+
+/* Headings */
+a { color:#040 }
+
+/* Table colors */
+.TableHeadingColor     { background: #DFD; color:#000 } /* Dark mauve */
+.TableSubHeadingColor  { background: #DFD; color:#000 } /* Light mauve */
+.TableRowColor         { background: #FFF; color:#000 } /* White */
+
+/* Font used in left-hand frame lists */
+
+/* Navigation bar fonts and colors */
+.NavBarCell1    { background-color:#DFD; color:#000} /* Light mauve */
+.NavBarCell1Rev { background-color:#111; color:#FFF} /* Dark Blue */

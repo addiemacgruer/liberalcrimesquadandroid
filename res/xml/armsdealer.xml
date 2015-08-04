@@ -1,0 +1,98 @@
+<shop name="ARSMDEALER">
+	<allow_selling>false</allow_selling>
+	<department>
+		<entry>Buy a Liberal Gun</entry>
+		<exit>needs no weapon.</exit>
+		<fullscreen>true</fullscreen>
+		<item>
+			<class>WEAPON</class>
+			<price>1100</price>
+			<type>WEAPON_SMG_MP5</type>
+		</item>
+		<item>
+			<class>WEAPON</class>
+			<price>1400</price>
+			<type>WEAPON_AUTORIFLE_AK47</type>
+		</item>
+		<item>
+			<class>WEAPON</class>
+			<price>500</price>
+			<type>WEAPON_REVOLVER_44</type>
+		</item>
+		<item>
+			<class>WEAPON</class>
+			<price>300</price>
+			<type>WEAPON_SEMIPISTOL_9MM</type>
+		</item>
+		<item>
+			<class>WEAPON</class>
+			<price>300</price>
+			<type>WEAPON_SEMIPISTOL_45</type>
+		</item>
+		<item>
+			<class>WEAPON</class>
+			<price>400</price>
+			<type>WEAPON_SHOTGUN_PUMP</type>
+		</item>
+		<letter>g</letter>
+	</department>
+	<department>
+		<entry>Buy Liberal Clips</entry>
+		<exit>Done buying Liberal clips</exit>
+		<fullscreen>false</fullscreen>
+		<item>
+			<class>CLIP</class>
+			<description>Buy Shotgun Shells</description>
+			<letter>p</letter>
+			<price>25</price>
+			<type>CLIP_BUCKSHOT</type>
+		</item>
+		<item>
+			<class>CLIP</class>
+			<description>Buy a .38 Speedloader</description>
+			<letter>t</letter>
+			<price>25</price>
+			<type>CLIP_38</type>
+		</item>
+		<item>
+			<class>CLIP</class>
+			<description>Buy a 9mm Pistol Magazine</description>
+			<letter>n</letter>
+			<price>40</price>
+			<type>CLIP_9</type>
+		</item>
+		<item>
+			<class>CLIP</class>
+			<description>Buy a .45 Pistol Magazine</description>
+			<letter>f</letter>
+			<price>40</price>
+			<type>CLIP_45</type>
+		</item>
+		<item>
+			<class>CLIP</class>
+			<description>Buy a .44 Speedloader</description>
+			<letter>m</letter>
+			<price>40</price>
+			<type>CLIP_44</type>
+		</item>
+		<item>
+			<class>CLIP</class>
+			<description>Buy a 9mm SMG Magazine</description>
+			<letter>s</letter>
+			<price>50</price>
+			<type>CLIP_SMG</type>
+		</item>
+		<item>
+			<class>CLIP</class>
+			<description>Buy a Rifle/Aslt.Rifle Mag</description>
+			<letter>r</letter>
+			<price>50</price>
+			<type>CLIP_ASSAULT</type>
+		</item>
+		<letter>c</letter>
+	</department>
+	<exit>Leave</exit>
+	<fullscreen>false</fullscreen>
+	<increase_prices_with_illegality>true</increase_prices_with_illegality>
+	<only_sell_legal_items>false</only_sell_legal_items>
+</shop>

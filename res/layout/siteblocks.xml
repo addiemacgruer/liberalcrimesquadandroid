@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="wrap_content"
+	android:layout_height="fill_parent"
+	android:orientation="vertical" >
+
+	<LinearLayout
+		android:id="@+id/linearLayout1"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_horizontal"
+		android:background="#ffffffff"
+		android:orientation="vertical" >
+
+		<LinearLayout
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content" >
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="+"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="-----"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="-----"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="-----"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="-----"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="-----"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="+"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+		</LinearLayout>
+
+		<LinearLayout
+			android:id="@+id/linearLayout1"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content" >
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="@string/smupline"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+
+			<TextView
+				android:id="@+id/sba"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="@string/xxx"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+
+			<TextView
+				android:id="@+id/sbb"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="@string/xxx"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+
+			<TextView
+				android:id="@+id/sbc"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="@string/xxx"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+
+			<TextView
+				android:id="@+id/sbd"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="@string/xxx"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+
+			<TextView
+				android:id="@+id/sbe"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="@string/xxx"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="@string/smupline"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+		</LinearLayout>
+
+		<LinearLayout
+			android:id="@+id/linearLayout1"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" >
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="@string/smupline"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+
+			<TextView
+				android:id="@+id/sbf"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="@string/xxx"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+
+			<TextView
+				android:id="@+id/sbg"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="@string/xxx"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+
+			<Button
+				android:id="@+id/sbh"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:background="@drawable/flatbutton"
+				android:padding="0px"
+				android:tag="w"
+				android:text="@string/xxx"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</Button>
+
+			<TextView
+				android:id="@+id/sbi"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="@string/xxx"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+
+			<TextView
+				android:id="@+id/sbj"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="@string/xxx"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="@string/smupline"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+		</LinearLayout>
+
+		<LinearLayout
+			android:id="@+id/linearLayout1"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content" >
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="@string/smupline"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+
+			<TextView
+				android:id="@+id/sbk"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="@string/xxx"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+
+			<Button
+				android:id="@+id/sbl"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:background="@drawable/flatbutton"
+				android:padding="0px"
+				android:tag="a"
+				android:text="@string/xxx"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</Button>
+
+			<TextView
+				android:id="@+id/sbm"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="@string/xxx"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+
+			<Button
+				android:id="@+id/sbn"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:background="@drawable/flatbutton"
+				android:padding="0px"
+				android:tag="d"
+				android:text="@string/xxx"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</Button>
+
+			<TextView
+				android:id="@+id/sbo"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="@string/xxx"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="@string/smupline"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+		</LinearLayout>
+
+		<LinearLayout
+			android:id="@+id/linearLayout1"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content" >
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="@string/smupline"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+
+			<TextView
+				android:id="@+id/sbp"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="@string/xxx"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+
+			<TextView
+				android:id="@+id/sbq"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="@string/xxx"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+
+			<Button
+				android:id="@+id/sbr"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:background="@drawable/flatbutton"
+				android:padding="0px"
+				android:tag="x"
+				android:text="@string/xxx"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</Button>
+
+			<TextView
+				android:id="@+id/sbs"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="@string/xxx"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+
+			<TextView
+				android:id="@+id/sbt"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="@string/xxx"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="@string/smupline"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+		</LinearLayout>
+
+		<LinearLayout
+			android:id="@+id/linearLayout1"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content" >
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="@string/smupline"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+
+			<TextView
+				android:id="@+id/sbu"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="@string/xxx"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+
+			<TextView
+				android:id="@+id/sbv"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="@string/xxx"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+
+			<TextView
+				android:id="@+id/sbw"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="@string/xxx"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+
+			<TextView
+				android:id="@+id/sbx"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="@string/xxx"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+
+			<TextView
+				android:id="@+id/sby"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="@string/xxx"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="@string/smupline"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content" >
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="+"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="-----"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="-----"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="-----"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="-----"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="-----"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:padding="0px"
+				android:text="+"
+				android:textColor="#ff000000"
+				android:typeface="monospace" >
+			</TextView>
+		</LinearLayout>
+	</LinearLayout>
+
+</HorizontalScrollView>

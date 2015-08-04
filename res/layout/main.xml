@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical" >
+
+	<TextView
+		android:id="@+id/date"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:text="@string/Name"
+		android:textStyle="bold" >
+	</TextView>
+
+	<TextView
+		android:id="@+id/calendar"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:text="@string/titleLoading"
+		android:typeface="normal" >
+	</TextView>
+
+	<TextView
+		android:id="@+id/loadeditem"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:text=""
+		android:typeface="normal" >
+	</TextView>
+
+</LinearLayout>

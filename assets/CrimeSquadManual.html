@@ -1,0 +1,543 @@
+<html>
+<head>
+<style>body {color:#bbb; background-color:black;text-align:left;font:13px/15px sans-serif;}
+pre{font:11px/13px monospace;}
+h1{font:bold 13px/15px sans-serif;color:#fff}
+a{color:#00f}
+b{color:#fff}
+p,dd{margin-bottom:10pt;font:13px/15px sans-serif;}
+dd{margin-left:1em;}
+ul,ol{margin-left:0em;}
+li{margin-left:0em;}
+span.liberal{color:#0f0}
+span.conservative{color:#f00}
+span.moderate{color:#fff}
+</style>
+<body>(Note this document is a parody of the original Oubliette 2.5 Manual from 1983)
+
+<h1><span class="liberal">Liberal</span> Crime Squad: 
+A <span class="liberal">Liberal</span> Adventure</h1>
+
+<p>To some a dream come true, to others an offensive piece of crap.
+
+<p>Author: Tarn Adams of Bay 12 Games
+v3.9 Copyright (c) 2002-4, Tarn Adams
+
+<p>v3.10-4.00 revisions by Jonathan Stickles, Chris Johnson, and other fans of <span class="liberal">Liberal</span> Crime Squad in the Open Source Community. We hope you enjoy our changes.
+
+<p>Android version by Addie MacGruer based on version 4.00.  Porting includes introducing new Java programming errors into the C++ source code, and probably also introduces a whole pile of accidental British English idiom due to living the Eastern side of the Atlantic.  Keep your weather eye out for them and report them on the bug list: this isn't 1984, that's just when you were born.
+
+<p>Visit the Curses forum at the Bay 12 Games website to discuss and contribute to LCS:
+<a href="http://www.bay12games.com/cgi-local/ultimatebb.cgi?ubb=forum&f=3">http://www.bay12games.com/cgi-local/ultimatebb.cgi?ubb=forum&f=3</a>
+
+<p>See also our underutilized sourceforge page:
+<p><a href="https://sourceforge.net/projects/lcsgame/">https://sourceforge.net/projects/lcsgame/</a>
+
+<h1>DISCLAIMER</h1>
+
+<p>Tarn Adams and Bay 12 Games make no representations or warranties with respect to
+the contents hereof and disclaim any implied warranties of merchantability or fitness
+for any purpose.  Tarn Adams and Bay 12 Games reserve the right to make changes at
+any time without prior notification.  
+
+<p><a href="www.bay12games.com">www.bay12games.com</a>
+
+<p>If you are missing the curses DLL, get it at <a href="www.bay12games.com/curses">www.bay12games.com/curses</a>.
+
+<h1>The Legend of the <span class="liberal">Liberal</span> Crime Squad</h1>
+
+<p>(This section is adapted from the Wikipedia article on the Symbionese Liberation Army, and serves as background for the 'inspiration' for LCS. If it's too serious for you, just skip it -- we don't take the game seriously, either, so no worries.)
+
+<p>On February 4, 1974, the Symbionese Liberation Army, an American self-styled urban gurrilla warfare group kidnapped 19-year-old media heiress Patricia Hearst as she and her 26-year-old boyfriend, Steven Weed, sat relaxing in their Berkeley, California home.
+
+<p>Their goal was to negotiate the release of two of their members, Joseph Remiro and Russell Little, who were just convicted and given life sentences for assassinating a popular school superintendant over his support for what they considered to be a "facist" plan to introduce identification cards. This proved impossible to negotiate, and the FBI searched unsuccessfully for the SLA as they took refuge in "safehouses" and the kidnapping captured regional, then world attention.
+
+<p>What was so spectacular about this kidnapping was not so much the prominence of the victim, but her response. The SLA released taped recordings of Hearst reading their demands, and with each tape they released, she voiced increasing support for her captors. Eventually, she firmly renounced her former life and family, and declared that when the SLA offered her the choice of going free or joining them, she chose to join them. She would even take a new name: Tania.
+
+<p>On April 15, 1974, SLA members burst into a branch of The Hibernia Bank at 1450 Noriega Street in San Francisco. Security camera footage of pictured Patricia Hearst, Tania, holding a rifle and yelling commands. Two civilians were shot, and the SLA made off with over $10,000.
+
+<p>Unable to recruit any would-be revolutionaries in the Bay Area, the SLA moved to Los Angeles in hopes of finding more supporters, but the move was sloppy, and the group resorted to commandeering housing and supplies from the people of Los Angeles, thus alienating the people they relied upon for secrecy and protection. Imprisoned SLA member Russell Little declared that they had lost sight of their goals, and were entering a confrontation with the police rather than engaging in a dialogue with the people.
+
+<p>On 16 May 1974, SLA codenames Teko and Yolanda entered Mel's Sporting Goods Store in Inglewood, California, to shop for supplies for their safehouse. While Yolanda made the purchases, Teko on a whim tried to shoplift, and was caught by a security guard. Following a brief confrontation, codename Tania, on lookout from across the street, opened fire on the store's sign, forcing everyone inside to take cover, and allowing the other members to escape.
+
+<p>Police tracked them to their safehouse, and they were forced to abandon it and commandeer a new one from unwilling occupants in the dead of the night, storming a home with massive amounts of guns and ammunition in tow. The next day, a woman called the police to tell them that people with guns were staying at her daughter's house. That afternoon, more than 400 LAPD officers, along with the FBI, California Highway Patrol, and Los Angeles Fire Department surrounded the neighborhood. After a two-hour gun battle between SWAT teams outside and the SLA inside, the house caught fire and all six SLA members inside were killed. Tania, Teko, and Yolanda were in hiding elsewhere, and were not among the dead.
+
+<p>The manhunt for Patricia Hearst and the remainder of the SLA continued, and after over a year of continued movement and additional SLA actions, she was captured. She claimed to have been drugged and brainwashed, and identified the remainder of the SLA members. She was convicted for her part in the bank raid, and the SLA dissolved.
+
+<p>The revolution failed.
+
+<p>But that was then...
+
+<h1>Loading <span class="liberal">Liberal</span> Crime Squad for DOS</h1>
+<ol>
+<li><p> Turn on the power to your monitor and IBM-PC.
+
+<li><p>  Insert the <span class="liberal">Liberal</span> Crime Squad disk into Drive A (!!!!!!!!)
+
+<li><p> The disk drive will activate and you will be prompted to enter the date and time, pressing the carriage return after each.  Wow, that's some old school shit.
+
+<li><p>  At the A:/&gt; prompt, type LCS and press the carriage return.
+
+<li><p>  The game starts with a listing of the current game statistics, unless it is your first time.  Press the carriage return to begin <span class="liberal">Liberal</span> Crime Squad.
+</ol>
+<h1>Loading <span class="liberal">Liberal</span> Crime Squad for Android</h1>
+
+<ol>
+<li><p> Success!
+</ol>
+
+<p>Although the Android version of LCS retains all of the great graphics of the DOS version, and the text is anti-aliased, as befits 21st century software (it's also tough to switch off), there are one or two control differences to be aware of:
+
+<ul>
+<li><p>Probably most significantly, the keyboard interface has been replaced by on-screen buttons, so the key instructions for the rest of the help have to be taken with a pinch of salt.  If there's a screen with nothing on it, and you can't continue by pressing the screen normally, you can open the <q>option</q> menu on your phone and force a click.  This is a bug, please report.
+
+<li><p>In order to retain its DOS origins, the game isn't very <q>Androidy</q>.  The back button on your keyboard will generally leave the game (although it's how you get out of this help).  Sometimes you just have to touch the screen to continue, although I'm working on it.
+
+<li><p>As a corollary of the above, game saves aren't quite as intuitive as android is normally.  The game autosaves whenever you <q>Wait a day</q> or <q>Live to fight EVIL another day</q>.  If you leave LCS and use your phone for something else for a long time while in site mode etc, your changes may be lost.  On the plus side, the state of the random number generator is saved along with the game, so if you just repeat your actions, the same thing will happen again. 
+
+<p>(You couldn't save outside of base mode in the DOS version either, that's why.)
+
+</ul>
+
+<p>Now, on with the show...
+
+<h1>Introduction to <span class="liberal">Liberal</span> Crime Squad</h1>
+
+<p>Welcome to <span class="liberal">Liberal</span> Crime Squad!  The <span class="conservative">Conservatives</span> have taken the Executive, Legislative, and Judicial branches of government. Over time, the <span class="liberal">Liberal</span> laws of this nation will erode and turn the country into a BACKWOODS YET CORPORATE NIGHTMARE.  To prevent this from happening, the <span class="liberal">Liberal</span> Crime Squad was established. The mood of the country is shifting, and we need to turn things around. Go out on the streets and indoctrinate <span class="conservative">Conservative</span> automatons. That is, let them see their True <span class="liberal">Liberal</span> Nature. Then arm them and send them forth to Stop Evil.  Eventually the public will fall behind us, and we will put more <span class="liberal"><blink>Elite Liberals</blink></span> in government.
+
+<p>Read below for the technical details.  A working knowledge of the game is essential to FURTHER YOUR <span class="liberal">LIBERAL</span> AGENDA.
+
+<h1>Character Creation</h1>
+
+<p>After the title screen, you will create the founder of the <span class="liberal">Liberal</span> Crime Squad by answering a series of questions.  Just be honest, or cynically answer according to what best suits your style of play. The initial <span class="liberal">Liberal</span> that you control will have skills and equipment related to your responses. If you really want to cheat, with this or anything else, you can pull up your web browser and search for the LCS wiki for detailed information about how these choices affect your starting character.
+
+<h1><span class="liberal">Liberal</span> Information</h1>
+
+<p>Once you've named the founder, you'll notice a short synopsis of the Squad members' equipment at the top of the screen.  The first skill number is the sum of the <span class="liberal">Liberal</span>'s skills, and the second number is the <span class="liberal">Liberal</span>'s skill with the current weapon.
+
+<p>***NOTE***: If a gun is loaded, the number in parentheses after it is the number of rounds left.  If it is empty, the number in parentheses is darker, and it counts the number of clips remaining.
+
+<p>Press a number to view that Squad member.  For instance, if you press '1', you'll see that statistics of the first member. Press '0' to view the Squad synopsis again.  If you press the same number twice you'll see a full display of that Squad member's statistics.
+
+<p>Back on the smaller statistics screen, you had a display like:
+
+<pre>
+--Green Warrior------------------<span class="liberal">Liberal</span>--<br>
+Hrt:   1   Agi:   2        Top Skills:<br>
+Int:   11  Str:   11       Pistol: 3<br>
+Wis:   3   Char:  6        Assault Rifle: 3<br>
+Hlth:  8   Trans: On Foot  Computers: 3<br>
+Weapon: .22 Revolver (5/3) Knife: 1<br>
+Armor: Trenchcoat          Club: 1<br>
+-----------------------------------------
+</pre>
+
+<p>This shows your attributes, skills and equipment. If you are wounded, you will also see your wounds.  Dead <span class="liberal">Liberals</span> cannot be "resurrected", as that is a <span class="conservative">Conservative</span> notion.
+
+<p>If you have a gun, the first number is the number of rounds in the gun, and the second is the number of clips.  A squad member may carry up to nine clips for a single weapon.
+
+<p>We now go over the statistics one by one:
+
+<h1>Attributes:</h1>
+<dl>
+<dt><p>Heart:  This is how much feeling you bring to back up your <span class="liberal">Liberalism</span>.
+<dd><p>MAIN USES:  Converting people to <span class="liberal">Liberalism</span>.
+<dd><p>SKILLS: Music, art.
+
+<dt><p>Intelligence:  This is how smart you are.
+<dd><p>MAIN USES:  Pick locks, hack computers, science, law, first aid, writing and winning arguments.
+<dd><p>SKILLS: Science, law, survival, first aid, security, interrogation, cooking, computers, garment making, writing, street sense.
+
+<dt><p>Wisdom:  This is how much you've been polluted by <span class="conservative">Conservative</span> thinking.
+<dd><p>MAIN USES:  Determines how easy it is to be converted to conservatism.
+<dd><p>SKILLS: Religion, business.
+
+<dt><p>Health:  This is how robust your character is.
+<dd><p>MAIN USES:  Resist Battle Damage.
+<dd><p>SKILLS: None.
+
+<dt><p>Agility:  This is how quick your character is.
+<dd><p>MAIN USES:  Influences attack and kidnapping success, as well as driving.
+<dd><p>SKILLS: Knife, sword, pistol, rifle, SMG, shotgun, driving, improvised weapons, sleight of hand, stealth.
+
+<dt><p>Strength:  This is how muscular your character is.
+<dd><p>MAIN USES:  Influences melee damage and door bashing.
+<dd><p>SKILLS: Hand to hand, club.
+
+<dt><p>Charisma:  This is how you look and come across to others.
+<dd><p>MAIN USES:  Converting people to <span class="liberal">Liberalism</span>, winning arguments, and disguise.
+<dd><p>SKILLS: Persuasion, disguise, gangsterism, teaching, seduction.
+</dl>
+<p>Each attribute is associated with a number of skills, and determines the maximum amount of skill that you may develop in that area. Obviously, it is advantageous to have high attributes if you wish to have high skills.
+
+<p>Unlike other computer games that say specious statements like "all of the attributes are equally important", you'll find a balance that is right for your <span class="liberal">Liberal</span> Agenda.  All of the attributes are used throughout the game, even Charisma.
+
+<h1>Skills:</h1>
+<dl>
+<dt><p>Weapon Skills:
+<dd><p>Hand to Hand:	Unarmed
+<dd><p>Knife:		Knife, Shank
+<dd><p>Sword:		Sword, Daisho
+<dd><p>Club:		Club, Maul, Crowbar, Staff
+<dd><p>Improvised:	Syringe, Gavel, Empty Guns
+<dd><p>Pistol:		All Pistols
+<dd><p>Rifle:		AR-15, AK-47, M16, M4
+<dd><p>SMG:		MP5
+<dd><p>Shotgun:	Pump Shotgun
+<dt><p>Persuasion<dd><p>	The ability to convince others that you are right.
+<dt><p>Interrogation<dd><p>	The ability to manipulate <span class="conservative">Conservatives</span> when they are tied up.
+<dt><p>Writing<dd><p>	The ability to communicate effectively in writing.
+<dt><p>Leadership<dd><p>	The ability to receive more followers and greater loyalty from other <span class="liberal">Liberals</span>.
+<dt><p>Teaching<dd><p>	The ability to pass skills on to other <span class="liberal">Liberals</span>.
+<dt><p>Art<dd><p>		The ability to create powerful visual art.
+<dt><p>Music<dd><p>		The ability to create powerful music.
+<dt><p>Garment Making<dd><p>	The ability to make better clothing.
+<dt><p>Cooking<dd><p>	The ability to make good food and feed <span class="liberal">Liberals</span> more cheaply.
+<dt><p>First Aid<dd><p>	The ability to effectively tend to <span class="conservative">Conservative</span> injuries.
+<dt><p>Survival<dd><p>	Instinct and ability to survive and cope even in dire situations.
+<dt><p>Street Sense<dd><p>	Instinct and ability to avoid trouble in urban areas.
+<dt><p>Seduction<dd><p>	The ability to seduce and keep lovers.
+<dt><p>Sleight of Hand<dd><p>The ability to take and handle objects without being noticed.
+<dt><p>Stealth<dd><p>	The ability to move unnoticed while obviously <span class="liberal">Liberal</span>.
+<dt><p>Disguise<dd><p>	The ability to blend in and act like <span class="conservative">Conservative</span> filth. Dress the part.
+<dt><p>Security<dd><p>	The ability to pick locks and hotwire cars.
+<dt><p>Computers<dd><p>	The ability to use and exploit computer systems effectively.
+<dt><p>Driving<dd><p>	The ability to handle a car in dangerous situations.
+<dt><p>Law<dd><p>		Knowledge of courtroom procedure and criminal law.
+<dt><p>Religion<dd><p>	Knowledge of religious doctrine and advanced theology.
+<dt><p>Business<dd><p>	Knowledge of business practices and economic theory.
+<dt><p>Science<dd><p>	Knowledge of scientific disciplines and technical matters.
+<dt><p>Gangsterism<dd><p>	Knowledge of street gangs and their practices.
+<dt><p>Tactics<dd><p>	Knowledge of military squad-based tactics.
+</dl>
+
+<p>Juice:
+In the full status screen, you can see how much "juice" a <span class="liberal">Liberal</span> has. Juice is <span class="liberal">Liberal</span> Street Credibility and having higher juice influences your attributes, since that <span class="liberal">Liberal</span> is inflamed by the powers of <span class="liberal">Liberal</span> Justice. Most <span class="liberal">Liberals</span> are unable to get anyone to follow them without gaining a significant amount of juice first. Juice can be made negative by performing non-<span class="liberal">liberal</span> actions or just generally messing up.
+
+<h1>Equipment</h1>
+
+<p>Guns.  Melee weapons.  Clothes.  Masks.  Sorry, the Oubliette
+Manual had this.  There isn't much to say yet.
+
+<h1>Main Options</h1>
+
+<p>***NOTE***:  You can always press "ENTER" to leave interface
+screens.
+
+<p><b>F - </b>Go forth to stop EVIL
+	Select this option to take your Squad into battle
+	against <span class="conservative">Conservatives</span> in an effort to influence public
+	opinion, or to change safe houses.
+	More on this in the next section.
+
+<p>	***NOTE***: Once you tell a squad to go somewhere, do
+	not expect to go there immediately.  You must 'W'ait
+	a day for actions to take place.  All "stop EVIL" actions
+	will occur in succession, though not necessarily in the
+	order you assigned them.
+
+<p><b>E - </b>Equipment
+	Go here to equip your Squad.
+
+<p>	***NOTE***:  The equipment at your base does not come with
+	your Squad when it attack <span class="conservative">conservative</span> sites.  Make
+	sure you have the weapons, armor, and clips with your
+	Squad members before they leave.  On the other hand,
+	make sure you store objects that you don't want to bring with
+	you at the base.
+
+<p><b>V - </b>Vehicles
+	Assign vehicles to your <span class="liberal">Liberals</span>.  If you do not designate
+	a driver, then best driver among the passengers will be used.
+
+<p><b>R - </b>Review and reorganize <span class="liberal">Liberals</span>
+	Here you can view all of your <span class="liberal">Liberals</span>, as well as
+	form and disband Squads.  You can also change where Squadless
+	<span class="liberal">Liberals</span> are based at and promote <span class="liberal">Liberals</span> in you
+	organization.
+
+<p>	***NOTE***:  If a <span class="liberal">Liberal</span> is martyred or arrested, you will
+	lose the organization under that <span class="liberal">Liberal</span>.  However, if a
+	<span class="liberal">Liberal</span> is arrested and rats you out, the rat's contact
+	will be endanger of a racketeering charge.  <span class="liberal">Liberals</span> with
+	low juice and heart rat more often, so you won't want them
+	too high up in the LCS.
+
+<p><b>A - </b>Activate the Uninvolved
+	Here you can assign individual <span class="liberal">Liberals</span> various actions to
+	further your <span class="liberal">Liberal</span> agenda.
+
+<p><b>C - </b>Cancel this Squad's Departure
+	This cancels a "stop EVIL" action.
+
+<p><b>X - </b>Live to fight EVIL another day.
+	Press this key to save and quit.
+
+<p><b>W - </b>Wait a day
+	This passes one day, and you will see everything happened,
+	as well as control your squads at sites.
+
+<p>	When you pass time, things can happen.  If you have a
+	newspaper, it will be published at the end of the month.
+	Congress might vote on a bill, the Supreme Court might hand
+	down a decision, or there could be elections.  Read a book
+	on the structure of American government if this is confusing:)
+
+<p>	The important thing to know is that the government influences
+	the Laws, and making all of the Laws extremely <span class="liberal">Liberal</span> is the goal
+	of the game.
+
+<p><b>0 - </b>Show the squad's <span class="liberal">Liberal</span> status
+	See previous.
+
+<p><b># - </b>Check the status of a squad <span class="liberal">Liberal</span>
+	See previous.
+
+<p><b>O - </b>Change the squad's <span class="liberal">Liberal</span> order
+	This has no effect on anything.  It is simply for Aesthetics
+	and conformance with the Oubliette model.
+
+<p><b>TAB - </b>Next Squad
+	If you have created more than one squad, you can switch between them.
+
+<p><b>Z - </b>Next Location
+	Swap between your safe houses.  You can view police sieges and
+	invest in infrastructure.
+
+<p><b>L - </b>The Status of the <span class="liberal">Liberal</span> Agenda
+	Here you will see the state of the government
+	and the current laws on many important issues.  In order for your
+	<span class="liberal">Liberal</span> Agenda to triumph,  you must make all of the laws <span class="liberal"><blink>Elite
+	Liberal</blink></span> (Green).  However, in order to prevent this state from being
+	<span class="conservative">Conservatively</span> ephemeral, both Houses of Congress, the Supreme Court,
+	and the Executive Branch, must also be <span class="liberal"><blink>Elite Liberal</blink></span>.  Once you have
+	achieved this Purely Elite <span class="liberal">Liberal</span> state, you will be victorious.
+	
+	***NOTE***: You can disband the LCS from this screen.  If you think you've
+	gotten the country very close to Elite <span class="liberal">Liberal</span> status, and you're sick
+	of waiting, you can disband and wait.  This is an irreversible option,
+	so be careful.  It is advisable to have sleepers in place to counteract
+	any unforeseen events that could occur.
+
+<p><b>P - </b>PATRIOTISM: Buy a flag ($20)
+	Show your American Spirit by buying a flag and flying it
+	atop the selected location.
+
+<p><b>S - </b>FREE SPEECH: the <span class="liberal">Liberal</span> Slogan
+	Note that if you win the game, your slogan will be immortalized.
+	If you don't pick one, your high score entry will be
+	"We need a slogan!".  That's lame.  Choose a slogan.
+
+<p>***NOTE***: Under the 'A'ctivate options, you can go on-line and check
+public opinion.  Public opinion	is the most important factor in elections,
+so you'll need to work on <span class="liberal">Liberalizing</span> the masses if you hope to change
+the laws.
+
+<p>***NOTE***:  AM Radio and Cable News, being Fundamentally <span class="conservative">Conservative</span>,
+will influence public opinion negatively.  If your surveys
+tell you that people are tuning into these <span class="conservative">Conservative</span> Information
+Sources, know that over the months public opinion will Degenerate
+with respect to your most important <span class="liberal">Liberal</span> Causes.
+
+<p>***NOTE***:  Your newspaper is a great way to influence public opinion.
+However, if your <span class="liberal">Liberal</span> Crime Squad is unpopular (as it is in the
+beginning of the game), your Newspaper can have a detrimental effect.
+It is therefore important to perform <span class="liberal">Liberal</span> Acts (with 'A'ctivate)
+in the beginning that simply build your appeal to the masses.
+
+<p>***NOTE***:  You will encounter certain very salacious items
+when your squad is on Site.  You can bring these back and
+publish them in your Newspaper to greatly influence opinion
+and your own credibility.  Publication of your paper occurs at
+the end of the month.  You need to safeguard these items until then.
+
+<p>***NOTE***:  You can make purchases by "stopping EVIL" at pawn shops
+and other stores.  You won't actually attack these locations.  Also
+note that any gun that you purchase at a pawn shop is a
+<span class="liberal">Liberal</span> means to an end, and are therefore not subject to
+the Righteous Premise of Reasonable Gun Control which
+governs the <span class="liberal">Liberal</span> Mind.
+
+<p>***NOTE***:  If you feel unsafe committing acts of felony
+civil disobedience in the face of <span class="conservative">Conservative</span> Power, you can
+build a compound to stop the police from raiding, leading to
+a prolonged siege instead.  You may invest in the compound
+to make it more effective against <span class="conservative">Conservative</span> Invaders.
+Use the 'Z' option to view and invest in your safe houses.
+
+<p>***Note***:  Non-police opponents are not subject to the
+same restrictions as the police force and will not siege
+the compound, but immediately attack instead.  However, fighting off
+these <span class="conservative">Conservative</span> automatons will not escalate the situation
+in the same way as fighting off the police does.  Eliminating
+enough of any attacking group will cause them to flee.
+
+<p>***Note***:  If you are under siege, you will have the option
+to wait, escape, or give up.  Escaping leads you directly to a
+confrontation with the police much like the normal raiding screen.
+If you give up to the police, your righteous-yet-lawbreaking <span class="liberal">Liberals</span>
+will be hauled off to face <span class="conservative">Conservative</span> Justice.  This can lead to
+prison terms or even the Death Penalty.  If you give up to any other
+group, besides the police, your Squad will be terminated.  You can
+wait out a siege as long as you have food.  The police will attempt
+to degrade your capabilities during this time, but there is a chance
+for you to get some positive publicity, which could be quite useful.
+
+<h1>Site Options</h1>
+
+<p>By raiding <span class="conservative">Conservative</span> sites, you can gain Funds and Juice,
+as well as influence public opinion.
+
+<p>When you enter a site, you'll see a map of your immediate surroundings
+on the lower right.  If your Squad exits the site, you'll go
+back to your safe house.  But you aren't a <span class="conservative">Conservative</span> Chicken Hawk,
+supporting conflict but refusing to serve yourself.  So you'll want
+to go through the door.
+
+<p>***NOTE***: Once your Squad enters a site, notice that each member's Armor
+becomes green, yellow or red.  This lets you know if you have an
+appropriate disguise.
+
+<p>We'll get to the specific instructions in a moment.  First, an overview:
+As you move around the site, things will happen.  If you find people,
+they will be shown on your map as "ENCNTER" (for "Encounter").  The
+specific people in the Encounter will be shown at the bottom of the screen.
+Red names are <span class="conservative">Conservatives</span>, white names are 	<span class="moderate">moderates</span>, and Green names
+are <span class="liberal">Liberals</span>.  <span class="conservative">Conservatives</span> that see through your disguise will become
+suspicious, and eventually raise an alarm.  The alarm can also be raised
+by performing <span class="liberal">Liberal</span> activities in front of <span class="conservative">Conservatives</span>.  These
+activities might also alienate the masses.  Performing blatantly criminal
+acts will even alienate the <span class="liberal">Liberals</span> at a site, as they are not yet
+completely in touch with your Grandiose <span class="liberal">Liberal</span> Plan.
+
+<p>You will also encounter "GOODS" (things to steal), "LOOT!" (things that
+people have dropped in combat), "DOOR" (a door to pass through), and "EXIT"
+(a way out).  There are also other special places that will have various
+names (you can see what they are in a caption below the site map when you
+are on top of them).  These special places depend on the type of site
+and can be interacted with using the 'U'se key.
+
+<p>Crimes that you commit at a site will help the media build up a
+sensational image around you, and this will help bolster public opinion.
+However, if you alienate a site, the spin on the story will be negative,
+and opinion will shift against you.  You must search online
+once you get back to see how the battle for public opinion was affected.
+
+<p>Once the <span class="conservative">Conservative</span> alarm has been raised, all of the <span class="conservative">Conservatives</span>
+will begin to attack your Squad.  You may fight back, but be careful.
+Attacking a <span class="conservative">Conservative</span> in the presence of a <span class="moderate">moderate</span> will alienate
+the masses.  You will also sometimes miss when attacking, and hit
+a <span class="moderate">moderate</span> or <span class="liberal">Liberal</span> by mistake.  If the mistaken target survives,
+or if there are other <span class="moderate">moderates</span> or <span class="liberal">Liberals</span> to see the mistake,
+you will alienate even the <span class="liberal">Liberals</span> at the site.
+
+<p>***NOTE***:  Certain Arch-<span class="conservative">Conservative</span> opponents will not attack in
+the traditional sense, but will instead engage your Squad members in
+debate.  At this point, having a Squad member with a high wisdom
+can be fatal.
+
+<p>If your Squad is eliminated, you will be taken back to the main screen,
+unless another Squad is also acting that day.
+
+<p>Now on to the specific actions.  We will discuss crimes and alienation
+when relevant:
+
+<p>***NOTE***:  If x's cover a square, it is restricted.  Disguise
+restrictions are tighter in these areas.
+
+<dl>
+
+<dt><p><b>W,A,D,X - </b>Move
+<dd><p>	Use these keys to move around the site.  They cannot be used in combat.
+	Open doors by moving into them.
+
+<dt><p><b>G - </b>Get Loot
+<dd><p>	Use this to pick up "LOOT!" and "GOODS".  You can fence these items later.
+	When you take "GOODS", you are stealing.  Stealing in the presence
+	of a <span class="moderate">moderate</span> or <span class="liberal">Liberal</span> will alienate everyone.
+
+<dt><p><b>M - </b>Map
+<dd><p>	This lets you see a map of the site.  It will be uncovered as you discover it.
+<dd><p>	The little Green face is your Squad.  $ denote "GOODS".  ! denote Special Places.
+
+<dt><p><b>E - </b>Equip
+<dd><p>	Go here to equip your squad.  You can use "LOOT!" that
+<dd><p>	has been dropped by <span class="conservative">Conservative</span> automatons once you 'G'et it.
+
+<dt><p><b>L - </b>Reload
+<dd><p>	If you have a firearm and a clip, this will reload it.  Loading takes time
+	in battle, so remember to do this after a fight if your gun is empty.
+<dd><p>	You can reload a gun that is neither empty nor full, but you will use an
+	entire clip in doing so.
+
+<dt><p><b>O - </b>Change the squad's <span class="liberal">Liberal</span> order
+<dd><p>	See previous.
+
+<dt><p><b>U - </b>Use
+<dd><p>	This allows you to use the Special Places at the sites.  If there
+	are other people around, use your uncommon <span class="liberal">LIBERAL</span> sense.  For instance,
+	if you destroy machinery in a sweat shop, the workers won't care, since
+	they are eager to escape bondage.  However, if you destroy machinery in
+	a polluting factory in front of the Union workers, they will be alienated,
+	as it will be difficult for them to reconcile a threat to their livelihoods
+	with your <span class="liberal">Liberal</span> Agenda even though they might otherwise support you.
+	If you destroy the machinery when they are not around,
+	then only the <span class="conservative">Conservatives</span> at the site will become suspicious.
+
+<dt><p><b># - </b>Check the status of a squad <span class="liberal">Liberal</span>
+	See previous.
+
+<dt><p><b>V - </b>Evade
+	Use this option to move during combat.
+
+<dt><p><b>0 - </b>Show the squad's <span class="liberal">Liberal</span> status
+	See previous.
+
+<dt><p><b>K - </b>Kidnap
+<dd><p>	You can try to snatch any person who is not well-armed.  Each Squad
+	member can hold one hostage.  Being seen with a hostage will alienate
+	everyone, so you must be careful.  If you escape with a hostage,
+	you may bring them through Indoctrination procedures.  Hostages
+	also will block half of the <span class="conservative">Conservative</span> attacks, so snatching a
+	<span class="conservative">Conservative</span> worker in combat might prove advantageous.  You can only
+	kidnap <span class="conservative">Conservatives</span>.  Escaping a site with a high-profile <span class="conservative">Conservative</span>
+	has a huge impact on public opinion.  However, if you alienated the site
+	during the kidnapping, the impact will be negative.
+
+<dd><p>	***NOTE***:  Kidnapping a high-profile <span class="conservative">Conservative</span> and then Indoctrinating it
+	has massive benefits.  Recruiting such <span class="conservative">Conservatives</span> as Sleepers
+	can influence public opinion.
+
+<dd><p>	***NOTE***:  Holding a hostage lowers your attack accuracy.
+
+<dd><p>	***NOTE***:  Once you bring a hostage back, you must assign <span class="liberal">Liberals</span>
+	to watch over it or it might escape.  You may also assign <span class="liberal">Liberals</span>
+	to Indoctrinate it.  You do not have to do both.
+
+<dt><p><b>F - </b>Fight!
+<dd><p>	Use this button to attack <span class="conservative">Conservatives</span>.  As previously stated, this
+	will alienate <span class="moderate">moderates</span>.  There is also a chance that you will hit
+	the wrong target, in which case you will alienate everyone.
+
+<dd><p>	***NOTE***:  If you are out of bullets and have a clip, but you are
+	in combat, just press 'F'.  The Squad member will reload automatically.
+	If you have no clips, you will strike with the weapon.
+
+<dt><p><b>T - </b>Talk
+<dd><p>	Violence isn't always the answer.  Sometimes seduction and lying
+	can do the same thing, or even occasionally debating on the issues.
+	Most people won't be interested in discussion, unless it involves
+	romance, although certain degenerate and idle types, that is,
+	those with Unrealized Potential, will listen to your exposition
+	of the <span class="liberal">Liberal</span> Agenda.
+
+<dd><p>	***NOTE***:  You can also use the 'T'alk command to try bluff
+	your way out of a confrontational situation.  This only can be
+	done if a combat is not underway.  It really pays to have a good
+	disguise at this point.
+
+<dt><p><b>R - </b>Release oppressed
+<dd><p>	Certain oppressed classes of people can be released from bondage.
+	They will immediately join the Squad if there is room.
+
+	</dl>

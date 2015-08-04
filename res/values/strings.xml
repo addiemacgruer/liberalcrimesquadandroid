@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="hello">Hello World, LiberalCrimeSquadActivity!</string>
+	<string name="app_name">Liberal Crime Squad</string>
+	<string name="Name">Liberal Crime Squad</string>
+	<string name="Inspiration">Inspired by the 1983 version of Oubliette</string>
+	<string name="titleHighScores">View Liberal high scores</string>
+	<string name="titleChangeTheme">Change theme</string>
+	<string name="Copyright">v3.09 Copyright &#169; 2002-4, Tarn Adams\nA Bay 12
+		Games Production\nwww.bay12games.com\n\nv4.04.0 Maintained by the Open
+		Source Community\nsourceforge.net/projects/lcsgame\n\n
+		Android version 9 based on DOS v4.04.0\nsourceforge.net/p/lcsagame</string>
+	<string name="TitleQuitInfo">Press [back] now to quit. Quitting later causes your progress to be saved.\n\nPress the screen to pursue your liberal agenda!</string>
+	<string name="gtNewGameTitle">New Game of Liberal Crime Squad: Advanced Gameplay Options</string>
+	<string name="gtA">Classic Mode: No Conservative Crime Squad</string>
+	<string name="gtB">"We Didn't Start The Fire: The CCS starts active	and extremely strong."</string>
+	<string name="gtC">Nightmare Mode: Liberalism is forgotten. Is it too late to fight back?</string>
+	<string name="gtD">Continue</string>
+	<string name="gaA">No Compromise Classic - I will make all our laws
+		Elite Liberal!</string>
+	<string name="gaB">Democrat Mode - Most laws must be Elite Liberal,
+		some can be Liberal.</string>
+	<string name="gaAgenda">New Game of Liberal Crime Squad: Your Agenda</string>
+	<string name="titleLoading">Loading&#8230;</string>
+	<string name="founderTitle">The Founder of the Liberal Crime Squad</string>
+	<string name="founderFirst">FIRST NAME:</string>
+	<string name="founderAbutton">Have your parents reconsider</string>
+	<string name="founderLast">LAST NAME:</string>
+	<string name="founderBbutton">Be born to a different family</string>
+	<string name="founderSex">SEX:</string>
+	<string name="founderCbutton">Be born as the other sex</string>
+	<string name="founderHistory">History</string>
+	<string name="founderChoose">Let Me Choose</string>
+	<string name="founderFate">Let Fate Decide</string>
+	<string name="founderDbutton">Toggle childhood</string>
+	<string name="founderEbutton">Press when ready to begin&#8230;</string>
+	<string name="newEraTitle">A NEW CONSERVATIVE ERA</string>
+	<string name="newEra1">The year is %d.</string>
+	<string name="newEra2">Conservative President %1$s ends his second term
+		with approval ratings in the high 70s, and is succeeded by hardcore
+		Arch-Conservative %2$s.</string>
+	<string name="newEra3">With Conservatives sweeping into power in the House
+		of Representatives and Senate, and a Conservative majority in the
+		Supreme Court of the United States, commentators are hailing it as the
+		beginning of a new Conservative era.</string>
+	<string name="newEra4">President %s has asked the new Congress to move
+		quickly to rubber-stamp his radical Arch-Conservative agenda.</string>
+	<string name="newEra5">The left seems powerless to stop this imminent
+		trampling of Liberal Sanity and Justice</string>
+	<string name="newEra6">In this dark time, the Liberal Crime Squad is
+		born&#8230;</string>
+	<string name="basemodeOrder">Reorder</string>
+	<string name="basemodeNextSquad">Next Squad</string>
+	<string name="basemodeLocation">Next Loc</string>
+	<string name="basemodeF">Go forth to stop EVIL</string>
+	<string name="basemodeC">Cancel this squad\'s departure</string>
+	<string name="basemodeA">Activate Liberals</string>
+	<string name="basemodeB">Sleepers</string>
+	<string name="basemodeP">PATRIOTISM: fly a flag here ($20)</string>
+	<string name="basemodePburn">PROTEST: burn the flag</string>
+	<string name="basemodeW">Wait a day</string>
+	<string name="basemodeE">Equip squad</string>
+	<string name="basemodeV">Vehicles</string>
+	<string name="basemodeR">Review Assets and Form Squads</string>
+	<string name="basemodeL">The Status of the Liberal Agenda</string>
+	<string name="basemodeS">FREE SPEECH: the Liberal Slogan</string>
+	<string name="basemodeX">Live to fight EVIL another day</string>
+	<string name="basemodeI">Invest in this location</string>
+	<string name="foundername">What is your name to the people?</string>
+	<string name="moneyString">Money: $%s</string>
+	<string name="newslogan">What is your new slogan?</string>
+	<string name="laWon">The Triumph of the Liberal Agenda</string>
+	<string name="laLost">The Abject Failure of the Liberal Agenda</string>
+	<string name="laOngoing">The Status of the Liberal Agenda</string>
+	<string name="laPres1">President (1st term):</string>
+	<string name="laPres2">President (2nd term):</string>
+	<string name="laPresLost">King:</string>
+	<string name="laVicePresident">Vice President:</string>
+	<string name="laSoS">Secretary of State:</string>
+	<string name="laSoSLost">General Secretary:</string>
+	<string name="laAG">Attorney General:</string>
+	<string name="laHouse">House: %1$sLib+, %1$sLib, %3$sMod, %4$sCons,
+		%5$sCons+</string>
+	<string name="laSenate">Senate: %1$sLib+, %1$sLib, %3$sMod, %4$sCons,
+		%5$sCons+</string>
+	<string name="laCongress">he Congress consists of CEOs and televangelists.</string>
+	<string name="laSupremeCourt">Supreme Court:</string>
+	<string name="laSupremeCourtLost">Replaced by Corporate Ethics Officers</string>
+	<string name="laIssues">Issues:</string>
+	<string name="cdWheelchair">Wheelchair</string>
+	<string name="cdOnFoot">On foot</string>
+	<string name="cdOnFootQuote">On \"foot\"</string>
+	<string name="cdHolding">, holding </string>
+	<string name="questionMark">"?"</string>
+	<string name="cdCorporateCeo">a squirming CEO</string>
+	<string name="cdRadioPersonality">a crying Radio Personality</string>
+	<string name="cdNewsAnchor">smarmy News Anchor</string>
+	<string name="cdScientistEminent">a frightened Eminent Scientist</string>
+	<string name="cdJudgeConservative">an angry Hangin\' Judge</string>
+	<string name="cdStatistics">Heart: %1$s\nIntelligence: %2$s\nWisdom: %3$s\nHealth: %4$s\nAgility: %5$s\nStrength: %6$s\nCharisma: %7$s\n</string>
+	<string name="cdStatistics2">Transport: %1$s\nWeapon: %2$s\nClothes: %3$s</string>
+	<string name="cdSkills">Top Skills:\n</string>
+	<string name="cdJuice">Juice: %1$s Next: %2$s\n</string>
+	<string name="cdName">Name: </string>
+	<string name="cdDoB">Born %1$s %2$s, %3$s (Age %4$s, %5$s)\n</string>
+	<string name="cdProfileTitle">Profile of a Liberal</string>
+	<string name="cdSkillNowMax">Skill (Now / Max)</string>
+	<string name="profileCodeName">Change Code Name</string>
+	<string name="profileFixGender">Fix Gender Label</string>
+	<string name="profileContinue">Continue the Struggle</string>
+	<string name="profileHealth">Health</string>
+	<string name="profileCrime">Criminal Record</string>
+	<string name="cdNewCodeName">What is the new code name?</string>
+	<string name="cdNoCrimes">Not wanted in connection with any offences.</string>
+	<string name="seWhere">Where will the squad go?</string>
+	<string name="seNotYet">This squad is not yet liberal enough</string>
+	<string name="xxx">XXXXX\nXXXXX\nXXXXX</string>
+	<string name="smupline">|\n|\n|</string>
+	<string name="profileRemove">Remove Member</string>
+	<string name="profileKill">Kill Member</string>
+	<string name="titleNew">Pursue a new Liberal Agenda</string>
+	<string name="titleContinue">Continue your Liberal Agenda</string>
+	<string name="titleHelp">Help!</string>
+	<string name="cont">Continue the Struggle</string>
+	<string name="politicsHouse">House:</string>
+	<string name="politicsSenate">Senate:</string>
+	<string name="titleLicense">Licensing Information</string>
+
+</resources>

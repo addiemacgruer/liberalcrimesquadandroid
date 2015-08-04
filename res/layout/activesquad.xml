@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical" >
+
+	<LinearLayout
+		android:id="@+id/linearLayout1"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal" >
+
+		<TableLayout
+			android:id="@+id/tableLayout1"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" >
+
+			<TableRow
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content" >
+
+				<Button
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:padding="0dip"
+					android:tag="0"
+					android:text="#" >
+				</Button>
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingRight="10dip"
+					android:text="CODE NAME" >
+				</TextView>
+
+				<TextView
+					android:id="@+id/textView2"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingRight="10dip"
+					android:text="SKILL" >
+				</TextView>
+
+				<TextView
+					android:id="@+id/textView3"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingRight="10dip"
+					android:text="WEAPON" >
+				</TextView>
+
+				<TextView
+					android:id="@+id/textView4"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingRight="10dip"
+					android:text="ARMOR" >
+				</TextView>
+
+				<TextView
+					android:id="@+id/textView6"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingRight="10dip"
+					android:text="HEALTH" >
+				</TextView>
+
+				<TextView
+					android:id="@+id/textView7"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="TRANSPORT" >
+				</TextView>
+			</TableRow>
+
+			<TableRow
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content" >
+
+				<Button
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:padding="0dip"
+					android:tag="1"
+					android:text="1" >
+				</Button>
+
+				<TextView
+					android:id="@+id/as1name"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingRight="10dip"
+					android:text="" >
+				</TextView>
+
+				<TextView
+					android:id="@+id/as1skill"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingRight="10dip"
+					android:text="" >
+				</TextView>
+
+				<TextView
+					android:id="@+id/as1weapon"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingRight="10dip"
+					android:text="" >
+				</TextView>
+
+				<TextView
+					android:id="@+id/as1armor"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingRight="10dip"
+					android:text="" >
+				</TextView>
+
+				<TextView
+					android:id="@+id/as1health"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingRight="10dip"
+					android:text="" >
+				</TextView>
+
+				<TextView
+					android:id="@+id/as1transport"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="" >
+				</TextView>
+			</TableRow>
+
+			<TableRow
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content" >
+
+				<Button
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:padding="0dip"
+					android:tag="2"
+					android:text="2" >
+				</Button>
+
+				<TextView
+					android:id="@+id/as2name"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingRight="10dip"
+					android:text="" >
+				</TextView>
+
+				<TextView
+					android:id="@+id/as2skill"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingRight="10dip"
+					android:text="" >
+				</TextView>
+
+				<TextView
+					android:id="@+id/as2weapon"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingRight="10dip"
+					android:text="" >
+				</TextView>
+
+				<TextView
+					android:id="@+id/as2armor"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingRight="10dip"
+					android:text="" >
+				</TextView>
+
+				<TextView
+					android:id="@+id/as2health"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingRight="10dip"
+					android:text="" >
+				</TextView>
+
+				<TextView
+					android:id="@+id/as2transport"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="" >
+				</TextView>
+			</TableRow>
+
+			<TableRow
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content" >
+
+				<Button
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:padding="0dip"
+					android:tag="3"
+					android:text="3" >
+				</Button>
+
+				<TextView
+					android:id="@+id/as3name"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingRight="10dip"
+					android:text="" >
+				</TextView>
+
+				<TextView
+					android:id="@+id/as3skill"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingRight="10dip"
+					android:text="" >
+				</TextView>
+
+				<TextView
+					android:id="@+id/as3weapon"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingRight="10dip"
+					android:text="" >
+				</TextView>
+
+				<TextView
+					android:id="@+id/as3armor"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingRight="10dip"
+					android:text="" >
+				</TextView>
+
+				<TextView
+					android:id="@+id/as3health"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingRight="10dip"
+					android:text="" >
+				</TextView>
+
+				<TextView
+					android:id="@+id/as3transport"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="" >
+				</TextView>
+			</TableRow>
+
+			<TableRow
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content" >
+
+				<Button
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:padding="0dip"
+					android:tag="4"
+					android:text="4" >
+				</Button>
+
+				<TextView
+					android:id="@+id/as4name"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingRight="10dip"
+					android:text="" >
+				</TextView>
+
+				<TextView
+					android:id="@+id/as4skill"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingRight="10dip"
+					android:text="" >
+				</TextView>
+
+				<TextView
+					android:id="@+id/as4weapon"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingRight="10dip"
+					android:text="" >
+				</TextView>
+
+				<TextView
+					android:id="@+id/as4armor"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingRight="10dip"
+					android:text="" >
+				</TextView>
+
+				<TextView
+					android:id="@+id/as4health"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingRight="10dip"
+					android:text="" >
+				</TextView>
+
+				<TextView
+					android:id="@+id/as4transport"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="" >
+				</TextView>
+			</TableRow>
+
+			<TableRow
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content" >
+
+				<Button
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:padding="0dip"
+					android:tag="5"
+					android:text="5" >
+				</Button>
+
+				<TextView
+					android:id="@+id/as5name"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingRight="10dip"
+					android:text="" >
+				</TextView>
+
+				<TextView
+					android:id="@+id/as5skill"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingRight="10dip"
+					android:text="" >
+				</TextView>
+
+				<TextView
+					android:id="@+id/as5weapon"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingRight="10dip"
+					android:text="" >
+				</TextView>
+
+				<TextView
+					android:id="@+id/as5armor"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingRight="10dip"
+					android:text="" >
+				</TextView>
+
+				<TextView
+					android:id="@+id/as5health"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingRight="10dip"
+					android:text="" >
+				</TextView>
+
+				<TextView
+					android:id="@+id/as5transport"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="" >
+				</TextView>
+			</TableRow>
+
+			<TableRow
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content" >
+
+				<Button
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:padding="0dip"
+					android:tag="6"
+					android:text="6" >
+				</Button>
+
+				<TextView
+					android:id="@+id/as6name"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingRight="10dip"
+					android:text="" >
+				</TextView>
+
+				<TextView
+					android:id="@+id/as6skill"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingRight="10dip"
+					android:text="" >
+				</TextView>
+
+				<TextView
+					android:id="@+id/as6weapon"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingRight="10dip"
+					android:text="" >
+				</TextView>
+
+				<TextView
+					android:id="@+id/as6armor"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingRight="10dip"
+					android:text="" >
+				</TextView>
+
+				<TextView
+					android:id="@+id/as6health"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingRight="10dip"
+					android:text="" >
+				</TextView>
+
+				<TextView
+					android:id="@+id/as6transport"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="" >
+				</TextView>
+			</TableRow>
+		</TableLayout>
+	</LinearLayout>
+
+</HorizontalScrollView>

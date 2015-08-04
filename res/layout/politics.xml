@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/content"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical" >
+
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical" >
+
+		<TextView
+			android:id="@+id/title"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text=""
+			android:textStyle="bold" />
+
+		<TextView
+			android:id="@+id/house"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/politicsHouse" />
+
+		<TextView
+			android:id="@+id/houseY"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="right"
+			android:text="" />
+
+		<TextView
+			android:id="@+id/houseN"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="right"
+			android:text="" />
+
+		<TextView
+			android:id="@+id/senate"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/politicsSenate" />
+
+		<TextView
+			android:id="@+id/senateY"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="right"
+			android:text="" />
+
+		<TextView
+			android:id="@+id/senateN"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="right"
+			android:text="" />
+
+		<LinearLayout
+			android:id="@+id/gmessages"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical" >
+		</LinearLayout>
+
+		<LinearLayout
+			android:id="@+id/gcontrol"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical" >
+		</LinearLayout>
+	</LinearLayout>
+
+</ScrollView>

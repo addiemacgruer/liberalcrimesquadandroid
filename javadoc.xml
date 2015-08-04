@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="javadoc">
+    <target name="javadoc">
+        <javadoc access="package" additionalparam=" -quiet" author="true" classpath="." destdir="doc" doctitle="Liberal Crime Squad" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" packagenames="lcs.android.scoring,lcs.android.items,lcs.android.site.type,lcs.android.site.map,lcs.android.daily.activities,lcs.android.creature.skill,lcs.android.activities.iface,lcs.android.site,lcs.android.creature,lcs.android.combat,lcs.android.shop,lcs.android.law,lcs.android.creature.health,lcs.android.encounters,lcs.android.basemode.iface,lcs.android.game,lcs.android.daily,lcs.android.util,lcs.android.monthly,jp.ac.hiroshimau.sci.math,lcs.android.activities,lcs.android.politics,lcs.android.creature.crime,lcs.android.news,lcs.android.site.creation" source="1.7" sourcefiles="gen/lcs/android/R.java,gen/lcs/android/BuildConfig.java" sourcepath="src:gen" splitindex="true" use="true" version="true">
+            <link href="file:/home/addie/Workspace/LiberalCrimeSquad/doc/"/>
+            <link href="file:/home/addie/.android-sdks/docs/reference"/>
+        </javadoc>
+    </target>
+</project>

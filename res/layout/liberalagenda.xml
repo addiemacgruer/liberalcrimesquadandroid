@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical" >
+
+	<LinearLayout
+		android:id="@+id/linearLayout1"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:orientation="vertical" >
+
+		<TextView
+			android:id="@+id/laStatus"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/laOngoing"
+			android:textStyle="bold" >
+		</TextView>
+
+		<RelativeLayout
+			android:id="@+id/relativeLayout1"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent" >
+
+			<TextView
+				android:id="@+id/laPresLabel"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentLeft="true"
+				android:layout_alignParentTop="true"
+				android:text="@string/laPres1" >
+			</TextView>
+
+			<TextView
+				android:id="@+id/laPres"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentRight="true"
+				android:layout_alignParentTop="true"
+				android:text="" >
+			</TextView>
+
+			<TextView
+				android:id="@+id/laVicePresidentLabel"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentLeft="true"
+				android:layout_below="@+id/laPres"
+				android:text="@string/laVicePresident" >
+			</TextView>
+
+			<TextView
+				android:id="@+id/laVicePresident"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentRight="true"
+				android:layout_below="@+id/laPres"
+				android:text="" >
+			</TextView>
+
+			<TextView
+				android:id="@+id/laSoSLabel"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentLeft="true"
+				android:layout_below="@+id/laVicePresidentLabel"
+				android:text="@string/laSoS" >
+			</TextView>
+
+			<TextView
+				android:id="@+id/laSoS"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignBaseline="@+id/laSoSLabel"
+				android:layout_alignBottom="@+id/laSoSLabel"
+				android:layout_alignParentRight="true"
+				android:text="" >
+			</TextView>
+
+			<TextView
+				android:id="@+id/laAGLabel"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentLeft="true"
+				android:layout_below="@+id/laSoSLabel"
+				android:text="@string/laAG" >
+			</TextView>
+
+			<TextView
+				android:id="@+id/laAG"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentRight="true"
+				android:layout_below="@+id/laSoS"
+				android:text="" >
+			</TextView>
+
+			<TextView
+				android:id="@+id/laHouse"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:layout_alignParentLeft="true"
+				android:layout_below="@+id/laAGLabel"
+				android:text="@string/laHouse" >
+			</TextView>
+
+			<TextView
+				android:id="@+id/laSenate"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:layout_alignParentLeft="true"
+				android:layout_below="@+id/laHouse"
+				android:text="@string/laSenate" >
+			</TextView>
+
+			<TextView
+				android:id="@+id/laSCLabel"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentLeft="true"
+				android:layout_below="@+id/laSenate"
+				android:text="@string/laSupremeCourt"
+				android:textStyle="bold" >
+			</TextView>
+
+			<TextView
+				android:id="@+id/laSC0"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignBaseline="@+id/laSCLabel"
+				android:layout_alignBottom="@+id/laSCLabel"
+				android:layout_alignParentRight="true"
+				android:text="" >
+			</TextView>
+
+			<TextView
+				android:id="@+id/laSC1"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentRight="true"
+				android:layout_below="@+id/laSC0"
+				android:text="" >
+			</TextView>
+
+			<TextView
+				android:id="@+id/laSC2"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentRight="true"
+				android:layout_below="@+id/laSC1"
+				android:text="" >
+			</TextView>
+
+			<TextView
+				android:id="@+id/laSC3"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentRight="true"
+				android:layout_below="@+id/laSC2"
+				android:text="" >
+			</TextView>
+
+			<TextView
+				android:id="@+id/laSC4"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentRight="true"
+				android:layout_below="@+id/laSC3"
+				android:text="" >
+			</TextView>
+
+			<TextView
+				android:id="@+id/laSC5"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentRight="true"
+				android:layout_below="@+id/laSC4"
+				android:text="" >
+			</TextView>
+
+			<TextView
+				android:id="@+id/laSC6"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentRight="true"
+				android:layout_below="@+id/laSC5"
+				android:text="" >
+			</TextView>
+
+			<TextView
+				android:id="@+id/laSC7"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentRight="true"
+				android:layout_below="@+id/laSC6"
+				android:text="" >
+			</TextView>
+
+			<TextView
+				android:id="@+id/laSC8"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentRight="true"
+				android:layout_below="@+id/laSC7"
+				android:text="" >
+			</TextView>
+		</RelativeLayout>
+
+		<TextView
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/laIssues"
+			android:textStyle="bold" >
+		</TextView>
+
+		<LinearLayout
+			android:id="@+id/gmessages"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical" >
+		</LinearLayout>
+	
+
+		<LinearLayout
+			android:id="@+id/gcontrol"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical" >
+		</LinearLayout>
+	</LinearLayout>
+
+</ScrollView>

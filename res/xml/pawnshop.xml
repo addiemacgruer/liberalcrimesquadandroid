@@ -1,0 +1,171 @@
+<shop name="PAWNSHOP">
+	<allow_selling>true</allow_selling>
+	<department>
+		<entry>Buy a Liberal Gun</entry>
+		<exit>Done buying Liberal guns</exit>
+		<fullscreen>false</fullscreen>
+		<item>
+			<class>WEAPON</class>
+			<description>Buy a Shotgun</description>
+			<letter>g</letter>
+			<price>400</price>
+			<type>WEAPON_SHOTGUN_PUMP</type>
+		</item>
+		<item>
+			<class>WEAPON</class>
+			<description>Buy a .38 Revolver</description>
+			<letter>t</letter>
+			<price>150</price>
+			<type>WEAPON_REVOLVER_38</type>
+		</item>
+		<item>
+			<class>WEAPON</class>
+			<description>Buy a 9mm Semi-automatic</description>
+			<letter>n</letter>
+			<price>300</price>
+			<type>WEAPON_SEMIPISTOL_9MM</type>
+		</item>
+		<item>
+			<class>WEAPON</class>
+			<description>Buy a .45 Semi-automatic</description>
+			<letter>f</letter>
+			<price>300</price>
+			<type>WEAPON_SEMIPISTOL_45</type>
+		</item>
+		<item>
+			<class>WEAPON</class>
+			<description>Buy a .44 Magnum</description>
+			<letter>m</letter>
+			<price>300</price>
+			<type>WEAPON_REVOLVER_44</type>
+		</item>
+		<item>
+			<class>WEAPON</class>
+			<description>Buy a Civilian AR-15</description>
+			<letter>r</letter>
+			<price>350</price>
+			<type>WEAPON_SEMIRIFLE_AR15</type>
+		</item>
+		<item>
+			<class>WEAPON</class>
+			<description>Buy a 9mm MP5 SMG</description>
+			<letter>s</letter>
+			<price>1200</price>
+			<type>WEAPON_SMG_MP5</type>
+		</item>
+		<item>
+			<class>WEAPON</class>
+			<description>Buy an M4 Carbine</description>
+			<letter>c</letter>
+			<price>1400</price>
+			<type>WEAPON_CARBINE_M4</type>
+		</item>
+		<item>
+			<class>WEAPON</class>
+			<description>Buy an M16</description>
+			<letter>a</letter>
+			<price>1500</price>
+			<type>WEAPON_AUTORIFLE_M16</type>
+		</item>
+		<item>
+			<class>WEAPON</class>
+			<description>Buy an AK47</description>
+			<letter>k</letter>
+			<price>1500</price>
+			<type>WEAPON_AUTORIFLE_AK47</type>
+		</item>
+		<letter>g</letter>
+	</department>
+	<department>
+		<entry>Buy Liberal Clips</entry>
+		<exit>Done buying Liberal clips</exit>
+		<fullscreen>false</fullscreen>
+		<item>
+			<class>CLIP</class>
+			<description>Buy Shotgun Shells</description>
+			<letter>p</letter>
+			<price>20</price>
+			<type>CLIP_BUCKSHOT</type>
+		</item>
+		<item>
+			<class>CLIP</class>
+			<description>Buy a .38 Speedloader</description>
+			<letter>t</letter>
+			<price>15</price>
+			<type>CLIP_38</type>
+		</item>
+		<item>
+			<class>CLIP</class>
+			<description>Buy a 9mm Pistol Magazine</description>
+			<letter>n</letter>
+			<price>30</price>
+			<type>CLIP_9</type>
+		</item>
+		<item>
+			<class>CLIP</class>
+			<description>Buy a .45 Pistol Magazine</description>
+			<letter>f</letter>
+			<price>30</price>
+			<type>CLIP_45</type>
+		</item>
+		<item>
+			<class>CLIP</class>
+			<description>Buy a .44 Speedloader</description>
+			<letter>m</letter>
+			<price>20</price>
+			<type>CLIP_44</type>
+		</item>
+		<item>
+			<class>CLIP</class>
+			<description>Buy a Rifle/Aslt.Rifle Mag</description>
+			<letter>r</letter>
+			<price>35</price>
+			<type>CLIP_ASSAULT</type>
+		</item>
+		<item>
+			<class>CLIP</class>
+			<description>Buy a 9mm SMG Magazine</description>
+			<letter>s</letter>
+			<price>35</price>
+			<type>CLIP_SMG</type>
+		</item>
+		<letter>c</letter>
+	</department>
+	<department>
+		<entry>Buy Liberal tools</entry>
+		<exit>Leave</exit>
+		<fullscreen>false</fullscreen>
+		<item>
+			<class>WEAPON</class>
+			<description>Buy a Crowbar</description>
+			<letter>c</letter>
+			<price>20</price>
+			<type>WEAPON_CROWBAR</type>
+		</item>
+		<item>
+			<class>WEAPON</class>
+			<description>Buy Spray Paint</description>
+			<letter>s</letter>
+			<price>20</price>
+			<type>WEAPON_SPRAYCAN</type>
+		</item>
+		<item>
+			<class>WEAPON</class>
+			<description>Buy a Guitar</description>
+			<letter>g</letter>
+			<price>200</price>
+			<type>WEAPON_GUITAR</type>
+		</item>
+		<item>
+			<class>WEAPON</class>
+			<description>Buy Bottle, Rag &amp; Gasoline</description>
+			<letter>m</letter>
+			<price>40</price>
+			<type>WEAPON_MOLOTOV</type>
+		</item>
+		<letter>t</letter>
+	</department>
+	<exit>Leave</exit>
+	<fullscreen>false</fullscreen>
+	<only_sell_legal_items>true</only_sell_legal_items>
+</shop>

@@ -1,0 +1,590 @@
+<armors>
+	<armortype>
+		<idname>ARMOR_NONE</idname>
+		<body_covering>
+			<arms>false</arms>
+			<body>false</body>
+			<head>false</head>
+			<legs>false</legs>
+		</body_covering>
+		<conceal_weapon_size>0</conceal_weapon_size>
+		<name>Naked</name>
+		<professionalism>0</professionalism>
+		<shortname>Naked</shortname>
+	</armortype>
+	<armortype>
+		<idname>ARMOR_CLOTHES</idname>
+		<fencevalue>20</fencevalue>
+		<make_difficulty>4</make_difficulty>
+		<make_price>10</make_price>
+		<name>Clothes</name>
+		<professionalism>1</professionalism>
+		<shortname>Clothes</shortname>
+		<stealth_value>1</stealth_value>
+	</armortype>
+	<armortype>
+		<idname>ARMOR_TRENCHCOAT</idname>
+		<conceal_weapon_size>10</conceal_weapon_size>
+		<fencevalue>40</fencevalue>
+		<interrogation>
+			<basepower>2</basepower>
+		</interrogation>
+		<make_difficulty>6</make_difficulty>
+		<make_price>20</make_price>
+		<name>Trenchcoat</name>
+		<professionalism>2</professionalism>
+		<shortname>Trenchcoat</shortname>
+		<stealth_value>2</stealth_value>
+	</armortype>
+	<armortype>
+		<idname>ARMOR_WORKCLOTHES</idname>
+		<fencevalue>20</fencevalue>
+		<make_difficulty>4</make_difficulty>
+		<make_price>10</make_price>
+		<name>Work Clothes</name>
+		<professionalism>2</professionalism>
+		<shortname>Work Clothes</shortname>
+		<stealth_value>1</stealth_value>
+	</armortype>
+	<armortype>
+		<idname>ARMOR_SERVANTUNIFORM</idname>
+		<fencevalue>40</fencevalue>
+		<make_difficulty>7</make_difficulty>
+		<make_price>20</make_price>
+		<name>Servant Uniform</name>
+		<professionalism>2</professionalism>
+		<shortname>Servant Unif.</shortname>
+		<stealth_value>1</stealth_value>
+	</armortype>
+	<armortype>
+		<idname>ARMOR_SECURITYUNIFORM</idname>
+		<appropriate_weapon>WEAPON_REVOLVER_38</appropriate_weapon>
+		<appropriate_weapon>WEAPON_REVOVLER_44</appropriate_weapon>
+		<appropriate_weapon>WEAPON_DESERT_EAGLE</appropriate_weapon>
+		<appropriate_weapon>WEAPON_PISTOL_9MM</appropriate_weapon>
+		<appropriate_weapon>WEAPON_PISTOL_45</appropriate_weapon>
+		<appropriate_weapon>WEAPON_NIGHTSTICK</appropriate_weapon>
+		<appropriate_weapon>WEAPON_SMG_MP5</appropriate_weapon>
+		<appropriate_weapon>WEAPON_CARBINE_M4</appropriate_weapon>
+		<body_covering>
+			<head>true</head>
+		</body_covering>
+		<fencevalue>80</fencevalue>
+		<interrogation>
+			<basepower>2</basepower>
+		</interrogation>
+		<make_difficulty>8</make_difficulty>
+		<make_price>40</make_price>
+		<name>Security Uniform</name>
+		<professionalism>2</professionalism>
+		<shortname>Security Unif.</shortname>
+		<stealth_value>1</stealth_value>
+	</armortype>
+	<armortype>
+		<idname>ARMOR_POLICEUNIFORM</idname>
+		<appropriate_weapon>WEAPON_REVOLVER_38</appropriate_weapon>
+		<appropriate_weapon>WEAPON_REVOVLER_44</appropriate_weapon>
+		<appropriate_weapon>WEAPON_DESERT_EAGLE</appropriate_weapon>
+		<appropriate_weapon>WEAPON_PISTOL_9MM</appropriate_weapon>
+		<appropriate_weapon>WEAPON_PISTOL_45</appropriate_weapon>
+		<appropriate_weapon>WEAPON_NIGHTSTICK</appropriate_weapon>
+		<appropriate_weapon>WEAPON_SHOTGUN_PUMP</appropriate_weapon>
+		<body_covering>
+			<head>true</head>
+		</body_covering>
+		<fencevalue>80</fencevalue>
+		<interrogation>
+			<assaultbonus>4</assaultbonus>
+			<basepower>6</basepower>
+		</interrogation>
+		<make_difficulty>8</make_difficulty>
+		<make_price>40</make_price>
+		<name>Police Uniform</name>
+		<police>true</police>
+		<professionalism>2</professionalism>
+		<shortname>Police Uniform</shortname>
+		<stealth_value>1</stealth_value>
+	</armortype>
+	<armortype>
+		<idname>ARMOR_CHEAPSUIT</idname>
+		<fencevalue>100</fencevalue>
+		<interrogation>
+			<basepower>4</basepower>
+		</interrogation>
+		<make_difficulty>9</make_difficulty>
+		<make_price>50</make_price>
+		<name>Cheap Suit</name>
+		<professionalism>3</professionalism>
+		<shortname>Cheap Suit</shortname>
+		<stealth_value>1</stealth_value>
+	</armortype>
+	<armortype>
+		<idname>ARMOR_EXPENSIVESUIT</idname>
+		<fencevalue>350</fencevalue>
+		<interrogation>
+			<basepower>6</basepower>
+		</interrogation>
+		<make_difficulty>14</make_difficulty>
+		<make_price>200</make_price>
+		<name>Expensive Suit</name>
+		<professionalism>4</professionalism>
+		<shortname>Expensive Suit</shortname>
+		<stealth_value>1</stealth_value>
+	</armortype>
+	<armortype>
+		<idname>ARMOR_BLACKSUIT</idname>
+		<fencevalue>110</fencevalue>
+		<interrogation>
+			<assaultbonus>4</assaultbonus>
+			<basepower>4</basepower>
+		</interrogation>
+		<make_difficulty>12</make_difficulty>
+		<make_price>60</make_price>
+		<name>Black Suit</name>
+		<professionalism>3</professionalism>
+		<shortname>Black Suit</shortname>
+		<stealth_value>2</stealth_value>
+	</armortype>
+	<armortype>
+		<idname>ARMOR_CHEAPDRESS</idname>
+		<fencevalue>40</fencevalue>
+		<interrogation>
+			<basepower>4</basepower>
+		</interrogation>
+		<make_difficulty>6</make_difficulty>
+		<make_price>20</make_price>
+		<name>Cheap Dress</name>
+		<professionalism>3</professionalism>
+		<shortname>Cheap Dress</shortname>
+		<stealth_value>1</stealth_value>
+	</armortype>
+	<armortype>
+		<idname>ARMOR_EXPENSIVEDRESS</idname>
+		<fencevalue>350</fencevalue>
+		<interrogation>
+			<basepower>6</basepower>
+		</interrogation>
+		<make_difficulty>14</make_difficulty>
+		<make_price>200</make_price>
+		<name>Expensive Dress</name>
+		<professionalism>4</professionalism>
+		<shortname>ExpensiveDress</shortname>
+		<stealth_value>1</stealth_value>
+	</armortype>
+	<armortype>
+		<idname>ARMOR_BLACKDRESS</idname>
+		<fencevalue>110</fencevalue>
+		<interrogation>
+			<assaultbonus>4</assaultbonus>
+			<basepower>6</basepower>
+		</interrogation>
+		<make_difficulty>12</make_difficulty>
+		<make_price>60</make_price>
+		<name>Black Dress</name>
+		<professionalism>3</professionalism>
+		<shortname>Black Dress</shortname>
+		<stealth_value>2</stealth_value>
+	</armortype>
+	<armortype>
+		<idname>ARMOR_LABCOAT</idname>
+		<appropriate_weapon>WEAPON_SYRINGE</appropriate_weapon>
+		<fencevalue>40</fencevalue>
+		<interrogation>
+			<basepower>6</basepower>
+		</interrogation>
+		<make_difficulty>6</make_difficulty>
+		<make_price>20</make_price>
+		<name>Lab Coat</name>
+		<professionalism>2</professionalism>
+		<shortname>Lab Coat</shortname>
+		<stealth_value>1</stealth_value>
+	</armortype>
+	<armortype>
+		<idname>ARMOR_BLACKROBE</idname>
+		<appropriate_weapon>WEAPON_GAVEL</appropriate_weapon>
+		<fencevalue>40</fencevalue>
+		<interrogation>
+			<basepower>2</basepower>
+		</interrogation>
+		<make_difficulty>5</make_difficulty>
+		<make_price>20</make_price>
+		<name>Black Robe</name>
+		<professionalism>2</professionalism>
+		<shortname>Black Robe</shortname>
+		<stealth_value>2</stealth_value>
+	</armortype>
+	<armortype>
+		<idname>ARMOR_CLOWNSUIT</idname>
+		<fencevalue>40</fencevalue>
+		<interrogation>
+			<assaultbonus>4</assaultbonus>
+			<drugbonus>4</drugbonus>
+		</interrogation>
+		<make_difficulty>7</make_difficulty>
+		<make_price>20</make_price>
+		<name>Clown Suit</name>
+		<professionalism>1</professionalism>
+		<shortname>Clown Suit</shortname>
+	</armortype>
+	<armortype>
+		<idname>ARMOR_BONDAGEGEAR</idname>
+		<body_covering>
+			<head>true</head>
+		</body_covering>
+		<fencevalue>60</fencevalue>
+		<interrogation>
+			<assaultbonus>4</assaultbonus>
+			<basepower>6</basepower>
+			<drugbonus>4</drugbonus>
+		</interrogation>
+		<make_difficulty>7</make_difficulty>
+		<make_price>30</make_price>
+		<name>Bondage Gear</name>
+		<professionalism>1</professionalism>
+		<shortname>Bondage Gear</shortname>
+		<stealth_value>1</stealth_value>
+	</armortype>
+	<armortype>
+		<idname>ARMOR_MASK</idname>
+		<body_covering>
+			<arms>false</arms>
+			<body>false</body>
+			<conceals_face>true</conceals_face>
+			<head>true</head>
+			<legs>false</legs>
+		</body_covering>
+		<fencevalue />
+		<interrogation>
+			<assaultbonus>4</assaultbonus>
+			<basepower>4</basepower>
+			<drugbonus>4</drugbonus>
+		</interrogation>
+		<name>mask</name>
+		<professionalism>1</professionalism>
+		<shortname />
+		<stealth_value>1</stealth_value>
+	</armortype>
+	<armortype>
+		<idname>ARMOR_MILITARY</idname>
+		<appropriate_weapon>WEAPON_SMG_MP5</appropriate_weapon>
+		<appropriate_weapon>WEAPON_CARBINE_M4</appropriate_weapon>
+		<appropriate_weapon>WEAPON_AUTORIFLE_M16</appropriate_weapon>
+		<appropriate_weapon>WEAPON_SEMIRIFLE_AR15</appropriate_weapon>
+		<body_covering>
+			<head>true</head>
+		</body_covering>
+		<fencevalue>80</fencevalue>
+		<interrogation>
+			<assaultbonus>4</assaultbonus>
+			<basepower>6</basepower>
+		</interrogation>
+		<make_difficulty>8</make_difficulty>
+		<make_price>40</make_price>
+		<name>Army Uniform</name>
+		<professionalism>2</professionalism>
+		<shortname>Army Uniform</shortname>
+		<stealth_value>1</stealth_value>
+	</armortype>
+	<armortype>
+		<idname>ARMOR_PRISONGUARD</idname>
+		<fencevalue>80</fencevalue>
+		<interrogation>
+			<assaultbonus>4</assaultbonus>
+			<basepower>6</basepower>
+		</interrogation>
+		<make_difficulty>8</make_difficulty>
+		<make_price>40</make_price>
+		<name>Guard Uniform</name>
+		<professionalism>2</professionalism>
+		<shortname>Guard Uniform</shortname>
+		<stealth_value>1</stealth_value>
+	</armortype>
+	<armortype>
+		<idname>ARMOR_PRISONER</idname>
+		<fencevalue>40</fencevalue>
+		<make_difficulty>5</make_difficulty>
+		<make_price>20</make_price>
+		<name>Orange Jumpsuit</name>
+		<professionalism>1</professionalism>
+		<shortname>Orange Jmpsuit</shortname>
+	</armortype>
+	<armortype>
+		<idname>ARMOR_TOGA</idname>
+		<body_covering>
+			<arms>false</arms>
+			<legs>false</legs>
+		</body_covering>
+		<fencevalue>10</fencevalue>
+		<make_difficulty>2</make_difficulty>
+		<make_price>5</make_price>
+		<name>Toga</name>
+		<professionalism>1</professionalism>
+		<shortname>Toga</shortname>
+	</armortype>
+	<armortype>
+		<idname>ARMOR_MITHRIL</idname>
+		<body_covering>
+			<arms>false</arms>
+			<legs>false</legs>
+		</body_covering>
+		<fencevalue>50</fencevalue>
+		<name>Mithril Mail</name>
+		<professionalism>1</professionalism>
+		<shortname>Mithril Mail</shortname>
+	</armortype>
+	<armortype>
+		<idname>ARMOR_OVERALLS</idname>
+		<body_covering>
+			<arms>false</arms>
+		</body_covering>
+		<fencevalue>20</fencevalue>
+		<make_difficulty>4</make_difficulty>
+		<make_price>10</make_price>
+		<name>Overalls</name>
+		<professionalism>2</professionalism>
+		<shortname>Overalls</shortname>
+		<stealth_value>1</stealth_value>
+	</armortype>
+	<armortype>
+		<idname>ARMOR_WIFEBEATER</idname>
+		<body_covering>
+			<arms>false</arms>
+			<legs>false</legs>
+		</body_covering>
+		<fencevalue>4</fencevalue>
+		<make_difficulty>2</make_difficulty>
+		<make_price>5</make_price>
+		<name>Wife Beater</name>
+		<professionalism>1</professionalism>
+		<shortname>Wife Beater</shortname>
+	</armortype>
+	<armortype>
+		<idname>ARMOR_CIVILIANARMOR</idname>
+		<armor>
+			<body>5</body>
+		</armor>
+		<body_covering>
+			<arms>false</arms>
+			<legs>false</legs>
+		</body_covering>
+		<fencevalue>75</fencevalue>
+		<interrogation>
+			<basepower>2</basepower>
+		</interrogation>
+		<make_difficulty>11</make_difficulty>
+		<make_price>500</make_price>
+		<name>Body Armor</name>
+		<professionalism>2</professionalism>
+		<shortname>Body Armor</shortname>
+		<stealth_value>1</stealth_value>
+	</armortype>
+	<armortype>
+		<idname>ARMOR_POLICEARMOR</idname>
+		<appropriate_weapon>WEAPON_REVOLVER_38</appropriate_weapon>
+		<appropriate_weapon>WEAPON_REVOVLER_44</appropriate_weapon>
+		<appropriate_weapon>WEAPON_DESERT_EAGLE</appropriate_weapon>
+		<appropriate_weapon>WEAPON_PISTOL_9MM</appropriate_weapon>
+		<appropriate_weapon>WEAPON_PISTOL_45</appropriate_weapon>
+		<appropriate_weapon>WEAPON_NIGHTSTICK</appropriate_weapon>
+		<appropriate_weapon>WEAPON_SHOTGUN_PUMP</appropriate_weapon>
+		<armor>
+			<body>7</body>
+		</armor>
+		<body_covering>
+			<arms>false</arms>
+			<legs>false</legs>
+		</body_covering>
+		<fencevalue>150</fencevalue>
+		<interrogation>
+			<assaultbonus>4</assaultbonus>
+			<basepower>6</basepower>
+		</interrogation>
+		<name>Police Body Armor</name>
+		<police>true</police>
+		<professionalism>2</professionalism>
+		<shortname>PoliceBdyArmor</shortname>
+		<stealth_value>1</stealth_value>
+	</armortype>
+	<armortype>
+		<idname>ARMOR_SWATARMOR</idname>
+		<appropriate_weapon>WEAPON_SMG_MP5</appropriate_weapon>
+		<appropriate_weapon>WEAPON_CARBINE_M4</appropriate_weapon>
+		<armor>
+			<body>7</body>
+			<head>5</head>
+			<limbs>2</limbs>
+		</armor>
+		<body_covering>
+			<head>true</head>
+		</body_covering>
+		<fencevalue>200</fencevalue>
+		<interrogation>
+			<basepower>4</basepower>
+		</interrogation>
+		<name>Tactical SWAT Armor</name>
+		<police>true</police>
+		<professionalism>1</professionalism>
+		<shortname>SWAT Armor</shortname>
+		<stealth_value>1</stealth_value>
+	</armortype>
+	<armortype>
+		<idname>ARMOR_ARMYARMOR</idname>
+		<appropriate_weapon>WEAPON_SMG_MP5</appropriate_weapon>
+		<appropriate_weapon>WEAPON_CARBINE_M4</appropriate_weapon>
+		<appropriate_weapon>WEAPON_AUTORIFLE_M16</appropriate_weapon>
+		<appropriate_weapon>WEAPON_SEMIRIFLE_AR15</appropriate_weapon>
+		<armor>
+			<body>8</body>
+			<head>6</head>
+		</armor>
+		<body_covering>
+			<arms>false</arms>
+			<head>true</head>
+			<legs>false</legs>
+		</body_covering>
+		<fencevalue>250</fencevalue>
+		<interrogation>
+			<assaultbonus>4</assaultbonus>
+			<basepower>6</basepower>
+		</interrogation>
+		<name>Army Body Armor</name>
+		<professionalism>2</professionalism>
+		<shortname>Army BodyArmor</shortname>
+		<stealth_value>1</stealth_value>
+	</armortype>
+	<armortype>
+		<idname>ARMOR_HEAVYARMOR</idname>
+		<armor>
+			<body>10</body>
+			<head>8</head>
+			<limbs>4</limbs>
+		</armor>
+		<body_covering>
+			<head>true</head>
+		</body_covering>
+		<fencevalue>400</fencevalue>
+		<interrogation>
+			<basepower>2</basepower>
+		</interrogation>
+		<name>Heavy Body Armor</name>
+		<professionalism>1</professionalism>
+		<shortname>HeavyBodyArmor</shortname>
+	</armortype>
+	<armortype>
+		<idname>ARMOR_BUNKERGEAR</idname>
+		<appropriate_weapon>WEAPON_AXE</appropriate_weapon>
+		<appropriate_weapon>WEAPON_FLAMETHROWER</appropriate_weapon>
+		<armor>
+			<body>2</body>
+			<fireprotection>true</fireprotection>
+			<head>2</head>
+			<limbs>2</limbs>
+		</armor>
+		<body_covering>
+			<head>true</head>
+		</body_covering>
+		<fencevalue>75</fencevalue>
+		<make_difficulty>13</make_difficulty>
+		<make_price>500</make_price>
+		<name>Bunker Gear</name>
+		<professionalism>2</professionalism>
+		<shortname>Bunker Gear</shortname>
+	</armortype>
+	<armortype>
+		<idname>ARMOR_ELEPHANTSUIT</idname>
+		<body_covering>
+			<conceals_face>true</conceals_face>
+			<head>true</head>
+		</body_covering>
+		<fencevalue>50</fencevalue>
+		<interrogation>
+			<assaultbonus>4</assaultbonus>
+			<drugbonus>4</drugbonus>
+		</interrogation>
+		<make_difficulty>10</make_difficulty>
+		<make_price>300</make_price>
+		<name>Elephant Suit</name>
+		<professionalism>1</professionalism>
+		<shortname>Elephant Suit</shortname>
+	</armortype>
+	<armortype>
+		<idname>ARMOR_DONKEYSUIT</idname>
+		<body_covering>
+			<conceals_face>true</conceals_face>
+			<head>true</head>
+		</body_covering>
+		<fencevalue>50</fencevalue>
+		<interrogation>
+			<assaultbonus>4</assaultbonus>
+			<drugbonus>4</drugbonus>
+		</interrogation>
+		<make_difficulty>10</make_difficulty>
+		<make_price>300</make_price>
+		<name>Donkey Suit</name>
+		<professionalism>1</professionalism>
+		<shortname>Donkey Suit</shortname>
+	</armortype>
+	<armortype>
+		<idname>ARMOR_DEATHSQUADUNIFORM</idname>
+		<appropriate_weapon>WEAPON_AUTORIFLE_M16</appropriate_weapon>
+		<appropriate_weapon>WEAPON_SEMIRIFLE_AR15</appropriate_weapon>
+		<body_covering>
+			<conceals_face>true</conceals_face>
+			<head>true</head>
+		</body_covering>
+		<deathsquad_legality>true</deathsquad_legality>
+		<fencevalue>80</fencevalue>
+		<interrogation>
+			<assaultbonus>6</assaultbonus>
+			<basepower>8</basepower>
+		</interrogation>
+		<make_difficulty>9</make_difficulty>
+		<make_price>40</make_price>
+		<name>Death Squad Uniform</name>
+		<police>true</police>
+		<professionalism>1</professionalism>
+		<shortname>DSquad Uniform</shortname>
+		<stealth_value>1</stealth_value>
+	</armortype>
+	<armortype>
+		<idname>ARMOR_BLACKCLOTHES</idname>
+		<fencevalue>20</fencevalue>
+		<make_difficulty>4</make_difficulty>
+		<make_price>15</make_price>
+		<name>Black Turtleneck</name>
+		<professionalism>1</professionalism>
+		<shortname>Bl. Turtleneck</shortname>
+		<stealth_value>2</stealth_value>
+	</armortype>
+	<armortype>
+		<idname>ARMOR_CATSUIT</idname>
+		<fencevalue>50</fencevalue>
+		<interrogation>
+			<assault_bonus>2</assault_bonus>
+			<basepower>4</basepower>
+		</interrogation>
+		<make_difficulty>7</make_difficulty>
+		<make_price>150</make_price>
+		<name>Black Catsuit</name>
+		<professionalism>1</professionalism>
+		<shortname>Black Catsuit</shortname>
+		<stealth_value>3</stealth_value>
+	</armortype>
+	<armortype>
+		<idname>ARMOR_NINJASUIT</idname>
+		<body_covering>
+			<conceals_face>true</conceals_face>
+			<head>true</head>
+		</body_covering>
+		<fencevalue>75</fencevalue>
+		<interrogation>
+			<drug_bonus>4</drug_bonus>
+		</interrogation>
+		<make_difficulty>7</make_difficulty>
+		<make_price>200</make_price>
+		<name>Ninja Costume</name>
+		<professionalism>1</professionalism>
+		<shortname>Ninja Costume</shortname>
+		<stealth_value>3</stealth_value>
+	</armortype>
+</armors>

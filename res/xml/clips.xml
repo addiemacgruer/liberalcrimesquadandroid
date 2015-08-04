@@ -1,0 +1,72 @@
+<clips>
+	<cliptype>
+		<idname>CLIP_38</idname>
+		<ammo>6</ammo>
+		<fencevalue>2</fencevalue>
+		<name>.38 Speedloader</name>
+		<name_future>.38 Slug Mag</name_future>
+	</cliptype>
+	<cliptype>
+		<idname>CLIP_9</idname>
+		<ammo>15</ammo>
+		<fencevalue>4</fencevalue>
+		<name>9mm Pistol Mag</name>
+		<name_future>9mm Powerpack</name_future>
+	</cliptype>
+	<cliptype>
+		<idname>CLIP_45</idname>
+		<ammo>15</ammo>
+		<fencevalue>4</fencevalue>
+		<name>.45 Pistol Mag</name>
+		<name_future>.45 Powerpack</name_future>
+	</cliptype>
+	<cliptype>
+		<idname>CLIP_44</idname>
+		<ammo>6</ammo>
+		<fencevalue>3</fencevalue>
+		<name>.44 Speedloader</name>
+		<name_future>.44 Heavy Slug Mag</name_future>
+	</cliptype>
+	<cliptype>
+		<idname>CLIP_50AE</idname>
+		<ammo>7</ammo>
+		<fencevalue>3</fencevalue>
+		<name>.50AE Pistol Mag</name>
+		<name_future>.50AE Pistol Mag</name_future>
+	</cliptype>
+	<cliptype>
+		<idname>CLIP_ASSAULT</idname>
+		<ammo>30</ammo>
+		<fencevalue>8</fencevalue>
+		<name>Aslt/Rifle Mag</name>
+		<name_future>Rifle Powerpack</name_future>
+	</cliptype>
+	<cliptype>
+		<idname>CLIP_SMG</idname>
+		<ammo>15</ammo>
+		<fencevalue>5</fencevalue>
+		<name>9mm SMG Mag</name>
+		<name_future>SMG Powerpack</name_future>
+	</cliptype>
+	<cliptype>
+		<idname>CLIP_BUCKSHOT</idname>
+		<ammo>6</ammo>
+		<fencevalue>3</fencevalue>
+		<name>6 Shotgun Shells</name>
+		<name_future>Shotgun Plasma Pack</name_future>
+	</cliptype>
+	<cliptype>
+		<idname>CLIP_GASOLINE</idname>
+		<ammo>2</ammo>
+		<fencevalue>2</fencevalue>
+		<name>Gas Tank</name>
+		<name_future>Hydrogen Fuel</name_future>
+	</cliptype>
+	<cliptype>
+		<idname>CLIP_DRUM</idname>
+		<ammo>100</ammo>
+		<fencevalue>25</fencevalue>
+		<name>MachinGun Drum</name>
+		<name_future>Chaingun Belt</name_future>
+	</cliptype>
+</clips>

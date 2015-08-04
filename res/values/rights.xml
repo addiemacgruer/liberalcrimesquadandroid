@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="WomenX">omen have been stripped of the right to vote.</string>
+	<string name="WomenA">Women are second-class citizens.</string>
+	<string name="WomenB">on-discrimination laws do not apply to gender.</string>
+	<string name="WomenC">Women are nominally equal under law.</string>
+	<string name="WomenD">Women have substantial recourse against
+		discrimination.</string>
+	<string name="WomenE">Gender equality is universally respected.</string>
+	<string name="CivilRightsX">Segregation has been reintroduced.</string>
+	<string name="CivilRightsA">Racial discrimination is prohibited in name only.</string>
+	<string name="CivilRightsB">Civil rights laws are inconsistently enforced.</string>
+	<string name="CivilRightsC">Pervasive racial inequality exists.</string>
+	<string name="CivilRightsD">Affirmative action is in place to counteract
+		discrimination.</string>
+	<string name="CivilRightsE">Racial equality is guaranteed and vigorously
+		enforced.</string>
+	<string name="DrugsX">Talking about recreational drugs is punishable by
+		death.</string>
+	<string name="DrugsA">Violent criminals are released to make room for
+		drug offenders.</string>
+	<string name="DrugsB">Prisons are filled with the targets of a war on
+		drugs.</string>
+	<string name="DrugsC">Recreational drugs are prohibited unless medically
+		prescribed.</string>
+	<string name="DrugsD">Marijuana is regulated and taxed.</string>
+	<string name="DrugsE">Recreational drugs are regulated and taxed.</string>
+	<string name="ImmigrationX">order guards shoot suspected foreigners on sight.</string>
+	<string name="ImmigrationA">Immigration is illegal, and noncitizens are shipped
+		to Mexico at gunpoint.</string>
+	<string name="ImmigrationB">The military has been deployed to the borders to
+		slow immigration.</string>
+	<string name="ImmigrationC">Great expense is taken to slow immigration, without
+		success.</string>
+	<string name="ImmigrationD">The government works to accommodate potential
+		immigrants.</string>
+	<string name="ImmigrationE">Immigration is unregulated.</string>
+	<string name="ElectionsX">Only independently wealthy candidates have a chance
+		of defeating incumbents.</string>
+	<string name="ElectionsA">Virtually no ethics restrictions exist on political
+		officeholders.</string>
+	<string name="ElectionsB">Elections are mostly unregulated, but basic ethics
+		restrictions are in place.</string>
+	<string name="ElectionsC">Moderate campaign finance reform is implemented.</string>
+	<string name="ElectionsD">Election financing is transparent and
+		well-regulated.</string>
+	<string name="ElectionsE">Election expenses are publicly funded, and voting
+		is by ranked list.</string>
+	<string name="MilitaryX">The massive military is a tool of political
+		oppression.</string>
+	<string name="MilitaryA">Ballooning military boondoggles are utterly out of
+		control.</string>
+	<string name="MilitaryB">Massive investment is put into the military.</string>
+	<string name="MilitaryC">Military spending is growing each year.</string>
+	<string name="MilitaryD">Military strength is not a major priority.</string>
+	<string name="MilitaryE">he military has been weakened significantly.</string>
+	<string name="TortureX">Torture is a prescribed practice in police
+		interrogations.</string>
+	<string name="TortureA">Military and intelligence interrogators regularly
+		engage in torture.</string>
+	<string name="TortureB">The line between standard interrogation and torture
+		is severely blurred.</string>
+	<string name="TortureC">Torture allegations still occasionally crop up.</string>
+	<string name="TortureD">he government strongly enforces a ban on torture.</string>
+	<string name="TortureE">The country is respected as an international leader
+		on Moral Interrogation Practices.</string>
+	<string name="TaxX">There are no taxes, yet most people have no money.</string>
+	<string name="TaxA">The tax code is a nightmare designed to maintain
+		class structure.</string>
+	<string name="TaxB">A flat tax is in effect.</string>
+	<string name="TaxC">Taxes are moderate, and the code has loop-holes.</string>
+	<string name="TaxD">Taxes are very high and steeply graded.</string>
+	<string name="TaxE">Rich people are virtually unheard of, due to
+		taxation.</string>
+	<string name="AbortionX">Use of contraception and abortion are capital
+		offenses.</string>
+	<string name="AbortionA">Abortion is a felony equal to murder.</string>
+	<string name="AbortionB">Abortion is prohibited except in extreme
+		circumstances.</string>
+	<string name="AbortionC">Abortion is limited to early pregnancy.</string>
+	<string name="AbortionD">Abortion is mostly legal, but discouraged by law.</string>
+	<string name="AbortionE">Abortion is legal.</string>
+	<string name="AnimalResearchX">All forms of human experimentation on the poor are
+		encouraged.</string>
+	<string name="AnimalResearchA">Animals are property that can be experimented upon
+		freely.</string>
+	<string name="AnimalResearchB">Animal testing must be classified by purpose and
+		suffering caused.</string>
+	<string name="AnimalResearchC">Animal research is regulated with a system of
+		licenses and certificates.</string>
+	<string name="AnimalResearchD">Animal research is strictly regulated by purpose
+		and suffering caused.</string>
+	<string name="AnimalResearchE">Animals are people, too.</string>
+	<string name="PoliceBehaviorX">Policing is administered by corporations and has a
+		draft.</string>
+	<string name="PoliceBehaviorA">Law enforcement is given free reign.</string>
+	<string name="PoliceBehaviorB">Even the worst police misconduct only earns
+		slap-on-the-wrist punishments.</string>
+	<string name="PoliceBehaviorC">Law enforcement is regulated to prevent extreme
+		misconduct.</string>
+	<string name="PoliceBehaviorD">Law enforcement has heavy oversight and
+		freedom-of-information requirements.</string>
+	<string name="PoliceBehaviorE">All law enforcement positions are subject to
+		election and recall.</string>
+	<string name="PrivacyX">Files on each citizen are easily accessible to
+		corporations.</string>
+	<string name="PrivacyA">Any corporation requesting private information is
+		granted access.</string>
+	<string name="PrivacyB">Privacy laws are full of loopholes.</string>
+	<string name="PrivacyC">Basic safeguards for medical and financial privacy
+		are in place.</string>
+	<string name="PrivacyD">All areas of privacy are protected with strong
+		safeguards.</string>
+	<string name="PrivacyE">Individual privacy is sacred.</string>
+	<string name="DeathPenaltyX">Poor criminals receive mandatory death sentences.</string>
+	<string name="DeathPenaltyA">People can be put to death for minor offenses.</string>
+	<string name="DeathPenaltyB">The death penalty is actively enforced in many
+		states.</string>
+	<string name="DeathPenaltyC">he death penalty is in effect but under scrutiny.</string>
+	<string name="DeathPenaltyD">The death penalty is not permitted in many
+		circumstances.</string>
+	<string name="DeathPenaltyE">The death penalty is considered barbaric and never
+		practiced.</string>
+	<string name="NuclearPowerX">Nuclear power plants are ubiquitous.</string>
+	<string name="NuclearPowerA">Nuclear power is proliferating with no controls.</string>
+	<string name="NuclearPowerB">Nuclear power is a preferred energy source.</string>
+	<string name="NuclearPowerC">Nuclear power is often an energy source.</string>
+	<string name="NuclearPowerD">Nuclear power is intensely regulated and seldom
+		used.</string>
+	<string name="NuclearPowerE">Nuclear power is illegal.</string>
+	<string name="PollutionX">Deformed children are the norm in industrial zones.</string>
+	<string name="PollutionA">Industry may pollute as much as they like.</string>
+	<string name="PollutionB">Industry voluntarily regulates pollution.</string>
+	<string name="PollutionC">Industry is subject to moderate pollution
+		regulations.</string>
+	<string name="PollutionD">Industry is subject to strict pollution
+		regulations.</string>
+	<string name="PollutionE">Industry is subject to zero-tolerance pollution
+		regulations.</string>
+	<string name="LaborX">People are bred in pens to be farmed out to
+		corporations like beasts.</string>
+	<string name="LaborA">There is no weekend and children are forced to
+		work.</string>
+	<string name="LaborB">Working conditions are miserable and the minimum
+		wage is low.</string>
+	<string name="LaborC">Workers still require some benefits.</string>
+	<string name="LaborD">Workers are fairly compensated and have benefits.</string>
+	<string name="LaborE">There are universal workers\' rights and a high
+		guaranteed minimum income.</string>
+	<string name="GayX">Homosexuals are executed regularly.</string>
+	<string name="GayA">Homosexuals are routinely persecuted with no
+		recourse.</string>
+	<string name="GayB">Homosexuals are not tolerated.</string>
+	<string name="GayC">Homosexuals are grudgingly tolerated but have few
+		equal rights.</string>
+	<string name="GayD">Homosexuals have many rights shared by
+		heterosexuals.</string>
+	<string name="GayE">Homosexuals have equal rights.</string>
+	<string name="CorporateX">Corporations under the King run the country in a
+		feudal system.</string>
+	<string name="CorporateA">Corporations essentially run the country in a
+		feudal system.</string>
+	<string name="CorporateB">Corporate culture is corrupt and there is a great
+		disparity in wages.</string>
+	<string name="CorporateC">Corporations are moderately regulated, although
+		wages are still unfair.</string>
+	<string name="CorporateD">Corporations are stiffly regulated, and executives
+		are fairly compensated.</string>
+	<string name="CorporateE">Corporations are subject to intense regulation, and
+		there is a maximum wage law.</string>
+	<string name="FreeSpeechX">Unacceptable speech is a capital crime.</string>
+	<string name="FreeSpeechA">Armored squads are tasked with suppressing
+		unacceptable speech.</string>
+	<string name="FreeSpeechB">Some individuals are harassed because of their
+		speech.</string>
+	<string name="FreeSpeechC">Free speech is tolerated.</string>
+	<string name="FreeSpeechD">Free speech is encouraged.</string>
+	<string name="FreeSpeechE">Free speech is universally supported.</string>
+	<string name="FlagBurningX">Images or words describing flag burning are
+		punished by death.</string>
+	<string name="FlagBurningA">urning the flag is a crime on par with murder.</string>
+	<string name="FlagBurningB">Burning the flag is a felony.</string>
+	<string name="FlagBurningC">Flag-burning is a misdemeanor.</string>
+	<string name="FlagBurningD">Flag-burning is legal but stigmatized.</string>
+	<string name="FlagBurningE">Flag-burning is legal.</string>
+	<string name="GunControlX">Gangs of young children carrying AK-47s roam the
+		streets.</string>
+	<string name="GunControlA">Machine guns can be bought and sold freely.</string>
+	<string name="GunControlB">Military weapons are banned, but similar-looking
+		guns are available.</string>
+	<string name="GunControlC">A comprehensive ban on military-style weapons is in
+		effect.</string>
+	<string name="GunControlD">Most guns cannot be sold to anyone outside of law
+		enforcement.</string>
+	<string name="GunControlE">It is illegal to buy, sell, or carry a gun in
+		public.</string>
+
+</resources>

@@ -1,0 +1,36 @@
+<crimesquads>
+	<CCS>
+		<uniform>
+		</uniform>
+	</CCS>
+	<CIA>
+		<uniform>
+			<ARMOR_BLACKSUIT>GOOD</ARMOR_BLACKSUIT>
+		</uniform>
+	</CIA>
+	<CORPORATE>
+		<uniform>
+			<ARMOR_ARMYARMOR>GOOD</ARMOR_ARMYARMOR>
+			<ARMOR_MILITARY>GOOD</ARMOR_MILITARY>
+		</uniform>
+	</CORPORATE>
+	<FIREMEN>
+		<uniform>
+			<ARMOR_BUNKERGEAR>GOOD</ARMOR_BUNKERGEAR>
+		</uniform>
+	</FIREMEN>
+	<HICKS>
+		<uniform>
+			<ARMOR_CLOTHES>POOR</ARMOR_CLOTHES>
+			<ARMOR_OVERALLS>GOOD</ARMOR_OVERALLS>
+			<ARMOR_WIFEBEATER>GOOD</ARMOR_WIFEBEATER>
+		</uniform>
+	</HICKS>
+	<POLICE>
+		<uniform>
+			<ARMOR_ARMYARMOR>GOOD</ARMOR_ARMYARMOR>
+			<ARMOR_MILITARY>GOOD</ARMOR_MILITARY>
+			<ARMOR_SWATARMOR>GOOD</ARMOR_SWATARMOR>
+		</uniform>
+	</POLICE>
+</crimesquads>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="lawstostring">
+        <item>Abortion</item>
+        <item>AM Radio</item>
+        <item>Animal research</item>
+        <item>Cable news</item>
+        <item>CEO Salary</item>
+        <item>Corporate culture</item>
+        <item>Civil rights</item>
+        <item>Conservative Crime Squad</item>
+        <item>Death penalty</item>
+        <item>Drugs</item>
+        <item>Elections</item>
+        <item>Flag burning</item>
+        <item>Free speech</item>
+        <item>Gay</item>
+        <item>Genetics</item>
+        <item>Gun control</item>
+        <item>Immigration</item>
+        <item>Justices</item>
+        <item>Labor</item>
+        <item>Liberal Crime Squad</item>
+        <item>Liberal Crime Squad POS</item>
+        <item>Military</item>
+        <item>Nuclear power</item>
+        <item>Police behavior</item>
+        <item>Pollution</item>
+        <item>Privacy</item>
+        <item>Tax</item>
+        <item>Torture</item>
+        <item>Women</item>
+    </string-array>
+    <string-array name="eruditeresponse">
+        <item>Abortion is murder.</item>
+        <item>Don\'t pretend animals are human.</item>
+        <item>Reverse discrimination is still discrimination.</item>
+        <item>Corporations are part of capitalism.</item>
+        <item>Some people deserve to die.</item>
+        <item>Drugs are a terrible influence on society.</item>
+        <item>Unregulated campaigning is a matter of free speech.</item>
+        <item>That flag is the sacred symbol of our country.</item>
+        <item>Don\'t be offensive and you\'ll be fine.</item>
+        <item>Homosexuality is disgusting.</item>
+        <item>Without guns, we\'re slaves to the Government.</item>
+        <item>Immigration undermines our economy and culture.</item>
+        <item>Trust the free market, it hasn\'t failed us yet.</item>
+        <item>The military protects us and enables our way of life.</item>
+        <item>Nuclear power is clean.</item>
+        <item>Only criminals have reason to fear police.</item>
+        <item>It\'s not that bad.</item>
+        <item>National security is important.</item>
+        <item>I want to pay lower taxes.</item>
+        <item>The terrorists would do worse to us.</item>
+        <item>Why don\'t you go burn a bra or something?</item>
+    </string-array>
+    <string-array name="eruditeopinion">
+        <item>The government is systematically trying to rob women of the right to control their own destinies.</item>
+        <item>Animals are routinely subjected to inhumane treatment in labs in this country.</item>
+        <item>Despite our progress, this society is still strangled by its continuing legacy of racial discrimination and inequality.</item>
+        <item>Corporate executives use giant corporations as a means to become parasites that suck wealth out of this country and put it into their pockets.</item>
+        <item>Over thirty innocent people have been executed over the past decade.</item>
+        <item>The government\'s drug policy is a mess.  We need to stop filling prisons with drug users, and only intervene when people really need help.</item>
+        <item>Political favors are bought and sold for campaign contributions, and the voting system enforces two party dominance.</item>
+        <item>Burning a piece of cloth is actually stigmatized in this country. You can love freedom and still hate what our government stands for.</item>
+        <item>Protests and demonstrations are regularly and often brutally suppressed in this country.  People have to watch what they write &#8212; even what they read.</item>
+        <item>Homosexuals are people like anyone else, and yet they are treated in this country as if they are deviants fit only for cheap entertainment.</item>
+        <item>We live in such a backwards country right now that people think it\'s a right to walk around with the power to murder at any moment.</item>
+        <item>Millions of people are doing jobs most folks don\'t even want, and saving their families from poverty, but we just try to kick them out.</item>
+        <item>Have you noticed how people are working more and more hours for less and less money?  It\'s all part of a plan to keep you enslaved, man.</item>
+        <item>Take a breath and think about the world we live in, that we\'re spending hundreds of billions on new ways to kill people.  This has to stop!</item>
+        <item>Radioactive waste is being stored all over the country, and it poses a serious threat to many families, even in this neighborhood.</item>
+        <item>The police regularly torture minority suspects during interrogations.</item>
+        <item>Industries that stop at nothing to become more profitable are polluting the environment in ways that hurt not only animals, but people too.</item>
+        <item>Files are being kept on innocent citizens whose only crime is to speak out against a system that is trying to farm them like beasts.</item>
+        <item>The tax code has been designed to perpetuate an unjust class structure that is keeping you oppressed.</item>
+        <item>In the name of the war on terror, we\'ve sacrificed our soul by letting the government torture and abuse human beings on our behalf.</item>
+        <item>Sexism is still pervasive, in subtle ways, and women make much less than they deserve for their labor.</item>
+    </string-array>
+    <string-array name="dimopinion">
+        <item>Conservatives don\'t like abortion.</item>
+        <item>Animals are denied the right to vote.</item>
+        <item>I knew some people that were pretty racist.</item>
+        <item>There are corporations.</item>
+        <item>You can go to prison for life for serious crimes.</item>
+        <item>Drugs are expensive.</item>
+        <item>Some of these politicians rub me the wrong way.</item>
+        <item>The flag code says you shouldn\'t make it into clothing.</item>
+        <item>People get mad if you swear a lot in public.</item>
+        <item>Not everybody likes gay people.</item>
+        <item>We need to repeal the second amendment.</item>
+        <item>All the immigrants, not everybody likes them.</item>
+        <item>Corporate bosses don\'t always give in to unions.</item>
+        <item>We still have a military.</item>
+        <item>Some people support legalizing nuclear power.</item>
+        <item>The police are still out there.</item>
+        <item>We\'re still polluting a little bit.</item>
+        <item>The government runs intelligence agencies.</item>
+        <item>There\'s still inequality in this country.</item>
+        <item>Some conservatives support torture.</item>
+        <item>Some people are sexist.</item>
+    </string-array>
+    <string-array name="stupidopinion">
+        <item>Conservatives make women turn to coat hangers.</item>
+        <item>Richard Gere put a gerbil in his butt!</item>
+        <item>Conservatives are all racists!</item>
+        <item>The corporations are putting you down, dude.</item>
+        <item>They executed this one dude, and like, his head caught on fire.</item>
+        <item>Dude, the government won\'t let you do drugs.</item>
+        <item>The politicians are just tools of the corporations!</item>
+        <item>The flag is stupid.</item>
+        <item>Better watch what you say.  They\'ve got ears everywhere.</item>
+        <item>Lots of people don\'t like homosexuals.</item>
+        <item>People like, think they need lots of guns.</item>
+        <item>They\'re all trying to keep people out of the country.</item>
+        <item>Bad people wanna make babies work and stuff.</item>
+        <item>Patriots are idiots! Give peace a chance!</item>
+        <item>Have you seen Godzilla?  Nuclear power is bad, yo.</item>
+        <item>The cops suck!</item>
+        <item>You wanna look like the Toxic Avenger?  Oppose pollution!</item>
+        <item>The government, like, knows things about you.</item>
+        <item>Rich people, like, have money, man.</item>
+        <item>Torture is bad!</item>
+        <item>We need more women!</item>
+    </string-array>
+
+</resources>

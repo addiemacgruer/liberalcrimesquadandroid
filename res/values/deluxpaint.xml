@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+
+	<color name="grey">#ffa0a0a0</color>
+	<color name="white">#ffffffff</color>
+	<color name="black">#ff000000</color>
+	<color name="workbenchblue">#ff6080b0</color>
+	<color name="workbench3d">#fff0f0f0</color>
+	<color name="red">#fffc5252</color>
+	<color name="green">#ff41bd3f</color>
+	<color name="blue">#ff5354fc</color>
+	<color name="cyan">#ff54fcfc</color>
+	<color name="magenta">#ffbc3fbd</color>
+	<color name="yellow">#fffdf958</color>
+
+</resources>

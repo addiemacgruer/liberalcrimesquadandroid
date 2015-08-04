@@ -1,0 +1,162 @@
+<loot>
+	<loottype>
+		<idname>LOOT_AMRADIOFILES</idname>
+		<fencevalue>250</fencevalue>
+		<name>AM Radio Memos</name>
+		<no_quick_fencing>true</no_quick_fencing>
+		<stackable>false</stackable>
+	</loottype>
+	<loottype>
+		<idname>LOOT_CABLENEWSFILES</idname>
+		<fencevalue>250</fencevalue>
+		<name>Cable News Memos</name>
+		<no_quick_fencing>true</no_quick_fencing>
+		<stackable>false</stackable>
+	</loottype>
+	<loottype>
+		<idname>LOOT_CELLPHONE</idname>
+		<fencevalue>20</fencevalue>
+		<name>Cellphone</name>
+	</loottype>
+	<loottype>
+		<idname>LOOT_CEOLOVELETTERS</idname>
+		<fencevalue>250</fencevalue>
+		<name>CEO Love Letters</name>
+		<no_quick_fencing>true</no_quick_fencing>
+		<stackable>false</stackable>
+	</loottype>
+	<loottype>
+		<idname>LOOT_CEOPHOTOS</idname>
+		<fencevalue>1000</fencevalue>
+		<name>CEO Photos</name>
+		<no_quick_fencing>true</no_quick_fencing>
+		<stackable>false</stackable>
+	</loottype>
+	<loottype>
+		<idname>LOOT_CEOTAXPAPERS</idname>
+		<fencevalue>1000</fencevalue>
+		<name>CEO Tax Papers</name>
+		<no_quick_fencing>true</no_quick_fencing>
+		<stackable>false</stackable>
+	</loottype>
+	<loottype>
+		<idname>LOOT_CHEAPJEWELERY</idname>
+		<fencevalue>50</fencevalue>
+		<name>Cheap Jewelery</name>
+	</loottype>
+	<loottype>
+		<idname>LOOT_CHEMICAL</idname>
+		<fencevalue>20</fencevalue>
+		<name>Weird Chemical</name>
+	</loottype>
+	<loottype>
+		<idname>LOOT_COMPUTER</idname>
+		<fencevalue>200</fencevalue>
+		<name>Laptop</name>
+	</loottype>
+	<loottype>
+		<idname>LOOT_CORPFILES</idname>
+		<fencevalue>1000</fencevalue>
+		<name>Secret Corporate Files</name>
+		<no_quick_fencing>true</no_quick_fencing>
+		<stackable>false</stackable>
+	</loottype>
+	<loottype>
+		<idname>LOOT_DIRTYSOCK</idname>
+		<fencevalue>1</fencevalue>
+		<name>Dirty Sock</name>
+	</loottype>
+	<loottype>
+		<idname>LOOT_EXPENSIVEJEWELERY</idname>
+		<fencevalue>500</fencevalue>
+		<name>Fine Jewelery</name>
+	</loottype>
+	<loottype>
+		<idname>LOOT_FAMILYPHOTO</idname>
+		<fencevalue>1</fencevalue>
+		<name>Family Photos</name>
+	</loottype>
+	<loottype>
+		<idname>LOOT_FINECLOTH</idname>
+		<cloth>true</cloth>
+		<fencevalue>20</fencevalue>
+		<name>Fine Cloth</name>
+	</loottype>
+	<loottype>
+		<idname>LOOT_INTHQDISK</idname>
+		<fencevalue>1500</fencevalue>
+		<name>Intel. HQ Data Disk</name>
+		<no_quick_fencing>true</no_quick_fencing>
+		<stackable>false</stackable>
+	</loottype>
+	<loottype>
+		<idname>LOOT_JUDGEFILES</idname>
+		<fencevalue>1000</fencevalue>
+		<name>Judge Corrupt. Evidence</name>
+		<no_quick_fencing>true</no_quick_fencing>
+		<stackable>false</stackable>
+	</loottype>
+	<loottype>
+		<idname>LOOT_KIDART</idname>
+		<fencevalue>1</fencevalue>
+		<name>Macaroni Art</name>
+	</loottype>
+	<loottype>
+		<idname>LOOT_LABEQUIPMENT</idname>
+		<fencevalue>50</fencevalue>
+		<name>Lab Equipment</name>
+	</loottype>
+	<loottype>
+		<idname>LOOT_MICROPHONE</idname>
+		<fencevalue>20</fencevalue>
+		<name>Microphone</name>
+	</loottype>
+	<loottype>
+		<idname>LOOT_PDA</idname>
+		<fencevalue>50</fencevalue>
+		<name>PDA</name>
+	</loottype>
+	<loottype>
+		<idname>LOOT_POLICERECORDS</idname>
+		<fencevalue>750</fencevalue>
+		<name>Police Records</name>
+		<no_quick_fencing>true</no_quick_fencing>
+		<stackable>false</stackable>
+	</loottype>
+	<loottype>
+		<idname>LOOT_PRISONFILES</idname>
+		<fencevalue>750</fencevalue>
+		<name>Prison Records</name>
+		<no_quick_fencing>true</no_quick_fencing>
+		<stackable>false</stackable>
+	</loottype>
+	<loottype>
+		<idname>LOOT_RESEARCHFILES</idname>
+		<fencevalue>750</fencevalue>
+		<name>Research Papers</name>
+		<no_quick_fencing>true</no_quick_fencing>
+		<stackable>false</stackable>
+	</loottype>
+	<loottype>
+		<idname>LOOT_SECRETDOCUMENTS</idname>
+		<fencevalue>1500</fencevalue>
+		<name>Secret Documents</name>
+		<no_quick_fencing>true</no_quick_fencing>
+		<stackable>false</stackable>
+	</loottype>
+	<loottype>
+		<idname>LOOT_SILVERWARE</idname>
+		<fencevalue>20</fencevalue>
+		<name>Silverware</name>
+	</loottype>
+	<loottype>
+		<idname>LOOT_TRINKET</idname>
+		<fencevalue>5</fencevalue>
+		<name>Kitschy Trinket</name>
+	</loottype>
+	<loottype>
+		<idname>LOOT_WATCH</idname>
+		<fencevalue>20</fencevalue>
+		<name>Watch</name>
+	</loottype>
+</loot>

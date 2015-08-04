@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="slogan">We need a slogan!</string>
+
+    <string-array name="slogans">
+        <item>To Rogues and Revolution!</item>
+        <item>Hell yes, LCS!</item>
+        <item>Striking high, standing tall!</item>
+        <item>Revolution never comes with a warning!</item>
+        <item>True Liberal Justice!</item>
+        <item>Laissez ain\'t fair!</item>
+        <item>This is a slogan!</item>
+    </string-array>
+    
+    <string-array name="citynames">
+        <item>San Francisco, CA</item>
+        <item>Boston, MA</item>
+        <item>Los Angeles, CA</item>
+        <item>Detroit, MI</item>
+        <item>Cleveland, OH</item>
+        <item>Cincinnati, OH</item>
+        <item>New York, NY</item>
+        <item>Chicago, IL</item>
+        <item>Trenton, NJ</item>
+        <item>Denver, CO</item>
+        <item>Phoenix, AZ</item>
+        <item>Little Rock, AR</item>
+        <item>Houston, TX</item>
+        <item>Dallas, TX</item>
+        <item>Hartford, CT</item>
+        <item>Miami, FL</item>
+        <item>Baton Rouge, LA</item>
+        <item>Seattle, WA</item>
+        <item>Salt Lake City, UT</item>
+        <item>Philadelphia, PA</item>
+        <item>San Antonio, TX</item>
+        <item>Columbus, OH</item>
+        <item>Atlanta, GA</item>
+        <item>Buffalo, NY</item>
+        <item>Orlando, FL</item>
+        <item>Syracuse, NY</item>
+        <item>Baltimore, MD</item>
+        <item>Washington D.C.</item>
+        <item>Memphis, TN</item>
+        <item>Brooklyn, NY</item>
+        <item>New Orleans, LA</item>
+        <item>Albany, NY</item>
+        <item>Jackson, MS</item>
+        <item>Waco, TX</item>
+        <item>Oklahoma, OK</item>
+        <item>Austin, TX</item>
+        <item>Nashville, TN</item>
+        <item>Philadelphia, PA</item>
+        <item>Tampa, FL</item>
+        <item>San Diego, CA</item>
+        <item>El Paso, TX</item>
+        <item>Baton Rouge, LA</item>
+    </string-array>
+</resources>
