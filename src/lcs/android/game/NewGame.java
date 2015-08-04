@@ -106,11 +106,11 @@ public @NonNullByDefault class NewGame {
       "my parents argued with each other about me, but I was never punished.",
       "my father lectured me endlessly, trying to make me think like him." };
 
-  final private static String[] fate2 = { " was mischievous, and always up to something.",
-      " had a lot of repressed anger. I hurt animals.",
-      "I was at the head of the @NonNullByDefault class, and I worked very hard.",
+  final private static String[] fate2 = { "I was mischievous, and always up to something.",
+      "I had a lot of repressed anger. I hurt animals.",
+      "I was at the head of the class, and I worked very hard.",
       "I was unruly and often fought with the other children.",
-      " was the @NonNullByDefault class clown. I even had some friends." };
+      "I was the class clown. I even had some friends." };
 
   final private static String[] fate3 = {
       "my parents divorced. Whenever I talked, they argued, so I stayed quiet.",
