@@ -10,7 +10,7 @@
 	<string name="Copyright">v3.09 Copyright &#169; 2002-4, Tarn Adams\nA Bay 12
 		Games Production\nwww.bay12games.com\n\nv4.04.0 Maintained by the Open
 		Source Community\nsourceforge.net/projects/lcsgame\n\n
-		Android version 9 based on DOS v4.04.0\nsourceforge.net/p/lcsagame</string>
+		Android version 9 based on DOS v4.04.0\ngithub.com/addiemacgruer/liberalcrimesquadandroid</string>
 	<string name="TitleQuitInfo">Press [back] now to quit. Quitting later causes your progress to be saved.\n\nPress the screen to pursue your liberal agenda!</string>
 	<string name="gtNewGameTitle">New Game of Liberal Crime Squad: Advanced Gameplay Options</string>
 	<string name="gtA">Classic Mode: No Conservative Crime Squad</string>
