@@ -568,16 +568,16 @@ public abstract @NonNullByDefault class AbstractSiteType implements Configurable
 
   private static final long serialVersionUID = Game.VERSION;
   static {
-    final AbstractSiteType[] ALL_TYPES = { new AmRadio(), new Apartment(), new ApartmentUpscale(),
-        new ArmsDealer(), new ArmyBase(), new BarAndGrill(), new BombShelter(), new Bunker(),
-        new CableNews(), new CarDealership(), new CcsBaseGeneric(), new Church(), new CigarBar(),
-        new Clinic(), new Commercial(), new Cosmetics(), new CourtHouse(), new CrackHouse(),
-        new DepartmentStore(), new Downtown(), new FireStation(), new Genetic(),
-        new HalloweenStore(), new Headquarters(), new House(), new Industrial(),
-        new IntelligenceHq(), new InternetCafe(), new JuiceBar(), new LatteStand(), new Nuclear(),
-        new OutOfTown(), new PawnShop(), new PoliceStation(), new Polluter(), new Prison(),
-        new PublicPark(), new Shelter(), new SweatShop(), new Tenement(), new UDistrict(),
-        new University(), new VeganCoop(), new Warehouse() };
+    final AbstractSiteType[] ALL_TYPES = { new Nowhere(), new AmRadio(), new Apartment(),
+        new ApartmentUpscale(), new ArmsDealer(), new ArmyBase(), new BarAndGrill(),
+        new BombShelter(), new Bunker(), new CableNews(), new CarDealership(),
+        new CcsBaseGeneric(), new Church(), new CigarBar(), new Clinic(), new Commercial(),
+        new Cosmetics(), new CourtHouse(), new CrackHouse(), new DepartmentStore(), new Downtown(),
+        new FireStation(), new Genetic(), new HalloweenStore(), new Headquarters(), new House(),
+        new Industrial(), new IntelligenceHq(), new InternetCafe(), new JuiceBar(),
+        new LatteStand(), new Nuclear(), new OutOfTown(), new PawnShop(), new PoliceStation(),
+        new Polluter(), new Prison(), new PublicPark(), new Shelter(), new SweatShop(),
+        new Tenement(), new UDistrict(), new University(), new VeganCoop(), new Warehouse() };
     for (final AbstractSiteType st : ALL_TYPES) {
       nameToType.put(st.type(), st);
     }

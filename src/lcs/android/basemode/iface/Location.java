@@ -40,7 +40,7 @@ import android.util.Log;
 public @NonNullByDefault class Location implements Serializable {
   /** @author addie */
   public static class Builder implements Configurable, IBuilder<Location> {
-    private Location parent;
+    private String parent;
 
     private int rent;
 
@@ -56,6 +56,8 @@ public @NonNullByDefault class Location implements Serializable {
 
     private AbstractSiteType type;
 
+    private String shortname;
+
     @Override public Location build() {
       return new Location(this);
     }
@@ -63,7 +65,6 @@ public @NonNullByDefault class Location implements Serializable {
     @Override public Configurable xmlChild(final String value) {
       if ("location".equals(value)) {
         final Location.Builder l = new Location.Builder();
-        l.parent = this;
         return l;
       }
       return this;
@@ -88,6 +89,10 @@ public @NonNullByDefault class Location implements Serializable {
         rent = Xml.getInt(value);
       } else if ("need_car".equals(key)) {
         needCar = Xml.getBoolean(value);
+      } else if ("shortname".equals(key)) {
+        shortname = Xml.getText(value);
+      } else if ("parent".equals(key)) {
+        parent = Xml.getText(value);
       } else {
         Log.w(Game.LCS, "Location oops:" + key + "=" + value);
       }
@@ -98,23 +103,26 @@ public @NonNullByDefault class Location implements Serializable {
     private static final Location nowhere;
     static {
       Log.i("LCS", "Lazy Init of location");
-      nowhere = new Location(new Nowhere());
+      nowhere = AbstractSiteType.type(Nowhere.class).getLocation();
     }
   }
 
-  public Location(AbstractSiteType type) {
-    i.location.add(this);
-    this.type = type;
-  }
-
+  //
+  // public Location(AbstractSiteType type) {
+  // i.location.add(this);
+  // this.type = type;
+  // this.shortname = null;
+  // this.parent = null;
+  // }
   /** @param builder */
   public Location(Builder builder) {
     super();
     hidden = builder.hidden;
+    shortname = builder.shortname;
     interrogated = builder.interrogated;
     name = builder.name;
     needCar = builder.needCar;
-    parent = builder.parent;
+    parent = findParent(builder.parent);
     rent = builder.rent;
     renting = builder.renting;
     type = builder.type;
@@ -123,7 +131,11 @@ public @NonNullByDefault class Location implements Serializable {
 
   private Location(Nowhere nowhere) {
     this.type = nowhere;
+    this.shortname = null;
+    this.parent = null;
   }
+
+  private final String shortname;
 
   private int closed = 0;
 
@@ -137,7 +149,7 @@ public @NonNullByDefault class Location implements Serializable {
 
   private boolean needCar;
 
-  private Location parent;
+  @Nullable private final Location parent;
 
   private int rent;
 
@@ -368,7 +380,7 @@ public @NonNullByDefault class Location implements Serializable {
     return eaters;
   }
 
-  public Location parent() {
+  @Nullable public Location parent() {
     return parent;
   }
 
@@ -657,5 +669,17 @@ public @NonNullByDefault class Location implements Serializable {
   /** @return */
   public static Location none() {
     return LazyInit.nowhere;
+  }
+
+  @Nullable private static Location findParent(@Nullable String parent) {
+    if (parent == null) {
+      return null;
+    }
+    for (Location l : i.location) {
+      if (parent.equals(l.shortname)) {
+        return l;
+      }
+    }
+    throw new AssertionError("Couldn't find parent:" + parent);
   }
 }

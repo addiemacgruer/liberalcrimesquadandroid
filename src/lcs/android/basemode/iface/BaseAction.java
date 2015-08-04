@@ -171,8 +171,9 @@ import org.eclipse.jdt.annotation.Nullable;
       }
       ui(R.id.gcontrol).button(10).text("Continue the struggle").add();
       int c = getch();
-      if (c == 10)
+      if (c == 10) {
         return;
+      }
       final Vehicle v = i.vehicle.get(c - 'a');
       do {
         setView(R.layout.generic);
@@ -266,10 +267,10 @@ import org.eclipse.jdt.annotation.Nullable;
       if (l.lcs().siege.siege) {
         name.append(" (Under Siege)");
       }
-      if (l.parent() == null) {
-        Curses.ui(R.id.gcontrol).text(name.toString()).add();
-      } else if (l.isHidden()) {
+      if (l.isHidden()) {
         continue;
+      } else if (l.parent() == null) {
+        Curses.ui(R.id.gcontrol).text(name.toString()).add();
       } else {
         final UIBuilder button = ui(R.id.gcontrol).text(name.toString());
         if (visitable) {
@@ -294,9 +295,9 @@ import org.eclipse.jdt.annotation.Nullable;
 
   private static void investLocationButton(final int cost, final char key, final String text,
       final boolean enablable) {
-    if (!enablable)
+    if (!enablable) {
       return;
-    else if (i.ledger.funds() > cost) {
+    } else if (i.ledger.funds() > cost) {
       Curses.ui().button(key).text(text).add();
     } else {
       Curses.ui().button().text(text).add();
@@ -305,9 +306,9 @@ import org.eclipse.jdt.annotation.Nullable;
 
   private static void investLocationButton(final int cost, final char key, final String text,
       @Nullable final Compound prereq) {
-    if (prereq == null || i.currentLocation.compoundWalls().contains(prereq))
+    if (prereq == null || i.currentLocation.compoundWalls().contains(prereq)) {
       return;
-    else if (i.ledger.funds() > cost) {
+    } else if (i.ledger.funds() > cost) {
       Curses.ui().button(key).text(text).add();
     } else {
       Curses.ui().button().text(text).add();
