@@ -25,7 +25,6 @@ import lcs.android.items.Vehicle;
 import lcs.android.law.Crime;
 import lcs.android.util.Color;
 import lcs.android.util.Getter;
-import lcs.android.util.Maybe;
 import lcs.android.util.Setter;
 
 import org.eclipse.jdt.annotation.NonNullByDefault;
@@ -67,17 +66,17 @@ public @NonNullByDefault class Squad extends ArrayList<Creature> {
       p.removeSquadInfo();
     }
     final boolean rval = super.add(p);
-    if (p.squad().getNullable() != this) {
+    if (p.squad() != this) {
       p.squad(this);
     }
     return rval;
   }
 
-  @Getter public Maybe<Location> base() {
+  @Getter public Location base() {
     if (size() > 0) {
       return get(0).base();
     }
-    return Maybe.empty();
+    throw new ArrayIndexOutOfBoundsException();
   }
 
   @Setter public void base(final Location loc) {
@@ -145,18 +144,18 @@ public @NonNullByDefault class Squad extends ArrayList<Creature> {
     return this;
   }
 
-  public Maybe<Location> location() {
+  public Location location() {
     if (size() > 0) {
       return get(0).location();
     }
-    return Maybe.empty();
+    return Location.none();
   }
 
   public void location(final Location loc) {
     for (final Creature p : this) {
       p.location(loc);
-      if (p.car().exists()) {
-        p.car().get().setLocation(loc);
+      if (p.car() != null) {
+        p.car().setLocation(loc);
       }
     }
   }
@@ -200,7 +199,7 @@ public @NonNullByDefault class Squad extends ArrayList<Creature> {
       } catch (final ArrayIndexOutOfBoundsException aioobe) {
         throw new RuntimeException("out-of-bounds", aioobe);
       }
-      if (a.prisoner().exists()) {
+      if (a.prisoner() != null) {
         setColor(row[0], Color.MAGENTA);
         setText(row[0], a.toString() + "+H");
       } else {
@@ -269,7 +268,7 @@ public @NonNullByDefault class Squad extends ArrayList<Creature> {
       if (Squad.showCarPrefs()) {
         v = a.prefCar();
       } else {
-        v = a.car().getNullable();
+        v = a.car();
       }
       if (v != null && Squad.showCarPrefs()) {
         str.append(v.shortname());
@@ -396,8 +395,8 @@ public @NonNullByDefault class Squad extends ArrayList<Creature> {
             final Money m = (Money) l; // cast -XML
             i.ledger.addFunds(m.getAmount(), Ledger.IncomeType.THIEVERY);
           } else // Empty i.squad inventory into base inventory
-          if (ss.get(0).base().exists()) {
-            ss.get(0).base().get().lcs().loot.add(l);
+          if (ss.get(0).base() != null) {
+            ss.get(0).base().lcs().loot.add(l);
           }
         }
         ss.loot.clear();

@@ -115,20 +115,20 @@ public @NonNullByDefault class Activities {
     mess = false;
     for (final Creature p : Filter.of(i.pool, Filter.LIVING)) {
       p.income(0);
-      if (!p.location().exists()) {
-        p.location(p.base().get());
+      if (p.location() == Location.none()) {
+        p.location(p.base());
         p.activity(BareActivity.noActivity());
         continue;
       }
-      if (p.health().clinicMonths() != 0 && p.location().exists()
-          && (p.location().get().type().isHospital())) {
+      if (p.health().clinicMonths() != 0 && p.location() != null
+          && (p.location().type().isHospital())) {
         continue;
       }
       if (p.datingVacation() != 0 || p.hiding() != 0) {
         continue;
       }
       // CLEAR ACTIONS FOR PEOPLE UNDER SIEGE
-      if (p.location().exists() && p.location().get().lcs().siege.siege) {
+      if (p.location() != null && p.location().lcs().siege.siege) {
         p.activity(BareActivity.noActivity());
         continue;
       }
@@ -152,8 +152,8 @@ public @NonNullByDefault class Activities {
         p.activity(BareActivity.noActivity());
         break;
       case NONE: /* repair armor if idle... */
-        if (p.alignment() == Alignment.LIBERAL && p.location().exists()
-            && !p.location().get().type().isPrison()
+        if (p.alignment() == Alignment.LIBERAL && p.location() != null
+            && !p.location().type().isPrison()
             && (p.getArmor().isBloody() || p.getArmor().isDamaged())) {
           repairArmor.add(p);
         }

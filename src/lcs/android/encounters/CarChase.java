@@ -27,7 +27,6 @@ import lcs.android.site.Squad;
 import lcs.android.site.type.AbstractSiteType;
 import lcs.android.util.Color;
 import lcs.android.util.Filter;
-import lcs.android.util.Maybe;
 
 import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.jdt.annotation.Nullable;
@@ -53,7 +52,7 @@ public @NonNullByDefault class CarChase extends Encounter {
    * @param vehicle which vehicle he's being chased in
    * @return true if he escaped. */
   public boolean chaseSequence(final Creature liberal, final Vehicle vehicle) {
-    final Squad oldSquad = liberal.squad().getNullable();
+    final Squad oldSquad = liberal.squad();
     final Squad sq = new Squad();
     sq.add(liberal);
     liberal.car(vehicle).driver(true);
@@ -82,8 +81,9 @@ public @NonNullByDefault class CarChase extends Encounter {
    * @return true if anyone escapes */
   @Override public boolean encounter() {
     Fight.reloadparty();
-    if (encounter.isEmpty())
+    if (encounter.isEmpty()) {
       return true;
+    }
     friendcar.clear();
     if (i.activeSquad() != null) {
       addFriendlyCarDrivers();
@@ -153,7 +153,7 @@ public @NonNullByDefault class CarChase extends Encounter {
           if (p == null) {
             continue;
           }
-          if (p.car().exists()) {
+          if (p.car() != null) {
             i.vehicle.remove(p.car().get());
           }
         }
@@ -215,8 +215,9 @@ public @NonNullByDefault class CarChase extends Encounter {
             }
             Fight.fight(Fighting.BOTH);
             Advance.creatureAdvance();
-            if (CarChaseObstacles.drivingUpdate(this))
+            if (CarChaseObstacles.drivingUpdate(this)) {
               return new FootChase(this).encounter();
+            }
           }
           if (c == 'e') {
             AbstractItem.equip(i.activeSquad().loot(), null);
@@ -227,17 +228,20 @@ public @NonNullByDefault class CarChase extends Encounter {
           case TRUCKPULLSOUT:
           case FRUITSTAND:
             if (c == 'd') {
-              if (obstacle.obstacleDrive(this, false))
+              if (obstacle.obstacleDrive(this, false)) {
                 return new FootChase(this).encounter();
+              }
               Advance.creatureAdvance();
               CarChaseObstacles.drivingUpdate(this);
             }
             if (c == 'f') {
-              if (obstacle.obstacleDrive(this, true))
+              if (obstacle.obstacleDrive(this, true)) {
                 return new FootChase(this).encounter();
+              }
               Advance.creatureAdvance();
-              if (CarChaseObstacles.drivingUpdate(this))
+              if (CarChaseObstacles.drivingUpdate(this)) {
                 return new FootChase(this).encounter();
+              }
             }
             break;
           default:
@@ -260,7 +264,7 @@ public @NonNullByDefault class CarChase extends Encounter {
         }
         int baddiecount = 0;
         for (final Creature e : encounter) {
-          if (e.car().exists() && e.enemy() && e.health().alive()) {
+          if (e.car() != null && e.enemy() && e.health().alive()) {
             baddiecount++;
           }
         }
@@ -290,7 +294,7 @@ public @NonNullByDefault class CarChase extends Encounter {
     for (final Vehicle vehicle : enemycar) {
       ui().text(vehicle.fullname(true)).add();
       for (final Creature enemy : encounter) {
-        if (enemy.car().getNullable() != vehicle) {
+        if (enemy.car() != vehicle) {
           continue;
         }
         ui().text("--" + enemy + " " + enemy.vagueAge() + (enemy.isDriver() ? "-D" : ""))
@@ -301,7 +305,7 @@ public @NonNullByDefault class CarChase extends Encounter {
 
   private void addFriendlyCarDrivers() {
     for (final Creature p : i.activeSquad()) {
-      if (p.car().exists()) {
+      if (p.car() != null) {
         final Vehicle v = p.car().get();
         for (final Vehicle v2 : friendcar) {
           if (v2 == v) {
@@ -322,8 +326,8 @@ public @NonNullByDefault class CarChase extends Encounter {
       p.squad(null).car(null).location(ps);
       p.weapon().dropWeaponsAndClips(null);
       p.activity(BareActivity.noActivity());
-      if (p.prisoner().exists()) {
-        if (!p.prisoner().get().squad().exists()) {
+      if (p.prisoner() != null) {
+        if (p.prisoner().squad() == null) {
           hostagefreed++;
         }
         p.freeHostage(Creature.Situation.CAPTURED);
@@ -350,8 +354,8 @@ public @NonNullByDefault class CarChase extends Encounter {
         continue;
       }
       if (p.health().alive() && p.isDriver()) {
-        final Maybe<Vehicle> v = p.car();
-        if (v.exists()) {
+        final Vehicle v = p.car();
+        if (v != null) {
           yourrolls.add(driveSkill(p, v.get()));
         }
         p.skill().train(Skill.DRIVING, i.rng.nextInt(20));
@@ -365,12 +369,12 @@ public @NonNullByDefault class CarChase extends Encounter {
     final List<Creature> theirrolls_drv = new ArrayList<Creature>();
     for (final Iterator<Creature> ei = encounter.iterator(); ei.hasNext();) {
       final Creature e = ei.next();
-      if (e.car().exists() && e.enemy() && e.health().alive() && e.isDriver() && e.car().exists()) {
+      if (e.car() != null && e.enemy() && e.health().alive() && e.isDriver() && e.car() != null) {
         final Vehicle v = e.car().get();
         theirrolls.add(driveSkill(e, v));
         theirrolls_id.add(e.car().get());
         theirrolls_drv.add(e);
-      } else if (e.car().missing()) {
+      } else if (e.car() == null) {
         ei.remove();
       }
     }
@@ -430,8 +434,9 @@ public @NonNullByDefault class CarChase extends Encounter {
   private final static int DRIVING_RANDOMNESS = 13;
 
   public static int driveSkill(final Creature liberal, @Nullable final Vehicle vehicle) {
-    if (vehicle == null)
+    if (vehicle == null) {
       throw new IllegalArgumentException("vehicle was null");
+    }
     int driveskill = liberal.skill().skill(Skill.DRIVING) * (3 + vehicle.driveBonus())
         + i.rng.nextInt(CarChase.DRIVING_RANDOMNESS);
     driveskill -= liberal.health().modRoll();

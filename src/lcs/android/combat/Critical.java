@@ -2,7 +2,6 @@ package lcs.android.combat;
 
 import lcs.android.creature.health.Wound;
 import lcs.android.items.WeaponType;
-import lcs.android.util.Maybe;
 import lcs.android.util.Xml;
 
 import org.eclipse.jdt.annotation.NonNullByDefault;
@@ -48,8 +47,8 @@ import org.eclipse.jdt.annotation.Nullable;
 
   /** if sever damage is defined in the critical, return that; otherwise return an emtpy maybe.
    * @return critical sever damage if defined. */
-  public Maybe<Wound> severType() {
-    return Maybe.ofNullable(severType);
+  @Nullable public Wound severType() {
+    return severType;
   }
 
   @Override public Xml.Configurable xmlChild(final String value) {

@@ -141,14 +141,14 @@ public abstract @NonNullByDefault class Encounter implements Serializable {
         /* If car type is unknown, due to change in xml file, the game will crash here. -XML */
         ((CarChase) rval).enemycar.add(v);
         for (final Creature n : encounter) {
-          if (n.car().missing()) {
+          if (n.car()==null) {
             n.car(v).driver(true);
             break;
           }
         }
       }
       for (final Creature enemy : encounter) {
-        if (enemy.car().missing()) {
+        if (enemy.car()==null) {
           enemy.car(i.rng.randFromList(((CarChase) rval).enemycar)).driver(false);
         }
       }

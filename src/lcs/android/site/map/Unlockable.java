@@ -6,7 +6,6 @@ import lcs.android.creature.Creature;
 import lcs.android.creature.skill.Skill;
 import lcs.android.game.CheckDifficulty;
 import lcs.android.util.Filter;
-import lcs.android.util.Maybe;
 
 public enum Unlockable {
   ARMORY,
@@ -47,10 +46,9 @@ public enum Unlockable {
       difficulty = CheckDifficulty.AUTOMATIC;
       break;
     }
-    final Maybe<Creature> bestSecurityTest = Filter.best(i.activeSquad(),
-        Filter.skill(Skill.SECURITY));
-    if (bestSecurityTest.exists()) {
-      final Creature bestSecurity = bestSecurityTest.get();
+    final Creature bestSecurityTest = Filter.best(i.activeSquad(), Filter.skill(Skill.SECURITY));
+    if (bestSecurityTest != null) {
+      final Creature bestSecurity = bestSecurityTest;
       final int maxattack = bestSecurity.skill().skill(Skill.SECURITY);
       // lock pick succeeded.
       if (bestSecurity.skill().skillCheck(Skill.SECURITY, difficulty)) {

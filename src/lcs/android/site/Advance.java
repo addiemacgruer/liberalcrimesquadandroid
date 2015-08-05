@@ -23,16 +23,16 @@ import lcs.android.site.map.TileSpecial;
 import lcs.android.util.Color;
 import lcs.android.util.Curses;
 import lcs.android.util.Filter;
-import lcs.android.util.Maybe;
 
 import org.eclipse.jdt.annotation.NonNullByDefault;
+import org.eclipse.jdt.annotation.Nullable;
 
 public @NonNullByDefault class Advance {
   /** handles end of round stuff for living creatures */
   public static void creatureAdvance() {
     for (final Creature p : Filter.of(i.activeSquad(), Filter.LIVING)) {
       advanceCreature(p);
-      if (p.prisoner().exists()) {
+      if (p.prisoner() != null) {
         advancePrisoner(p);
       }
     }
@@ -42,10 +42,10 @@ public @NonNullByDefault class Advance {
         if (!p.health().alive()) {
           continue;
         }
-        if (p.squad().exists()) {
+        if (p.squad() != null) {
           continue;
         }
-        if (p.location().getNullable() != i.site.current()) {
+        if (p.location() != i.site.current()) {
           continue;
         }
         advanceCreature(p); // TODO
@@ -90,7 +90,7 @@ public @NonNullByDefault class Advance {
       if (creature.health().wounds().get(w).contains(Wound.BLEEDING)) {
         if (i.rng.nextInt(500) < creature.skill().getAttribute(Attribute.HEALTH, true)) {
           creature.health().wounds().get(w).remove(Wound.BLEEDING);
-        } else if (creature.squad().exists()
+        } else if (creature.squad() != null
             && topmedical.skill().skillCheck(Skill.FIRSTAID, CheckDifficulty.FORMIDABLE)) {
           setViewIfNeeded(R.layout.generic);
           ui().text(
@@ -108,9 +108,9 @@ public @NonNullByDefault class Advance {
 
   private static void advanceCreature(final Creature creature) {
     int bleed = 0;
-    final Maybe<Creature> topmedical = getTopMedical(creature);
-    if (topmedical.exists()) {
-      bleed = treatBleeding(creature, bleed, topmedical.get());
+    final Creature topmedical = getTopMedical(creature);
+    if (topmedical != null) {
+      bleed = treatBleeding(creature, bleed, topmedical);
     }
     final Set<TileSpecial> flag = i.site.currentTile().flag;
     if (i.mode() == GameMode.SITE && i.rng.likely(3)
@@ -125,7 +125,7 @@ public @NonNullByDefault class Advance {
       if (!creature.health().alive()) {
         setViewIfNeeded(R.layout.generic);
         creature.deathMessage();
-        if (creature.prisoner().exists()) {
+        if (creature.prisoner() != null) {
           creature.freeHostage(Creature.Situation.DIED);
         }
       } else {
@@ -144,7 +144,7 @@ public @NonNullByDefault class Advance {
       if (!creature.health().alive()) {
         setViewIfNeeded(R.layout.generic);
         creature.deathMessage();
-        if (creature.prisoner().exists()) {
+        if (creature.prisoner() != null) {
           creature.freeHostage(Creature.Situation.DIED);
         }
       }
@@ -152,21 +152,20 @@ public @NonNullByDefault class Advance {
   }
 
   private static void advancePrisoner(final Creature p) {
-    if (p.prisoner().missing()) {
+    if (p.prisoner() == null) {
       return;
     }
-    advanceCreature(p.prisoner().get());
-    if (p.prisoner().get().health().alive() || p.prisoner().get().squad().exists()) {
+    advanceCreature(p.prisoner());
+    if (p.prisoner().health().alive() || p.prisoner().squad() != null) {
       return;
     }
     setViewIfNeeded(R.layout.generic);
     ui().text(p.toString() + " drops " + p.prisoner().toString() + "'s body.").add();
-    p.prisoner().get().dropLoot(i.groundLoot());
+    p.prisoner().dropLoot(i.groundLoot());
     i.site.crime(i.site.crime() + 10);
     i.siteStory.addNews(NewsEvent.KILLED_SOMEBODY);
     if (p
         .prisoner()
-        .get()
         .type()
         .ofType(
             new String[] { "CORPORATE_CEO", "RADIOPERSONALITY", "NEWSANCHOR", "SCIENTIST_EMINENT",
@@ -176,7 +175,7 @@ public @NonNullByDefault class Advance {
     p.prisoner(null);
   }
 
-  private static Maybe<Creature> getTopMedical(final Creature cr) {
+  @Nullable private static Creature getTopMedical(final Creature cr) {
     int topmedicalskill = -1;
     Creature topmedical = null;
     for (final Creature p : i.activeSquad()) {
@@ -186,7 +185,7 @@ public @NonNullByDefault class Advance {
         topmedicalskill = p.skill().skill(Skill.FIRSTAID);
       }
     }
-    return Maybe.ofNullable(topmedical);
+    return topmedical;
   }
 
   private static void spreadFire() {
@@ -320,14 +319,14 @@ public @NonNullByDefault class Advance {
     int hostslots = 0;
     for (final Creature p : i.activeSquad()) {
       if (p.health().alive() && (p.health().canWalk() || p.hasFlag(CreatureFlag.WHEELCHAIR))
-          && p.prisoner().exists()) {
+          && p.prisoner() != null) {
         hostslots++;
       } else if ((!p.health().alive() || !p.health().canWalk()
           && !p.hasFlag(CreatureFlag.WHEELCHAIR))
-          && p.prisoner().exists()) {
+          && p.prisoner() != null) {
         setViewIfNeeded(R.layout.generic);
         ui().text(p + " can no longer handle " + p.prisoner() + ".").add();
-        p.prisoner().get().freeHostage(Creature.Situation.DIED);
+        p.prisoner().freeHostage(Creature.Situation.DIED);
       }
     }
     for (final Creature p : Filter.of(i.activeSquad(), Filter.ALL)) {
@@ -351,7 +350,7 @@ public @NonNullByDefault class Advance {
             }
             if (carrier.health().alive()
                 && (carrier.health().canWalk() || carrier.hasFlag(CreatureFlag.WHEELCHAIR))
-                && carrier.prisoner().missing()) {
+                && carrier.prisoner() == null) {
               carrier.prisoner(p);
               setViewIfNeeded(R.layout.generic);
               ui().text(

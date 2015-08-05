@@ -171,7 +171,7 @@ public @NonNullByDefault class Location implements Serializable {
       return;
     }
     for (final Creature p : Filter.of(i.pool, Filter.livingIn(this))) {
-      if (p.squad().getNullable() != i.activeSquad() && p.alignment() == Alignment.LIBERAL) {
+      if (p.squad() != i.activeSquad() && p.alignment() == Alignment.LIBERAL) {
         i.activeSquad().add(p);
         if (i.activeSquad().size() == 6) {
           return;
@@ -358,7 +358,7 @@ public @NonNullByDefault class Location implements Serializable {
     int eaters = 0;
     for (final Creature p : i.pool) {
       // Not here? Not eating here!
-      if (p.location().getNullable() != this) {
+      if (p.location() != this) {
         continue;
       }
       // Not alive? Not eating!
@@ -389,7 +389,7 @@ public @NonNullByDefault class Location implements Serializable {
    * with what they're up to. */
   public void printLocationHeader() {
     final StringBuilder str = new StringBuilder();
-    if (i.activeSquad().location().exists()) {
+    if (i.activeSquad().location() != null) {
       if (lcs.siege.siege) {
         if (lcs.siege.underAttack) {
           setColor(R.id.locationdate, Color.RED);
@@ -410,7 +410,7 @@ public @NonNullByDefault class Location implements Serializable {
         setColor(R.id.locationdate, Color.WHITE);
       }
     }
-    if (i.activeSquad().location().exists()) {
+    if (i.activeSquad().location() != null) {
       addlocationname(str);
       str.append(", ");
       // } else if (i.currentLocation == null) {

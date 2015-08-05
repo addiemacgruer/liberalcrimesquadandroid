@@ -147,7 +147,7 @@ import org.eclipse.jdt.annotation.Nullable;
         str.append(v.fullname(false));
         for (final Squad sq : i.squad) {
           for (final Creature p : sq) {
-            if ((p.car().getNullable() == v || p.prefCar() == v) && !squads.contains(sq)) {
+            if ((p.car() == v || p.prefCar() == v) && !squads.contains(sq)) {
               squads.add(sq);
             }
           }
@@ -242,7 +242,7 @@ import org.eclipse.jdt.annotation.Nullable;
       name.setLength(0);
       name.append(l.toString());
       boolean visitable = true;
-      if (l == i.activeSquad().location().getNullable()) {
+      if (l == i.activeSquad().location()) {
         name.append(" (Current Location)");
         name.append(" Heat:" + l.heat() + "%");
         name.append(" Secrecy:" + l.heatProtection() + "%");

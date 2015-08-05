@@ -31,8 +31,8 @@ public @NonNullByDefault class Burials extends ArrayList<Creature> implements Da
         continue;
       }
       // MAKE BASE LOOT
-      if (p.base().exists()) {
-        p.dropLoot(p.base().get().lcs().loot);
+      if (p.base()!= null) {
+        p.dropLoot(p.base().lcs().loot);
       }
       // BURY
       i.pool.remove(p);
@@ -49,8 +49,8 @@ public @NonNullByDefault class Burials extends ArrayList<Creature> implements Da
           FootChase.attemptArrest(b, "disposing of bodies");
           // If a liberal has been killed or arrested they
           // should not do more burials.
-          if (!b.health().alive() || b.location().exists()
-              && b.location().get().type().isType(PoliceStation.class)) {
+          if (!b.health().alive() || b.location()!= null
+              && b.location().type().isType(PoliceStation.class)) {
             bi.remove();
           }
         }

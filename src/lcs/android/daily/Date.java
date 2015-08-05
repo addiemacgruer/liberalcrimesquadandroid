@@ -68,8 +68,8 @@ public @NonNullByDefault class Date implements Serializable {
       } else if (e == dates.size() - 2) {
         sb.append(" and ");
       } else {
-        if (p.health().clinicMonths() > 0 && p.location().exists()) {
-          sb.append(" at ").append(p.location().get().toString());
+        if (p.health().clinicMonths() > 0 && p.location()!= null) {
+          sb.append(" at ").append(p.location().toString());
         }
         sb.append('.');
       }

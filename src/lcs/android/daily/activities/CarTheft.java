@@ -34,7 +34,7 @@ public @NonNullByDefault class CarTheft extends ArrayList<Creature> implements D
     for (final Creature p : stealcars) {
       if (stealcar(p)) {
         p.activity(BareActivity.noActivity());
-      } else if (p.location().exists() && p.location().get().type().isType(PoliceStation.class)) {
+      } else if (p.location()!= null && p.location().type().isType(PoliceStation.class)) {
         p.crime().criminalize(Crime.CARTHEFT);
       }
     }
@@ -506,8 +506,8 @@ public @NonNullByDefault class CarTheft extends ArrayList<Creature> implements D
       Encounter.createEncounter(null, chaselev).encounter();
     }
     i.vehicle.add(v);
-    if (cr.base().exists() && new CarChase(Location.none()).chaseSequence(cr, v)) {
-      v.setLocation(cr.base().get());
+    if (cr.base()!= null && new CarChase(Location.none()).chaseSequence(cr, v)) {
+      v.setLocation(cr.base());
       // Automatically assign this car to this driver, if no other one
       // is present
       if (cr.prefCar() == null) {

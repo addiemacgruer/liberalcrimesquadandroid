@@ -288,7 +288,7 @@ public @NonNullByDefault class CreatureSkill implements Serializable { // NO_UCD
         returnValue >>= 1;
       }
       // Carrying corpses or having hostages is very bad for disguise
-      if (c.prisoner().exists()) {
+      if (c.prisoner()!= null) {
         returnValue >>= 2;
       }
       break;

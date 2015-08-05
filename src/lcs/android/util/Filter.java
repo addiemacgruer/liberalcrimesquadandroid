@@ -36,8 +36,7 @@ public @NonNullByDefault class Filter {
     @Override public boolean apply(final Creature p) {
       return p.health().alive() && p.alignment() == Alignment.LIBERAL
           && p.health().clinicMonths() == 0 && p.datingVacation() == 0 && p.hiding() == 0
-          && !p.hasFlag(CreatureFlag.SLEEPER) && p.location().exists()
-          && !p.location().get().type().isPrison();
+          && !p.hasFlag(CreatureFlag.SLEEPER) && !p.location().type().isPrison();
     }
   };
 
@@ -57,8 +56,7 @@ public @NonNullByDefault class Filter {
     @Override public boolean apply(final Creature p) {
       return p.health().alive() && p.alignment() == Alignment.LIBERAL
           && p.health().clinicMonths() == 0 && p.datingVacation() == 0 && p.hiding() == 0
-          && !p.hasFlag(CreatureFlag.SLEEPER) && p.location().exists()
-          && !p.location().get().type().isPrison();
+          && !p.hasFlag(CreatureFlag.SLEEPER) && !p.location().type().isPrison();
     }
   };
 
@@ -101,7 +99,7 @@ public @NonNullByDefault class Filter {
   public static final IPredicate<Creature> IN_JAIL = new IPredicate<Creature>() {
     @Override public boolean apply(final Creature p) {
       return !p.hasFlag(CreatureFlag.SLEEPER) && p.health().alive()
-          && p.location().get().type().isPrison();
+          && p.location().type().isPrison();
     }
   };
 
@@ -125,7 +123,7 @@ public @NonNullByDefault class Filter {
 
   public static final IPredicate<Creature> HAS_SQUAD = new IPredicate<Creature>() {
     @Override public boolean apply(final Creature item) {
-      return item.squad().exists();
+      return item.squad() != null;
     }
   };
 
@@ -156,7 +154,7 @@ public @NonNullByDefault class Filter {
     };
   }
 
-  public static <T> Maybe<T> best(final Collection<T> pool, final INumberTest<T> test) {
+  public static <T> T best(final Collection<T> pool, final INumberTest<T> test) {
     if (pool.size() == 0) {
       throw new ArrayIndexOutOfBoundsException("Empty pool");
     }
@@ -175,7 +173,7 @@ public @NonNullByDefault class Filter {
         highest = test.valueOf(t);
       }
     }
-    return Maybe.ofNullable(best);
+    return best;
   }
 
   /** Count the number of things which match a condition in a collection.
@@ -218,7 +216,7 @@ public @NonNullByDefault class Filter {
   public static IPredicate<Creature> livingIn(final Location location) {
     return new IPredicate<Creature>() {
       @Override public boolean apply(final Creature c) {
-        return c.health().alive() && c.location().getNullable() == location;
+        return c.health().alive() && c.location() == location;
       }
     };
   }
@@ -249,7 +247,7 @@ public @NonNullByDefault class Filter {
   public static IPredicate<Creature> managedBy(final Creature manager) {
     return new IPredicate<Creature>() {
       @Override public boolean apply(final Creature c) {
-        return c.health().alive() && c.hire().getNullable() == manager;
+        return c.health().alive() && c.hire() == manager;
       }
     };
   }

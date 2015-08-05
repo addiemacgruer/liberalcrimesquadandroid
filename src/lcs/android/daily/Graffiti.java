@@ -32,12 +32,13 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
     final List<Creature> graffiti = this;
     for (final Creature s : graffiti) {
       if (!s.weapon().weapon().canGraffiti()) {
-        if (!s.base().exists()) {
+        Location r = s.base();
+        if (!true) {
           continue; // homeless
         }
         // Check base inventory for a spraycan
         boolean foundone = false;
-        final Location location = s.base().get();
+        final Location location = s.base();
         for (final AbstractItem<? extends AbstractItemType> j : location.lcs().loot) {
           if (j instanceof Weapon) {
             final Weapon w = (Weapon) j; // cast -XML

@@ -111,8 +111,9 @@ public final @NonNullByDefault class Fight {
   /** everybody reload!
    * @param wasteful true will dispose of part-filled clips */
   public static void reloadparty(final boolean wasteful) {
-    if (i.activeSquad() == null)
+    if (i.activeSquad() == null) {
       return;
+    }
     for (final Creature p : i.activeSquad()) {
       if (!p.health().alive()) {
         continue;
@@ -206,8 +207,9 @@ public final @NonNullByDefault class Fight {
         .weapon()
         .attack(i.mode() == GameMode.CHASECAR, forceMelee,
             forceMelee || !attacker.weapon().canReload());
-    if (attackUsed == null)
+    if (attackUsed == null) {
       return false; // Then bail, they can't fight
+    }
     boolean melee = attackUsed.ranged ? true : false;
     melee = describeAttack(attacker, target, mistake, attackUsed, melee);
     int aroll = attackRoll(attacker, attackUsed);
@@ -240,7 +242,7 @@ public final @NonNullByDefault class Fight {
       } else {
         dam = attacker.specialAttack().damage(attacker, bursthits);
       }
-      if (target.squad().exists() && target.hire() == null) {
+      if (target.squad() != null && target.hire() == null) {
         /* Plot Armor: if the founder is hit, inflict 1/2 damage, because founders are cool */
         dam.damageAmount(dam.damageAmount() / 2);
       }
@@ -293,7 +295,7 @@ public final @NonNullByDefault class Fight {
   private static int attackBonus(final Creature creature, final Attack attackUsed) {
     int bonus = 0;
     // Hostages interfere with attack
-    if (creature.prisoner().exists()) {
+    if (creature.prisoner() != null) {
       bonus -= i.rng.nextInt(10);
     }
     // Weapon accuracy bonuses and penalties
@@ -304,7 +306,7 @@ public final @NonNullByDefault class Fight {
   private static int attackRoll(final Creature creature, final Attack attackUsed) {
     int aroll = creature.skill().skillRoll(attackUsed.skill);
     aroll -= creature.health().modRoll();
-    if (creature.prisoner().exists()) {
+    if (creature.prisoner() != null) {
       aroll -= i.rng.nextInt(10);
     }
     // If in a foot chase, double the debilitating effect of injuries
@@ -322,10 +324,10 @@ public final @NonNullByDefault class Fight {
       if (p.alignment() != Alignment.LIBERAL) {
         continue;
       }
-      if (p.squad().exists()) {
+      if (p.squad() != null) {
         continue;
       }
-      if (p.location().getNullable() != i.site.current()) {
+      if (p.location() != i.site.current()) {
         continue;
       }
       /* Juice check to engage in cover fire 10% chance for every 10 juice, starting at 10% chance
@@ -351,8 +353,9 @@ public final @NonNullByDefault class Fight {
               }
             }
           }
-          if (goodtarg.isEmpty())
+          if (goodtarg.isEmpty()) {
             return;
+          }
           Creature target = i.rng.randFromList(goodtarg);
           boolean mistake = false;
           if (!badtarg.isEmpty() && i.rng.chance(10)) {
@@ -525,7 +528,7 @@ public final @NonNullByDefault class Fight {
       str.setLength(0);
       severloot(t, i.groundLoot());
       target.deathMessage();
-      if (target.prisoner().exists()) {
+      if (target.prisoner() != null) {
         t.freeHostage(Creature.Situation.DIED);
       }
     } else {
@@ -975,8 +978,9 @@ public final @NonNullByDefault class Fight {
   }
 
   private static void enemyattack(final Creature encounter) {
-    if (!encounter.health().alive())
+    if (!encounter.health().alive()) {
       return;
+    }
     if (i.site.alarm() && encounter.type().ofType("BOUNCER")
         && encounter.alignment() != Alignment.LIBERAL) {
       encounter.conservatise();
@@ -1035,8 +1039,9 @@ public final @NonNullByDefault class Fight {
         badtarg.add(e2);
       }
     }
-    if (goodtarg.isEmpty())
+    if (goodtarg.isEmpty()) {
       return;
+    }
     Creature target = i.rng.randFromList(goodtarg);
     final boolean canmistake = (encounter.type().ofType("SCIENTIST_EMINENT")
         || encounter.type().ofType("JUDGE_LIBERAL")
@@ -1045,12 +1050,11 @@ public final @NonNullByDefault class Fight {
         .type().idName().equals("NEWSANCHOR"));
     if (canmistake) {
       if (encounter.enemy()) {
-        if (target.prisoner().exists() && i.rng.chance(2)) {
-          attack(encounter, target.prisoner().get(), true);
-          if (!target.prisoner().get().health().alive()
-              && !target.prisoner().get().squad().exists()) {
+        if (target.prisoner() != null && i.rng.chance(2)) {
+          attack(encounter, target.prisoner(), true);
+          if (!target.prisoner().health().alive() && target.prisoner().squad() == null) {
             ui().text(target + " drops " + target.prisoner() + "'s body.").add();
-            if (target.prisoner().get().alignment() == Alignment.CONSERVATIVE) {
+            if (target.prisoner().alignment() == Alignment.CONSERVATIVE) {
               i.site.crime(i.site.crime() + 30);
             }
             target.prisoner(null);
@@ -1259,34 +1263,36 @@ public final @NonNullByDefault class Fight {
   }
 
   private static int martialArtistry(final Creature artist) {
-    if (artist.type().animal() != Animal.HUMAN)
+    if (artist.type().animal() != Animal.HUMAN) {
       return 1; // Whoops, must be human to use martial arts fanciness
+    }
     // Martial arts multi-strikes
     return Math.min(1 + i.rng.nextInt(artist.skill().skill(Skill.HANDTOHAND) / 3 + 1), 5);
   }
 
   private static int modifedDamageAmount(final int mod, final int damamount) {
-    if (mod <= -8)
+    if (mod <= -8) {
       return damamount >> 6;
-    else if (mod <= -6)
+    } else if (mod <= -6) {
       return damamount >> 5;
-    else if (mod <= -4)
+    } else if (mod <= -4) {
       return damamount >> 4;
-    else if (mod <= -3)
+    } else if (mod <= -3) {
       return damamount >> 3;
-    else if (mod <= -2)
+    } else if (mod <= -2) {
       return damamount >> 2;
-    else if (mod <= -1)
+    } else if (mod <= -1) {
       return damamount >> 1;
-    else if (mod >= 0)
+    } else if (mod >= 0) {
       return (int) (damamount * (1.0f + 0.2f * mod));
+    }
     return damamount;
   }
 
   private static Creature protectTheFounder(final Creature target, final BodyPart bp,
       final int damAmount) {
     /* if the founder is hit and lethal or potentially crippling damage is done... */
-    if (target.squad().exists() && target.isFounder()
+    if (target.squad() != null && target.isFounder()
         && (damAmount > target.health().blood() || damAmount >= 10)
         && (bp == BodyPart.HEAD || bp == BodyPart.BODY)) {
       /* Oh Noes!!!! Find a liberal to jump in front of the bullet!!! */
@@ -1490,14 +1496,14 @@ public final @NonNullByDefault class Fight {
             attacker.alignment(Alignment.CONSERVATIVE);
             ui().text(target.toString() + " is turned Conservative!").add();
             target.stunned(0);
-            if (target.prisoner().exists()) {
+            if (target.prisoner() != null) {
               target.freeHostage(Creature.Situation.TURNED);
             }
             ui().text("!").add();
           } else {
             ui().text(target.toString() + " doesn't want to fight anymore!").add();
             target.stunned(0);
-            if (target.prisoner().exists()) {
+            if (target.prisoner() != null) {
               target.freeHostage(Creature.Situation.TURNED);
             }
           }
@@ -1536,16 +1542,18 @@ public final @NonNullByDefault class Fight {
 
   private static boolean squadIsArmed() {
     for (final Creature j : i.activeSquad()) {
-      if (j.weapon().isArmed())
+      if (j.weapon().isArmed()) {
         return true;
+      }
     }
     return false;
   }
 
   /** attack handling for each side as a whole */
   private static void youattack(final Creature p) {
-    if (!p.health().alive())
+    if (!p.health().alive()) {
       return;
+    }
     final boolean wasalarm = i.site.alarm();
     i.site.alarm(true);
     final List<Creature> dangerousEnemies = new ArrayList<Creature>();
@@ -1564,8 +1572,9 @@ public final @NonNullByDefault class Fight {
         }
       }
     }
-    if (dangerousEnemies.isEmpty() && enemies.isEmpty())
+    if (dangerousEnemies.isEmpty() && enemies.isEmpty()) {
       return;
+    }
     Creature target;
     /* Roll 1dX-1, where X is the number of "dangerous enemies", plus one if there are
      * "other enemies" */

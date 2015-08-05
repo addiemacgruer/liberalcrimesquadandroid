@@ -14,7 +14,6 @@ import lcs.android.creature.Creature;
 import lcs.android.creature.CreatureType;
 import lcs.android.game.Game;
 import lcs.android.politics.Issue;
-import lcs.android.util.Maybe;
 
 import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.jdt.annotation.Nullable;
@@ -46,7 +45,7 @@ public @NonNullByDefault class NewsStory implements Serializable, Comparable<New
 
   @Nullable private Creature creature;
 
-  @Nullable private Location location = null;
+  private Location location = Location.none();
 
   private int politicsLevel = 0; // TODO
 
@@ -83,8 +82,8 @@ public @NonNullByDefault class NewsStory implements Serializable, Comparable<New
     return claimed;
   }
 
-  public Maybe<Location> location() {
-    return Maybe.ofNullable(location);
+  public Location location() {
+    return location;
   }
 
   public NewsStory location(final Location aLocation) {

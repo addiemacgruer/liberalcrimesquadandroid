@@ -569,7 +569,7 @@ public final @NonNullByDefault class Game implements Serializable {
       final File crash = new File(dirname, "LCS_Crash_Log.txt");
       OutputStreamWriter out = null;
       try {
-        out = new OutputStreamWriter(new FileOutputStream(crash, crash.exists()));
+        out = new OutputStreamWriter(new FileOutputStream(crash, crash!= null));
         out.write(str.toString() + "\n\n");
       } catch (final IOException ioe) {
         Log.e(LCS, "Failed to create error log:" + ioe);

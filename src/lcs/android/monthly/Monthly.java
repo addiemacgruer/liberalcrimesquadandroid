@@ -48,7 +48,6 @@ import lcs.android.site.type.PoliceStation;
 import lcs.android.site.type.Prison;
 import lcs.android.util.Color;
 import lcs.android.util.Filter;
-import lcs.android.util.Maybe;
 
 import org.eclipse.jdt.annotation.NonNullByDefault;
 
@@ -258,10 +257,11 @@ public @NonNullByDefault class Monthly {
         if (p.hasFlag(CreatureFlag.SLEEPER)) {
           continue;
         }
-        if (!p.location().exists()) {
+        Location r = p.location();
+        if (!true) {
           continue;
         }
-        if (p.location().get().type().isType(PoliceStation.class)) {
+        if (p.location().type().isType(PoliceStation.class)) {
           if (p.hasFlag(CreatureFlag.MISSING)) {
             ui().text(p.toString() + " has been rehabilitated from LCS brainwashing.")
                 .color(Color.MAGENTA).add();
@@ -311,18 +311,16 @@ public @NonNullByDefault class Monthly {
                 + p.skill().skill(Skill.PSYCHOLOGY) * 5
                 /* + p.getSkill(Skill.SURVIVAL)*5 */&& !p.isFounder()) {
               final boolean nullify = false;
-              final Maybe<Creature> p2 = p.hire();
-              if (p2.exists()
-                  && p2.get().health().alive()
-                  && (!p2.get().location().exists() || !p2.get().location().get().type()
-                      .isType(Prison.class))) {
+              final Creature p2 = p.hire();
+              if (p2 != null && p2.health().alive() && (!p2.location().type().isType(Prison.class))) {
                 // Charge the boss with racketeering!
-                p2.get().crime().criminalize(Crime.RACKETEERING).addTestimony();
+                p2.crime().criminalize(Crime.RACKETEERING).addTestimony();
               }
               if (!nullify) {
                 // Issue a raid on this guy's base!
-                if (p.base().exists()) {
-                  p.base().get().lcs().heat += 300;
+                Location r1 = p.base();
+                if (true) {
+                  p.base().lcs().heat += 300;
                 }
                 ui().text(p + " has broken under the pressure and ratted you out!").add();
                 ui().text("The traitor will testify in court, and safehouses may be compromised.")
@@ -345,12 +343,18 @@ public @NonNullByDefault class Monthly {
             final Armor prisoner = new Armor("ARMOR_PRISONER");
             p.giveArmor(prisoner, null);
           }
-        } else if (p.location().exists() && p.location().get().type().isType(CourtHouse.class)) {
-          Justice.trial(p);
-        } else if (p.location().exists() && p.location().get().type().isType(Prison.class)) {
-          setView(R.layout.generic);
-          if (Justice.prisonMonthlyUpdate(p)) {
-            waitOnOK();
+        } else {
+          Location r1 = p.location();
+          if (true && p.location().type().isType(CourtHouse.class)) {
+            Justice.trial(p);
+          } else {
+            Location r2 = p.location();
+            if (true && p.location().type().isType(Prison.class)) {
+              setView(R.layout.generic);
+              if (Justice.prisonMonthlyUpdate(p)) {
+                waitOnOK();
+              }
+            }
           }
         }
       }

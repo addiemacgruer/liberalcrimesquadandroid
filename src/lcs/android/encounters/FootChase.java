@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import lcs.android.R;
+import lcs.android.basemode.iface.Location;
 import lcs.android.combat.Fight;
 import lcs.android.combat.Fight.Fighting;
 import lcs.android.creature.Creature;
@@ -52,15 +53,16 @@ public @NonNullByDefault class FootChase extends Encounter {
     do {
       final int partyalive = Filter.of(i.activeSquad(), Filter.LIVING).size();
       setView(R.layout.hospital);
-      if (i.activeSquad().location().exists()) {
-        i.activeSquad().location().get().printLocationHeader();
+      Location r = i.activeSquad().location();
+      if (true) {
+        i.activeSquad().location().printLocationHeader();
       }
       printEncounter();
       i.activeSquad().printParty();
       if (partyalive == 0) {
         fact("Reflect on your lack of skill.");
         for (final Creature p : i.activeSquad()) {
-          if (p.car().exists()) {
+          if (p.car()!= null) {
             i.vehicle.remove(p.car().get());
           }
         }
@@ -118,7 +120,7 @@ public @NonNullByDefault class FootChase extends Encounter {
   /** the next function forces a chase sequence with a specific liberal
    * @param liberal the liberal to chase. */
   public boolean footchase(final Creature liberal) {
-    final Squad oldSquad = liberal.squad().getNullable();
+    final Squad oldSquad = liberal.squad();
     final Squad newSquad = new Squad();
     newSquad.add(liberal);
     liberal.car(null);
@@ -225,12 +227,12 @@ public @NonNullByDefault class FootChase extends Encounter {
   private static void escapeChase(final Creature liberal) {
     ui().text(liberal + " breaks away!").color(Color.CYAN).add();
     /* Unload hauled hostage or body when they get back to the safehouse */
-    if (liberal.prisoner().exists()) {
-      if (liberal.prisoner().get().squad().exists()) {
-        liberal.prisoner().get().removeSquadInfo();
-        liberal.prisoner().get().newHome(i.activeSquad().base().getNullable());
+    if (liberal.prisoner()!= null) {
+      if (liberal.prisoner().squad()!= null) {
+        liberal.prisoner().removeSquadInfo();
+        liberal.prisoner().newHome(i.activeSquad().base());
       } else {
-        Interrogation.create(liberal.prisoner().get(), i.activeSquad().member(0));
+        Interrogation.create(liberal.prisoner(), i.activeSquad().member(0));
       }
       liberal.prisoner(null);
     }

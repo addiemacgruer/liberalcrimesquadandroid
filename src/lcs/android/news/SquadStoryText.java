@@ -2,11 +2,8 @@ package lcs.android.news;
 
 import static lcs.android.game.Game.*;
 import lcs.android.basemode.iface.Location;
-import lcs.android.util.Maybe;
 
 import org.eclipse.jdt.annotation.NonNullByDefault;
-
-import android.util.Log;
 
 @NonNullByDefault class SquadStoryText {
   static void squadstory_text_opening(final NewsStory ns, final boolean liberalguardian,
@@ -177,18 +174,14 @@ import android.util.Log;
     if (liberalguardian && !ccs) {
       story.append("notorious ");
     }
-    final Maybe<Location> location = ns.location();
-    if (!location.exists()) {
-      Log.e("LCS", "Null location pointer in newsstory");
-      story.append("ERROR");
+    final Location location = ns.location();
+    if (location != null && ccs) {
+      story.append(location.type().ccsSiteName());
+    } else if (location != null) {
+      story.append(location.toString());
     }
-    if (location.exists() && ccs) {
-      story.append(location.get().type().ccsSiteName());
-    } else if (location.exists()) {
-      story.append(location.get().toString());
-    }
-    if (location.exists() && liberalguardian && !ccs) {
-      story.append(location.get().type().lcsSiteOpinion());
+    if (location != null && liberalguardian && !ccs) {
+      story.append(location.type().lcsSiteOpinion());
     } else if (!ccs) {
       story.append('.');
     }

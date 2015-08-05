@@ -136,7 +136,7 @@ public enum EndGame { // TODO order shouldn't matter.
   public static void endcheck(final EndType cause) {
     for (final Creature p : i.pool) {
       if (p.health().alive() && p.alignment() == Alignment.LIBERAL
-          && !(p.hasFlag(CreatureFlag.SLEEPER) && p.hire().getNullable() != null)) {
+          && !(p.hasFlag(CreatureFlag.SLEEPER) && p.hire() != null)) {
         return;
       }
     }

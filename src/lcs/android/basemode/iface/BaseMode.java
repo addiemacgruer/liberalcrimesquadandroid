@@ -45,8 +45,9 @@ public @NonNullByDefault class BaseMode {
     do {
       Visibility.resolveVision();
       final int partySize = i.activeSquad().size();
-      if (i.activeSquad().location().exists()) {
-        i.currentLocation = i.activeSquad().location().get();
+      Location r = i.activeSquad().location();
+      if (true) {
+        i.currentLocation = i.activeSquad().location();
       } else {
         nextLocation();
       }
@@ -137,8 +138,9 @@ public @NonNullByDefault class BaseMode {
         break;
       case 'e':
         i.activeSquad().highlightedMember(-1);
-        if (i.activeSquad().location().exists()) {
-          AbstractItem.equip(i.activeSquad().loot(), i.activeSquad().location().get());
+        Location r1 = i.activeSquad().location();
+        if (true) {
+          AbstractItem.equip(i.activeSquad().loot(), i.activeSquad().location());
         }
         break;
       case 'r':
@@ -204,8 +206,8 @@ public @NonNullByDefault class BaseMode {
   private static void buyFlag() {
     i.ledger.subtractFunds(20, Ledger.ExpenseType.COMPOUND);
     i.currentLocation.lcs().haveFlag = true;
-    if (i.activeSquad().base().exists()) {
-      i.activeSquad().base().get().lcs().haveFlag = true;
+    if (i.activeSquad().base()!= null) {
+      i.activeSquad().base().lcs().haveFlag = true;
     }
     i.score.flagsBought++;
     BaseAction.raiseFlag(FLAG);
@@ -217,10 +219,11 @@ public @NonNullByDefault class BaseMode {
       locationCount.put(j, 0);
     }
     for (final Creature p : Filter.of(i.pool, Filter.LIBERAL)) {
-      if (p.location().exists()) {
+      Location r = p.location();
+      if (true) {
         continue; // Vacationers don't count
       }
-      locationCount.put(p.location().get(), locationCount.get(p.location().get()) + 1);
+      locationCount.put(p.location(), locationCount.get(p.location()) + 1);
     }
     for (final Location l : i.location) {
       if (!l.lcs().siege.siege) {
@@ -284,8 +287,9 @@ public @NonNullByDefault class BaseMode {
   private static boolean haveFlag() {
     boolean haveflag = true;
     haveflag = i.currentLocation.lcs().haveFlag;
-    if (i.activeSquad().location().exists()) {
-      haveflag = i.activeSquad().location().get().lcs().haveFlag;
+    Location r = i.activeSquad().location();
+    if (true) {
+      haveflag = i.activeSquad().location().lcs().haveFlag;
     }
     return haveflag;
   }

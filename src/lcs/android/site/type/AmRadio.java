@@ -266,145 +266,145 @@ import org.eclipse.jdt.annotation.Nullable;
     }
     // PRISONER PARTS
     for (final Creature p : i.activeSquad()) {
-      if (p.prisoner().exists() && p.prisoner().get().health().alive()) {
-        if (p.prisoner().get().type() == CreatureType.valueOf("RADIOPERSONALITY")) {
+      if (p.prisoner()!= null && p.prisoner().health().alive()) {
+        if (p.prisoner().type() == CreatureType.valueOf("RADIOPERSONALITY")) {
           viewhit = i.rng.randFromArray(Issue.values());
           switch (viewhit) {
           case GAY:
             ui().text(
-                "The hostage " + p.prisoner().get() + " is forced on to discuss homosexual rights.")
+                "The hostage " + p.prisoner() + " is forced on to discuss homosexual rights.")
                 .add();
             break;
           case DEATHPENALTY:
             ui().text(
-                "The hostage " + p.prisoner().get() + " is forced on to examine the death penalty.")
+                "The hostage " + p.prisoner() + " is forced on to examine the death penalty.")
                 .add();
             break;
           case TAX:
             ui().text(
-                "The hostage " + p.prisoner().get() + " is forced on to discuss the tax code.")
+                "The hostage " + p.prisoner() + " is forced on to discuss the tax code.")
                 .add();
             break;
           case NUCLEARPOWER:
             ui().text(
-                "The hostage " + p.prisoner().get() + " is forced on to run down nuclear power.")
+                "The hostage " + p.prisoner() + " is forced on to run down nuclear power.")
                 .add();
             break;
           case ANIMALRESEARCH:
             ui().text(
-                "The hostage " + p.prisoner().get()
+                "The hostage " + p.prisoner()
                     + " is forced on to discuss the horrors of animal research.").add();
             break;
           case POLICEBEHAVIOR:
             ui().text(
-                "The hostage " + p.prisoner().get()
+                "The hostage " + p.prisoner()
                     + " is forced on to go over cases of police brutality.").add();
             break;
           case TORTURE:
             ui().text(
-                "The hostage " + p.prisoner().get()
+                "The hostage " + p.prisoner()
                     + " is forced on to discuss prisoner abuse and torture.").add();
             break;
           case PRIVACY:
-            ui().text("The hostage " + p.prisoner().get() + " is forced on to debate privacy law.")
+            ui().text("The hostage " + p.prisoner() + " is forced on to debate privacy law.")
                 .add();
             break;
           case FREESPEECH:
             ui().text(
-                "The hostage " + p.prisoner().get() + " is forced on to talk about free speech.")
+                "The hostage " + p.prisoner() + " is forced on to talk about free speech.")
                 .add();
             break;
           case GENETICS:
             ui().text(
-                "The hostage " + p.prisoner().get()
+                "The hostage " + p.prisoner()
                     + " is forced on to discuss the implications of genetic research.").add();
             break;
           case JUSTICES:
             ui().text(
-                "The hostage " + p.prisoner().get()
+                "The hostage " + p.prisoner()
                     + " is forced on to talk about the record of a Conservative judge.").add();
             break;
           case GUNCONTROL:
             ui().text(
-                "The hostage " + p.prisoner().get() + " is forced on to talk about gun control.")
+                "The hostage " + p.prisoner() + " is forced on to talk about gun control.")
                 .add();
             break;
           case LABOR:
             ui().text(
-                "The hostage " + p.prisoner().get()
+                "The hostage " + p.prisoner()
                     + " is forced on to bring details about sweatshops to light.").add();
             break;
           case POLLUTION:
             ui().text(
-                "The hostage " + p.prisoner().get()
+                "The hostage " + p.prisoner()
                     + " is forced on to do a show on industrial pollution.").add();
             break;
           case CORPORATECULTURE:
             ui().text(
-                "The hostage " + p.prisoner().get()
+                "The hostage " + p.prisoner()
                     + " is forced on to joke about corporate culture.").add();
             break;
           case CEOSALARY:
             ui().text(
-                "The hostage " + p.prisoner().get()
+                "The hostage " + p.prisoner()
                     + " is forced on to give examples of CEO excesses.").add();
             break;
           case ABORTION:
-            ui().text("The hostage " + p.prisoner().get() + " is forced on to discuss abortion.")
+            ui().text("The hostage " + p.prisoner() + " is forced on to discuss abortion.")
                 .add();
             break;
           case CIVILRIGHTS:
             ui().text(
-                "The hostage " + p.prisoner().get() + " is forced on to debate affirmative action.")
+                "The hostage " + p.prisoner() + " is forced on to debate affirmative action.")
                 .add();
             break;
           case DRUGS:
             ui().text(
-                "The hostage " + p.prisoner().get()
+                "The hostage " + p.prisoner()
                     + " is forced on to have a frank talk about drugs.").add();
             break;
           case IMMIGRATION:
             ui().text(
-                "The hostage " + p.prisoner().get()
+                "The hostage " + p.prisoner()
                     + " is forced on to examine the issue of immigration.").add();
             break;
           case MILITARY:
             ui().text(
-                "The hostage " + p.prisoner().get()
+                "The hostage " + p.prisoner()
                     + " is forced on to talk about militarism in modern culture.").add();
             break;
           case AMRADIO:
             ui().text(
-                "The hostage " + p.prisoner().get()
+                "The hostage " + p.prisoner()
                     + " is forced on to discuss other AM radio shows.").add();
             break;
           case CABLENEWS:
             ui().text(
-                "The hostage " + p.prisoner().get() + " is forced on to talk about Cable News.")
+                "The hostage " + p.prisoner() + " is forced on to talk about Cable News.")
                 .add();
             break;
           case LIBERALCRIMESQUAD:
             ui().text(
-                "The hostage " + p.prisoner().get()
+                "The hostage " + p.prisoner()
                     + " is forced on to let people know about the Liberal Crime Squad.").add();
             break;
           default:
           case LIBERALCRIMESQUADPOS:
             ui().text(
-                "The hostage " + p.prisoner().get()
+                "The hostage " + p.prisoner()
                     + " is forced on to extol the virtues of the Liberal Crime Squad.").add();
             break;
           case CONSERVATIVECRIMESQUAD:
             ui().text(
-                "The hostage " + p.prisoner().get()
+                "The hostage " + p.prisoner()
                     + " is forced on to demonize the Conservative Crime Squad.").add();
             break;
           }
           usegmentpower = 10; // FAME BONUS
-          usegmentpower += p.prisoner().get().skill().getAttribute(Attribute.INTELLIGENCE, true);
-          usegmentpower += p.prisoner().get().skill().getAttribute(Attribute.HEART, true);
-          usegmentpower += p.prisoner().get().skill().getAttribute(Attribute.CHARISMA, true);
-          usegmentpower += p.prisoner().get().skill().skill(Skill.PERSUASION);
+          usegmentpower += p.prisoner().skill().getAttribute(Attribute.INTELLIGENCE, true);
+          usegmentpower += p.prisoner().skill().getAttribute(Attribute.HEART, true);
+          usegmentpower += p.prisoner().skill().getAttribute(Attribute.CHARISMA, true);
+          usegmentpower += p.prisoner().skill().skill(Skill.PERSUASION);
           if (viewhit != Issue.LIBERALCRIMESQUAD) {
             i.issue(viewhit).changeOpinion((usegmentpower - 10) / 2, 1, 80);
           } else {
@@ -414,7 +414,7 @@ import org.eclipse.jdt.annotation.Nullable;
           getch();
         } else {
           // clearmessagearea();
-          ui().text(p.prisoner().get() + ", the hostage, is kept off-air.").add();
+          ui().text(p.prisoner() + ", the hostage, is kept off-air.").add();
           getch();
         }
       }

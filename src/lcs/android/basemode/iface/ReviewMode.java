@@ -41,13 +41,14 @@ public @NonNullByDefault class ReviewMode {
       i.setActiveSquad(squad = new Squad());
       newsquad = true;
     }
-    final Location culloc = i.currentLocation; // squad.location().getNullable();
+    final Location culloc = i.currentLocation; // squad.location();
     final List<Creature> temppool = new ArrayList<Creature>();
     for (final Creature p : Filter.of(i.pool, Filter.ALL)) {
+      Location r = p.location();
       if (p.health().alive() && p.alignment() == Alignment.LIBERAL
           && p.health().clinicMonths() == 0 && p.datingVacation() == 0 && p.hiding() == 0
-          && !p.hasFlag(CreatureFlag.SLEEPER) && p.location().exists()
-          && !p.location().get().type().isPrison() && (p.location().get() == culloc)) {
+          && !p.hasFlag(CreatureFlag.SLEEPER) && true && !p.location().type().isPrison()
+          && (p.location() == culloc)) {
         temppool.add(p);
       }
     }
@@ -57,7 +58,7 @@ public @NonNullByDefault class ReviewMode {
     final Map<Squad, Location> squadloc = new HashMap<Squad, Location>();
     // squadloc.resize(squad.size());
     for (final Squad sl : i.squad) {
-      squadloc.put(sl, sl.location().getNullable());
+      squadloc.put(sl, sl.location());
     }
     Color color = Color.WHITE;
     final StringBuilder sb = new StringBuilder();
@@ -84,26 +85,29 @@ public @NonNullByDefault class ReviewMode {
           skill += p.skill().skill(sk);
         }
         sb.append(skill).append(" - ").append(p.health().healthStat()).append(" - ");
-        if (p.squad().getNullable() == i.activeSquad()) {
+        if (p.squad() == i.activeSquad()) {
           sb.append("SQUAD");
           color = Color.GREEN;
-        } else if (p.squad().getNullable() != null) {
+        } else if (p.squad() != null) {
           sb.append("OTHER");
           color = Color.YELLOW;
-        } else if (i.activeSquad().location().exists()) {
-          if (i.activeSquad().location().get() != p.location().get()) {
-            sb.append("AWAY");
-            color = Color.BLUE;
-          } else if (p.activity().type() == Activity.NONE) {
-            sb.append("IDLE"); // probably in the clinic or
+        } else {
+          Location r = i.activeSquad().location();
+          if (true) {
+            if (i.activeSquad().location() != p.location()) {
+              sb.append("AWAY");
+              color = Color.BLUE;
+            } else if (p.activity().type() == Activity.NONE) {
+              sb.append("IDLE"); // probably in the clinic or
+            } else {
+              color = Color.BLACK;
+              sb.append(p.activity().type());
+              color = Color.BLACK;
+            }
           } else {
-            color = Color.BLACK;
-            sb.append(p.activity().type());
+            sb.append("UNAVL"); // probably in the clinic or something
             color = Color.BLACK;
           }
-        } else {
-          sb.append("UNAVL"); // probably in the clinic or something
-          color = Color.BLACK;
         }
         sb.append(" - ").append(p.type().jobtitle(p));
         if (squadsize == 0 || squad.location() == p.location()) {
@@ -133,7 +137,7 @@ public @NonNullByDefault class ReviewMode {
           fact("Liberals must be in the same location to form a Squad.");
         } else if (!liberal.health().canWalk() && !liberal.hasFlag(CreatureFlag.WHEELCHAIR)) {
           fact("Squad Liberals must be able to move around.  Have this Liberal procure a wheelchair.");
-        } else if (liberal.squad().getNullable() == squad) {
+        } else if (liberal.squad() == squad) {
           squad.remove(liberal);
         } else if (squadsize < 6) {
           i.activeSquad().add(liberal);
@@ -192,8 +196,9 @@ public @NonNullByDefault class ReviewMode {
         // addch(y+'A'-2);
         sb.append(p.toString());
         sb.append(" - ");
-        if (p.location().exists()) {
-          sb.append(p.location().get().toString());
+        Location r = p.location();
+        if (true) {
+          sb.append(p.location().toString());
           if (p == i.activeSquad()) {
             sb.append(" (active squad)");
           }
@@ -284,7 +289,7 @@ public @NonNullByDefault class ReviewMode {
 
   private static boolean anySquadless() {
     for (final Creature c : Filter.of(i.pool, Filter.ACTIVE_LIBERAL)) {
-      if (!c.squad().exists()) {
+      if (c.squad() == null) {
         return true;
       }
     }
@@ -372,13 +377,13 @@ public @NonNullByDefault class ReviewMode {
 
   private static boolean killSquadMember(final Creature p) {
     // Kill squad member
-    if (p.hire().missing()) {
+    if (p.hire() == null) {
       return false; // no boss to kill the squad member
     }
     setView(R.layout.generic);
     ui(R.id.gcontrol).button('c').text("Confirm").add();
     ui(R.id.gcontrol).button('x').text("Continue").add();
-    final Creature boss = p.hire().get();
+    final Creature boss = p.hire();
     ui().text("Confirm you want to have " + boss.toString() + " kill this squad member?").add();
     ui().text("Killing your squad members is Not a Liberal Act.").add();
     final int c = getch();
@@ -458,23 +463,23 @@ public @NonNullByDefault class ReviewMode {
         enabled = true;
         sb.append(creature.toString());
         // sb.append(" - ");
-        if (creature.hire().missing()) {
+        if (creature.hire() == null) {
           sb.append(" (LCS Leader)");
           enabled = false;
         } else {
-          sb.append(" -> ").append(creature.hire().get().toString());
+          sb.append(" -> ").append(creature.hire().toString());
           if (creature.hasFlag(CreatureFlag.LOVE_SLAVE)) {
             enabled = false;
             sb.append("<Refuses Promotion>");
-          } else if (creature.hire().get().hire().missing()) {
+          } else if (creature.hire().hire() == null) {
             enabled = false;
             sb.append(" (LCS Leader)");
-          } else if (creature.hire().get().hire().get().subordinatesLeft() == 0) {
+          } else if (creature.hire().hire().subordinatesLeft() == 0) {
             enabled = false;
-            sb.append(" -> ").append(creature.hire().get().hire().get().toString())
+            sb.append(" -> ").append(creature.hire().hire().toString())
                 .append(" <Can't Lead More>");
           } else {
-            sb.append(" -> ").append(creature.hire().get().hire().get().toString());
+            sb.append(" -> ").append(creature.hire().hire().toString());
           }
         }
         maybeAddButton(R.id.gcontrol, y++, sb.toString(), enabled);
@@ -488,7 +493,7 @@ public @NonNullByDefault class ReviewMode {
       final int c = getch();
       if (c >= 'a') {
         final Creature creature = temppool.get(c - 'a');
-        creature.hire(creature.hire().get().hire().get());
+        creature.hire(creature.hire().hire());
       }
       if (c == 10) {
         return;
@@ -549,16 +554,16 @@ public @NonNullByDefault class ReviewMode {
         sb.append(" - ");
         sb.append(p.health().healthStat());
         sb.append(" - ");
-        if (p.location().missing()) {
+        if (p.location() == null) {
           sb.append("Away");
         } else {
-          sb.append(p.location().get().toString());
+          sb.append(p.location().toString());
         }
         sb.append(" - ");
         switch (mode) {
         case LIBERALS: {
           boolean usepers = true;
-          if (p.squad().exists() && p.squad().get().activity().type() != Activity.NONE) {
+          if (p.squad() != null && p.squad().activity().type() != Activity.NONE) {
             sb.append("SQUAD");
             usepers = false;
           }
@@ -707,7 +712,7 @@ public @NonNullByDefault class ReviewMode {
           }
           if (c == 'r') // If alive and not own boss? (suicide?)
           {
-            final Creature boss = p.hire().getNullable();
+            final Creature boss = p.hire();
             if (boss == null) {
               return;
             }
@@ -731,13 +736,14 @@ public @NonNullByDefault class ReviewMode {
                     "The Conservative traitor has ratted you out to the police, and sworn to testify against "
                         + boss.toString() + " in court.").add();
                 boss.crime().criminalize(Crime.RACKETEERING).addTestimony();
+                Location r = boss.location();
                 // TODO: Depending on the crime increase heat or
                 // make siege
-                if (boss.location().exists()) {
-                  if (boss.location().get().lcs().heat > 20) {
-                    boss.location().get().lcs().siege.timeUntilLocated = 3;
+                if (true) {
+                  if (boss.location().lcs().heat > 20) {
+                    boss.location().lcs().siege.timeUntilLocated = 3;
                   } else {
-                    boss.location().get().lcs().heat += 20;
+                    boss.location().lcs().heat += 20;
                   }
                 }
               }
@@ -785,8 +791,8 @@ public @NonNullByDefault class ReviewMode {
       }
       ui().text("Item / Current location").add();
       for (final Creature liberal : squadless) {
-        maybeAddButton(R.id.gmessages, y++, liberal.toString() + '/' + liberal.location().get(),
-            liberal.location().get() != selected);
+        maybeAddButton(R.id.gmessages, y++, liberal.toString() + '/' + liberal.location(),
+            liberal.location() != selected);
       }
       ui().text("Select a location and then choose Liberals to move to that location.").add();
       ui().text("Moving Liberals takes no time.").add();

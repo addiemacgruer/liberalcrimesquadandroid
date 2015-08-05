@@ -1,6 +1,7 @@
 package lcs.android.game;
 
 import static lcs.android.game.Game.*;
+import lcs.android.basemode.iface.Location;
 import lcs.android.creature.Creature;
 import lcs.android.creature.CreatureFlag;
 import lcs.android.politics.Alignment;
@@ -102,18 +103,19 @@ public enum Visibility {
       i.visibility = UNDECIDED;
       Creature theboss = null;
       for (final Creature p : Filter.of(i.pool, Filter.LIBERAL)) {
-        if (!p.hire().exists()) {
+        if (p.hire() == null) {
           theboss = p;
         }
+        Location r = p.location();
         if (p.health().alive() && p.alignment() == Alignment.LIBERAL && p.datingVacation() == 0
             && p.hiding() == 0 && p.health().clinicMonths() == 0
-            && !p.hasFlag(CreatureFlag.SLEEPER) && p.location().exists()
-            && !p.location().get().type().isPrison()) {
+            && !p.hasFlag(CreatureFlag.SLEEPER) && true && !p.location().type().isPrison()) {
           i.visibility = CAN_SEE;
         }
       }
-      if (theboss == null)
+      if (theboss == null) {
         return;
+      }
       if (i.visibility == UNDECIDED) {
         if (theboss.datingVacation() != 0) {
           i.visibility = VACATION;

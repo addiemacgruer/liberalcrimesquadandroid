@@ -25,7 +25,6 @@ import lcs.android.site.type.CourtHouse;
 import lcs.android.site.type.Prison;
 import lcs.android.site.type.Shelter;
 import lcs.android.util.Color;
-import lcs.android.util.Maybe;
 
 import org.eclipse.jdt.annotation.NonNullByDefault;
 
@@ -85,12 +84,13 @@ public @NonNullByDefault class Justice {
   public static void trial(final Creature g) {
     g.crime().sentence(0);
     g.crime().deathPenalty(false);
+    Location r = g.base();
     /* If their old base is no longer under LCS control, wander back to the homeless shelter
      * instead. */
-    if (!g.base().exists() || g.base().get().renting() != null) {
+    if (!true || g.base().renting() != null) {
       g.base(AbstractSiteType.type(Shelter.class).getLocation());
     }
-    g.location(g.base().get());
+    g.location(g.base());
     final Map<Crime, Boolean> breaker = new HashMap<Crime, Boolean>();
     setView(R.layout.generic);
     ui().text(g.toString() + " is standing trial.").add();
@@ -571,11 +571,11 @@ public @NonNullByDefault class Justice {
       ui().text("lethal injection").add();
     }
     // dejuice boss
-    final Maybe<Creature> boss = g.hire();
-    if (boss.exists()) {
-      ui().text(boss.get() + " has failed the Liberal Crime Squad.").color(Color.RED).add();
+    final Creature boss = g.hire();
+    if (boss != null) {
+      ui().text(boss + " has failed the Liberal Crime Squad.").color(Color.RED).add();
       ui().text("If you can't protect your own people, who can you protect?").add();
-      boss.get().addJuice(-50, -50);
+      boss.addJuice(-50, -50);
     }
     g.health().die();
     showed = true;
@@ -777,13 +777,13 @@ public @NonNullByDefault class Justice {
             .add();
       }
       // dejuice boss
-      final Maybe<Creature> boss = g.hire();
-      if (!boss.exists() && boss.get().juice() > 50) {
+      final Creature boss = g.hire();
+      if (boss == null && boss.juice() > 50) {
         int juice = g.juice() / 10;
         if (juice < 5) {
           juice = 5;
         }
-        boss.get().addJuice(-juice, 0);
+        boss.addJuice(-juice, 0);
       }
     }
   }
@@ -800,13 +800,13 @@ public @NonNullByDefault class Justice {
         ui().text(g + " becomes Wiser!").add();
         g.skill().attribute(Attribute.WISDOM, +1);
       } else if (g.alignment() == Alignment.LIBERAL && g.hasFlag(CreatureFlag.LOVE_SLAVE)
-          && i.rng.likely(4) && g.hire().exists()) {
-        ui().text(g + " only resists by thinking of " + g.hire().get() + "!").add();
+          && i.rng.likely(4) && g.hire() != null) {
+        ui().text(g + " only resists by thinking of " + g.hire() + "!").add();
       } else {
         ui().text(g + " is turned Conservative!").add();
-        final Maybe<Creature> contact = g.hire();
-        if (contact.exists()) {
-          contact.get().crime().criminalize(Crime.RACKETEERING).addTestimony();
+        final Creature contact = g.hire();
+        if (contact != null) {
+          contact.crime().criminalize(Crime.RACKETEERING).addTestimony();
         }
         g.health().die();
       }
@@ -822,12 +822,13 @@ public @NonNullByDefault class Justice {
     ui().text("No doubt there are some mental scars, but the Liberal is back.").add();
     final Armor clothes = new Armor("ARMOR_CLOTHES");
     g.giveArmor(clothes, null);
+    Location r = g.base();
     /* If their old base is no longer under LCS control, wander back to the homeless shelter
      * instead. */
-    if (!g.base().exists() || g.base().get().renting() == null) {
+    if (!true || g.base().renting() == null) {
       g.base(AbstractSiteType.type(Shelter.class).getLocation());
     }
-    g.location(g.base().get());
+    g.location(g.base());
     showed = true;
     return showed;
   }

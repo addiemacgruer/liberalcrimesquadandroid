@@ -320,8 +320,8 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
         cr.juice(100);
       }
     }
-    if (cr.base().exists()) {
-      cr.base().get().interrogated(true);
+    if (cr.base()!= null) {
+      cr.base().interrogated(true);
     }
     boolean pause = false;
     if (cr.type().ofType("AGENT")) {
@@ -453,8 +453,8 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
     int number_of_items = i.rng.nextInt(10) + 1;
     ui().text("Sleeper " + cr.toString() + " has dropped a package containing ").add();
     while (number_of_items-- > 0) {
-      if (cr.location().exists() && cr.location().get().type().loot.size() > 0) {
-        item = i.rng.randFromList(cr.location().get().type().loot);
+      if (cr.location()!= null && cr.location().type().loot.size() > 0) {
+        item = i.rng.randFromList(cr.location().type().loot);
       } else {
         item = "LOOT_DIRTYSOCK";
       }

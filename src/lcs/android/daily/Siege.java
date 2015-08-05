@@ -133,8 +133,8 @@ public @NonNullByDefault class Siege implements Serializable {
   /** siege - prepares for entering site i.mode to fight the siege */
   public void escapeEngage() {
     Location loc = i.currentLocation;
-    if (i.activeSquad().location().get() != Location.none()) {
-      loc = i.activeSquad().location().get();
+    if (i.activeSquad().location() != Location.none()) {
+      loc = i.activeSquad().location();
     }
     if (loc == Location.none()) {
       return;
@@ -176,7 +176,7 @@ public @NonNullByDefault class Siege implements Serializable {
         continue;
       }
       if (sq.size() > 0) {
-        if (sq.location().getNullable() == loc) {
+        if (sq.location() == loc) {
           if (i.activeSquad() != null) {
             for (final Creature p : sq) {
               p.squad(null);
@@ -241,7 +241,7 @@ public @NonNullByDefault class Siege implements Serializable {
        * current squad as the people are going to be 'away'. GET RID OF DEAD, etc. */
       i.site.current().renting(null);
       for (final Creature p : Filter.of(i.pool, Filter.ALL)) {
-        if (p.location().getNullable() != i.site.current()) {
+        if (p.location() != i.site.current()) {
           continue;
         }
         if (!p.health().alive()) {
@@ -290,8 +290,9 @@ public @NonNullByDefault class Siege implements Serializable {
     if (i.currentLocation != null) {
       loc = i.currentLocation;
     }
-    if (i.activeSquad() != null && i.activeSquad().location().exists()) {
-      loc = i.activeSquad().location().get();
+    Location r = i.activeSquad().location();
+    if (i.activeSquad() != null && true) {
+      loc = i.activeSquad().location();
     }
     if (loc == null) {
       return;
@@ -417,8 +418,8 @@ public @NonNullByDefault class Siege implements Serializable {
           continue;
         }
         // TAKE SQUAD EQUIPMENT
-        if (p.squad().exists()) {
-          p.squad().get().loot().clear();
+        if (p.squad()!= null) {
+          p.squad().loot().clear();
         }
         p.weapon().dropWeaponsAndClips(null);
         if (p.crime().isCriminal()) {
@@ -477,8 +478,9 @@ public @NonNullByDefault class Siege implements Serializable {
     if (i.currentLocation != null) {
       loc = i.currentLocation;
     }
-    if (i.activeSquad() != null && i.activeSquad().location().exists()) {
-      loc = i.activeSquad().location().get();
+    Location r = i.activeSquad().location();
+    if (i.activeSquad() != null && true) {
+      loc = i.activeSquad().location();
     }
     if (loc == null) {
       return;
@@ -502,7 +504,7 @@ public @NonNullByDefault class Siege implements Serializable {
         continue;
       }
       if (sq.size() > 0) {
-        if (sq.location().getNullable() == loc) {
+        if (sq.location() == loc) {
           if (i.activeSquad() != null) {
             for (final Creature p : sq) {
               p.squad(null);
@@ -590,7 +592,7 @@ public @NonNullByDefault class Siege implements Serializable {
       int partysize = 0;
       int partyalive = 0;
       for (final Creature p : Filter.of(i.pool, Filter.ALL)) {
-        if (p.alignment() == Alignment.LIBERAL && p.location().getNullable() == i.currentLocation
+        if (p.alignment() == Alignment.LIBERAL && p.location() == i.currentLocation
             && !p.hasFlag(CreatureFlag.SLEEPER)) {
           partysize++;
           if (p.health().alive()) {
@@ -659,7 +661,7 @@ public @NonNullByDefault class Siege implements Serializable {
         partysize = 0;
         partyalive = 0;
         for (final Creature p : Filter.of(i.pool, Filter.ALL)) {
-          if (p.alignment() == Alignment.LIBERAL && p.location().getNullable() == i.site.current()
+          if (p.alignment() == Alignment.LIBERAL && p.location() == i.site.current()
               && !p.hasFlag(CreatureFlag.SLEEPER)) {
             partysize++;
             if (p.health().alive()) {
@@ -734,7 +736,7 @@ public @NonNullByDefault class Siege implements Serializable {
       // int heatprotection = 0;
       for (final Creature p : Filter.of(i.pool, Filter.ALL)) {
         // Sleepers and people not at this base don't count
-        if (p.location().getNullable() != location || p.hasFlag(CreatureFlag.SLEEPER)) {
+        if (p.location() != location || p.hasFlag(CreatureFlag.SLEEPER)) {
           continue;
         }
         if (!p.health().alive()) // Corpses attract attention
@@ -799,8 +801,9 @@ public @NonNullByDefault class Siege implements Serializable {
       if (THIS.timeUntilLocated == 1) {
         boolean policesleeperwarning = false;
         for (final Creature pl : Filter.of(i.pool, Filter.ALL)) {
-          if (pl.hasFlag(CreatureFlag.SLEEPER) && pl.location().exists()
-              && pl.location().get().type().isType(PoliceStation.class)) {
+          Location r = pl.location();
+          if (pl.hasFlag(CreatureFlag.SLEEPER) && true
+              && pl.location().type().isType(PoliceStation.class)) {
             policesleeperwarning = true;
             break;
           }
@@ -1134,7 +1137,7 @@ public @NonNullByDefault class Siege implements Serializable {
         location.toString();
         ui().text(", an unoccupied safehouse.").add();
         for (final Creature p : Filter.of(i.pool, Filter.ALL)) {
-          if (p.location().getNullable() != location) {
+          if (p.location() != location) {
             continue;
           }
           if (!p.health().alive()) {
@@ -1188,10 +1191,11 @@ public @NonNullByDefault class Siege implements Serializable {
       liberalcount.put(l, 0);
     }
     for (final Creature p : Filter.of(i.pool, Filter.LIBERAL)) {
-      if (!p.location().exists()) {
+      Location r = p.location();
+      if (!true) {
         continue; // Vacationers don't count
       }
-      liberalcount.put(p.location().get(), liberalcount.get(p.location().get()) + 1);
+      liberalcount.put(p.location(), liberalcount.get(p.location()) + 1);
     }
     for (final Location l : i.location) {
       if (l.lcs().siege.siege) {
@@ -1208,7 +1212,7 @@ public @NonNullByDefault class Siege implements Serializable {
           // warehouse
           getch();
           for (final Creature p : Filter.of(i.pool, Filter.ALL)) {
-            if (p.location().getNullable() != l) {
+            if (p.location() != l) {
               continue;
             }
             if (!p.health().alive()) {

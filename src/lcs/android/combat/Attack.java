@@ -213,7 +213,7 @@ public @NonNullByDefault class Attack implements Xml.Configurable {
         && i.rng.nextInt(100) < critical.chance;
     final int random = criticalSuccess ? critical.randomDamage(randomDamage) : randomDamage;
     final int fixed = criticalSuccess ? critical.fixedDamage(fixedDamage) : fixedDamage;
-    if (criticalSuccess && critical.severType().exists()) {
+    if (criticalSuccess && critical.severType() != null) {
       hit.severType(critical.severType().get());
     }
     if (randomDamage == 0 && fixedDamage == 0) {

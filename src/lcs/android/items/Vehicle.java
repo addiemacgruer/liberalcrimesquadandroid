@@ -87,6 +87,11 @@ public @NonNullByDefault class Vehicle extends AbstractItem<VehicleType> {
     return s;
   }
 
+  /** @return */
+  public Vehicle get() { // TODO inline
+    return this;
+  }
+
   /** Whether the vehicle has any heat on it. Only affects how much you can sell it for in the
    * dealership: any heat at all means you're only getting 10% of the normal price. */
   public int heat() {

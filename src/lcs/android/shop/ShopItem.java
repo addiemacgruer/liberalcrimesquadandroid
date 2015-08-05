@@ -73,10 +73,10 @@ import android.util.Log;
       switch (itemclass) {
       case WEAPON: {
         final Weapon j = new Weapon(itemtypename);
-        if (customers.base().exists()) {
-          buyer.weapon().giveWeapon(j, customers.base().get().lcs().loot);
+        if (customers.base()!= null) {
+          buyer.weapon().giveWeapon(j, customers.base().lcs().loot);
           if (!j.isEmpty()) {
-            customers.base().get().lcs().loot.add(j);
+            customers.base().lcs().loot.add(j);
           }
         }
         break;
@@ -84,8 +84,8 @@ import android.util.Log;
       case CLIP: {
         final Clip j = new Clip(itemtypename);
         buyer.weapon().takeClips(j, 1);
-        if (!j.isEmpty() && customers.base().exists()) {
-          customers.base().get().lcs().loot.add(j);
+        if (!j.isEmpty() && customers.base()!= null) {
+          customers.base().lcs().loot.add(j);
         }
         break;
       }
@@ -95,17 +95,17 @@ import android.util.Log;
         // the
         // good
         // stuff.
-        if (customers.base().exists()) {
-          buyer.giveArmor(j, customers.base().get().lcs().loot);
+        if (customers.base()!= null) {
+          buyer.giveArmor(j, customers.base().lcs().loot);
           if (!j.isEmpty()) {
-            customers.base().get().lcs().loot.add(j);
+            customers.base().lcs().loot.add(j);
           }
         }
         break;
       }
       case LOOT: {
-        if (customers.base().exists()) {
-          customers.base().get().lcs().loot.add(new Loot(itemtypename));
+        if (customers.base()!= null) {
+          customers.base().lcs().loot.add(new Loot(itemtypename));
         }
         break;
       }

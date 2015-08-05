@@ -9,5 +9,9 @@ public enum Wound {
   NASTYOFF,
   NONE,
   SHOT,
-  TORN
+  TORN;
+  /** @return */
+  public Wound get() { // TODO inline
+    return this;
+  }
 }

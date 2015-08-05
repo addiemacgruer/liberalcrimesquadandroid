@@ -21,7 +21,7 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
     i.activeSquad().location(loc);
     do {
       setView(R.layout.hospital);
-      i.activeSquad().location().get().printLocationHeader();
+      i.activeSquad().location().printLocationHeader();
       i.activeSquad().printParty();
       if (i.activeSquad().highlightedMember() != -1) {
         ui(R.id.gcontrol).button('f').text("Go in and fix up Conservative wounds").add();

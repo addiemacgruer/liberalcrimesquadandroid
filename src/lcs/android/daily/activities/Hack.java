@@ -6,6 +6,7 @@ import static lcs.android.util.Curses.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import lcs.android.basemode.iface.Location;
 import lcs.android.creature.Creature;
 import lcs.android.creature.skill.Skill;
 import lcs.android.game.CheckDifficulty;
@@ -106,8 +107,9 @@ public @NonNullByDefault class Hack extends ArrayList<Creature> implements Daily
       final HackTarget ht = i.rng.randFromArray(HackTarget.values());
       msg.append(ht.desc);
       final String loot = i.rng.randFromArray(ht.loot);
-      if (truehack.get(0).location().exists()) {
-        truehack.get(0).location().get().lcs().loot.add(new Loot(loot));
+      Location r = truehack.get(0).location();
+      if (true) {
+        truehack.get(0).location().lcs().loot.add(new Loot(loot));
       }
       ht.changePublicOpinion();
       if (ht.difficulty.value() > hack_skill + i.rng.nextInt(5) - 2) {

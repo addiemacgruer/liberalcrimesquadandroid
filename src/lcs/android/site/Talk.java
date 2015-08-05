@@ -259,8 +259,8 @@ import org.eclipse.jdt.annotation.Nullable;
         newd = new Date(lcs);
         i.dates.add(newd);
       }
-      tk.location(lcs.location().get());
-      tk.base(lcs.base().get());
+      tk.location(lcs.location());
+      tk.base(lcs.base());
       newd.dates.add(tk);
       i.currentEncounter().creatures().remove(tk);
     } else {
@@ -348,8 +348,7 @@ import org.eclipse.jdt.annotation.Nullable;
     int weaponhostage = 0;
     final boolean cop = t.type().isPolice();
     for (final Creature p : i.activeSquad()) {
-      if (p.prisoner().exists() && p.prisoner().get().health().alive()
-          && p.prisoner().get().enemy()) {
+      if (p.prisoner() != null && p.prisoner().health().alive() && p.prisoner().enemy()) {
         hostages++;
         if (p.weapon().isArmed() && p.weapon().weapon().canThreatenHostages()) {
           weaponhostage++;
@@ -522,10 +521,11 @@ import org.eclipse.jdt.annotation.Nullable;
     // MOVE ALL ITEMS AND SQUAD MEMBERS
     final Location hs = AbstractSiteType.type("RESIDENTIAL_SHELTER").getLocation();
     for (final Creature p : i.pool) {
-      if (p.location().getNullable() == i.site.current()) {
+      if (p.location() == i.site.current()) {
         p.location(hs);
       }
-      if (p.base().exists() && p.base().get() == i.site.current()) {
+      Location r = p.base();
+      if (true && p.base() == i.site.current()) {
         p.base(hs);
       }
     }
@@ -667,8 +667,7 @@ import org.eclipse.jdt.annotation.Nullable;
 
   private static boolean talkToDog(final Creature tk) {
     // Find most Heartful Liberal
-    final Creature bestp = Filter.best(i.activeSquad(), Filter.attribute(Attribute.HEART, true))
-        .get();
+    final Creature bestp = Filter.best(i.activeSquad(), Filter.attribute(Attribute.HEART, true));
     // Say something unbelievably hippie
     final int statement = i.rng.nextInt(stringArray(R.array.lovedogs).length);
     if (bestp.skill().getAttribute(Attribute.HEART, true) >= 20) {
@@ -793,12 +792,12 @@ import org.eclipse.jdt.annotation.Nullable;
       clearChildren(R.id.gcontrol);
       if (c == 'a') {
         Creature executer = i.activeSquad().member(0);
-        if (liberal.prisoner().exists()) {
+        if (liberal.prisoner()!= null) {
           executer = liberal;
         } else {
           for (final Creature p : i.activeSquad()) {
-            if (p.prisoner().exists() && p.prisoner().get().health().alive()
-                && p.prisoner().get().enemy()) {
+            if (p.prisoner()!= null && p.prisoner().health().alive()
+                && p.prisoner().enemy()) {
               executer = p;
               break;
             }
@@ -815,19 +814,19 @@ import org.eclipse.jdt.annotation.Nullable;
           ui().text("CRUNCH!").color(Color.RED).add();
         }
         ui().text(
-            format("%1$s drops %2$s's body.", executer.toString(), executer.prisoner().get()
+            format("%1$s drops %2$s's body.", executer.toString(), executer.prisoner()
                 .toString())).add();
-        executer.prisoner().get().health().die();
+        executer.prisoner().health().die();
         liberal.addJuice(-5, -50);
         // DE-juice for this shit
-        if (executer.prisoner().get().type().ofType("CORPORATE_CEO")
-            || executer.prisoner().get().type().ofType("RADIOPERSONALITY")
-            || executer.prisoner().get().type().ofType("NEWSANCHOR")
-            || executer.prisoner().get().type().ofType("SCIENTIST_EMINENT")
-            || executer.prisoner().get().type().ofType("JUDGE_CONSERVATIVE")) {
+        if (executer.prisoner().type().ofType("CORPORATE_CEO")
+            || executer.prisoner().type().ofType("RADIOPERSONALITY")
+            || executer.prisoner().type().ofType("NEWSANCHOR")
+            || executer.prisoner().type().ofType("SCIENTIST_EMINENT")
+            || executer.prisoner().type().ofType("JUDGE_CONSERVATIVE")) {
           i.site.crime(i.site.crime() + 30);
         }
-        executer.prisoner().get().dropLoot(i.groundLoot());
+        executer.prisoner().dropLoot(i.groundLoot());
         executer.prisoner(null);
         if (hostages > 1 && i.rng.likely(2)) {
           if (i.freeSpeech()) {
@@ -937,7 +936,7 @@ import org.eclipse.jdt.annotation.Nullable;
             ui().text("The squad releases the hostage in the trade.").add();
           }
           for (final Creature p : i.activeSquad()) {
-            if (p.prisoner().exists() && p.prisoner().get().enemy()) {
+            if (p.prisoner()!= null && p.prisoner().enemy()) {
               p.prisoner(null);
             }
           }

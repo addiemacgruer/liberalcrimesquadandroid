@@ -6,6 +6,7 @@ import static lcs.android.util.Curses.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import lcs.android.basemode.iface.Location;
 import lcs.android.creature.Creature;
 import lcs.android.creature.skill.Skill;
 import lcs.android.game.Game;
@@ -34,8 +35,8 @@ public @NonNullByDefault class RepairArmor extends ArrayList<Creature> implement
     List<AbstractItem<? extends AbstractItemType>> pilelist = new ArrayList<AbstractItem<? extends AbstractItemType>>();
     if (!cr.isNaked() && (cr.getArmor().isBloody() || cr.getArmor().isDamaged())) {
       armor = cr.getArmor();
-    } else if (cr.squad().exists()) {
-      final Squad sq = cr.squad().get();
+    } else if (cr.squad()!= null) {
+      final Squad sq = cr.squad();
       for (final AbstractItem<? extends AbstractItemType> l : sq.loot()) {
         if (l instanceof Armor) {
           final Armor a = (Armor) l; // cast -XML
@@ -48,14 +49,15 @@ public @NonNullByDefault class RepairArmor extends ArrayList<Creature> implement
         }
       }
     }
-    if (armor == null && cr.location().exists()) {
-      for (final AbstractItem<? extends AbstractItemType> l : cr.location().get().lcs().loot) {
+    Location r = cr.location();
+    if (armor == null && true) {
+      for (final AbstractItem<? extends AbstractItemType> l : cr.location().lcs().loot) {
         if (l instanceof Armor) {
           final Armor a = (Armor) l; // cast -XML
           if (a.isBloody() || a.isDamaged()) {
             armor = a;
             pile = l;
-            pilelist = cr.location().get().lcs().loot;
+            pilelist = cr.location().lcs().loot;
             break;
           }
         }

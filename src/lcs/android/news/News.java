@@ -12,6 +12,7 @@ import lcs.android.activities.BareActivity;
 import lcs.android.activities.iface.Activity;
 import lcs.android.basemode.iface.Compound;
 import lcs.android.basemode.iface.CrimeSquad;
+import lcs.android.basemode.iface.Location;
 import lcs.android.creature.Creature;
 import lcs.android.creature.CreatureName;
 import lcs.android.creature.skill.Skill;
@@ -50,8 +51,9 @@ public @NonNullByDefault class News {
         continue;
       }
     }
-    if (i.newsStories.isEmpty())
+    if (i.newsStories.isEmpty()) {
       return;
+    }
     // Sort the major newspapers
     Collections.sort(i.newsStories);
     // DISPLAY PAPER
@@ -64,10 +66,10 @@ public @NonNullByDefault class News {
     switch (topNews.type) {
     case SQUAD_SITE:
     case SQUAD_KILLED_SITE:
-      if (!topNews.location().exists()) {
+      if (topNews.location() == Location.none()) {
         break;
       }
-      header = topNews.location().get().type().topNews();
+      header = topNews.location().type().topNews();
       break;
     case SQUAD_ESCAPED:
     case SQUAD_FLEDATTACK:
@@ -174,8 +176,8 @@ public @NonNullByDefault class News {
           i.issue(Issue.CONSERVATIVECRIMESQUAD).changeOpinion(power1, 0, 100);
         }
         i.issue(Issue.GUNCONTROL).changeOpinion(Math.abs(power) / 10, 0, Math.abs(power) * 10);
-        if (n.location().exists()) {
-          for (final Issue v : n.location().get().type().opinionsChanged()) {
+        if (n.location() != null) {
+          for (final Issue v : n.location().type().opinionsChanged()) {
             final int power1 = power;
             final int aAffect = colored;
             i.issue(v).changeOpinion(power1, aAffect, power * 10);
@@ -220,7 +222,7 @@ public @NonNullByDefault class News {
     ns.positive = i.rng.chance(5);
     do {
       ns.location(i.rng.randFromList(i.location));
-    } while (ns.location().get().renting() != null);
+    } while (ns.location().renting() != CrimeSquad.NO_ONE);
     i.newsStories.add(ns);
   }
 
@@ -857,9 +859,9 @@ public @NonNullByDefault class News {
         story.append(" A body was ");
       }
       story.append(" found");
-      if (ns.location().exists()) {
+      if (ns.location() != null) {
         story.append("in the ");
-        story.append(ns.location().get().toString());
+        story.append(ns.location().toString());
       }
       story.append(" yesterday.");
       if (!liberalguardian) {
@@ -1309,8 +1311,8 @@ public @NonNullByDefault class News {
     int writingSkill = 0;
     for (final Creature p : i.pool) {
       if (p.health().alive() && p.activity().type() == Activity.WRITE_GUARDIAN) {
-        if (p.location().exists()
-            && p.location().get().lcs().compoundWalls.contains(Compound.PRINTINGPRESS)) {
+        if (p.location() != null
+            && p.location().lcs().compoundWalls.contains(Compound.PRINTINGPRESS)) {
           p.skill().train(Skill.WRITING, i.rng.nextInt(3));
           writingSkill += p.skill().skillRoll(Skill.WRITING);
           p.crime().criminalize(Crime.SPEECH);

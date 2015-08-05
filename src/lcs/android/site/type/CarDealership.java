@@ -35,12 +35,12 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
     final int partysize = i.activeSquad().size();
     do {
       setView(R.layout.hospital);
-      i.activeSquad().location().get().printLocationHeader();
+      i.activeSquad().location().printLocationHeader();
       i.activeSquad().printParty();
       Vehicle car_to_sell = null;
       int price = 0;
-      if (buyer.car().exists()) {
-        car_to_sell = buyer.car().get();
+      if (buyer.car() != null) {
+        car_to_sell = buyer.car();
       }
       maybeAddButton(R.id.gcontrol, 'g', "Get a Liberal car", car_to_sell == null);
       if (car_to_sell != null) {
@@ -63,7 +63,7 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
       // Sell the car
       if (c == 's') {
         i.ledger.addFunds(price, Ledger.IncomeType.CARS);
-        if (car_to_sell == buyer.car().getNullable()) {
+        if (car_to_sell == buyer.car()) {
           buyer.car(null);
           buyer.prefCar(null);
         }

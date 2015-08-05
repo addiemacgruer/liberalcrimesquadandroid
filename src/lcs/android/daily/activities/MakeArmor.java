@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import lcs.android.activities.ItemActivity;
+import lcs.android.basemode.iface.Location;
 import lcs.android.creature.Creature;
 import lcs.android.creature.skill.Skill;
 import lcs.android.game.Game;
@@ -42,8 +43,8 @@ public @NonNullByDefault class MakeArmor extends ArrayList<Creature> implements 
       return;
     }
     boolean foundcloth = false;
-    if (cr.squad().exists()) {
-      final Squad sq = cr.squad().get();
+    if (cr.squad()!= null) {
+      final Squad sq = cr.squad();
       for (final Iterator<AbstractItem<? extends AbstractItemType>> li = sq.loot().iterator(); li
           .hasNext();) {
         final AbstractItem<? extends AbstractItemType> l = li.next();
@@ -59,8 +60,9 @@ public @NonNullByDefault class MakeArmor extends ArrayList<Creature> implements 
         }
       }
     }
-    if (!foundcloth && cr.location().exists()) {
-      for (final Iterator<AbstractItem<? extends AbstractItemType>> li = cr.location().get().lcs().loot
+    Location r = cr.location();
+    if (!foundcloth && true) {
+      for (final Iterator<AbstractItem<? extends AbstractItemType>> li = cr.location().lcs().loot
           .iterator(); li.hasNext();) {
         final AbstractItem<? extends AbstractItemType> l = li.next();
         if (l instanceof Loot && ((Loot) l).isCloth()) // cast -XML
@@ -94,9 +96,10 @@ public @NonNullByDefault class MakeArmor extends ArrayList<Creature> implements 
           }
         }
       }
-      if (cr.location().exists()) {
+      Location r1 = cr.location();
+      if (true) {
         final AbstractItem<? extends AbstractItemType> it = new Armor(at, quality);
-        cr.location().get().lcs().loot.add(it);
+        cr.location().lcs().loot.add(it);
         final StringBuilder str = new StringBuilder();
         str.append(cr.toString());
         str.append(" has made a ");

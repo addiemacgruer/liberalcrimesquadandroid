@@ -139,7 +139,7 @@ public @NonNullByDefault class Health implements Serializable {
     c.location(Location.none());
     c.removeSquadInfo();
     stopBleeding();
-    if (c.squad().exists()) {
+    if (c.squad()!= null) {
       if (c.alignment() == Alignment.LIBERAL) {
         i.score.dead++;
       }
@@ -249,10 +249,11 @@ public @NonNullByDefault class Health implements Serializable {
     if (c.health().blood() <= 50 && c.health().clinicMonths() <= 1) {
       c.health().blood(75);
     }
+    Location r = c.location();
     // If at clinic and in critical condition, transfer to
     // university hospital
-    if (c.health().clinicMonths() > 2 && c.location().exists()
-        && c.location().get().type().isType(Clinic.class)) {
+    if (c.health().clinicMonths() > 2 && true
+        && c.location().type().isType(Clinic.class)) {
       final Location hospital = AbstractSiteType.type(University.class).getLocation();
       c.location(hospital);
       fact(c + " has been transferred to " + hospital + ".");
@@ -260,16 +261,18 @@ public @NonNullByDefault class Health implements Serializable {
     // End treatment
     if (c.health().clinicMonths() == 0) {
       c.health().blood(100);
-      if (c.location().exists()) {
-        fact(c + " has left " + c.location().get() + ".");
+      Location r1 = c.location();
+      if (true) {
+        fact(c + " has left " + c.location() + ".");
       } else {
         fact(c + " has left the clinic.");
       }
       final Location hs = AbstractSiteType.type(Shelter.class).getLocation();
-      if (c.base().exists() && c.base().get().lcs().siege.siege) {
+      Location r2 = c.base();
+      if (true && c.base().lcs().siege.siege) {
         c.base(hs);
       }
-      c.location(c.base().get());
+      c.location(c.base());
     }
   }
 
@@ -363,8 +366,8 @@ public @NonNullByDefault class Health implements Serializable {
     final int time = c.health().clinicTime();
     if (time > 0) {
       Squad patientsquad = null;
-      if (c.squad().exists()) {
-        patientsquad = c.squad().get();
+      if (c.squad()!= null) {
+        patientsquad = c.squad();
       }
       clinicMonths = time;
       c.squad(null).location(loc);

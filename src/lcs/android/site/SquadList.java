@@ -69,7 +69,7 @@ public class SquadList implements Serializable, Iterable<Squad> {
     for (Iterator<Squad> i = squads.iterator(); i.hasNext();) {
       final Squad next = i.next();
       if (next.isEmpty()) {
-        final Location squadLocation = next.location().get();
+        final Location squadLocation = next.location();
         if (squadLocation != Location.none()) {
           squadLocation.lcs().loot.addAll(next.loot());
           next.loot().clear();

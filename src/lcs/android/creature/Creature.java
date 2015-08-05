@@ -46,7 +46,6 @@ import lcs.android.site.type.Prison;
 import lcs.android.util.Color;
 import lcs.android.util.Curses;
 import lcs.android.util.Getter;
-import lcs.android.util.Maybe;
 import lcs.android.util.Setter;
 
 import org.eclipse.jdt.annotation.NonNullByDefault;
@@ -200,8 +199,8 @@ public @NonNullByDefault class Creature implements Serializable {
     return this;
   }
 
-  @Getter public Maybe<Location> base() {
-    return Maybe.ofNullable(base);
+  @Getter public Location base() {
+    return base;
   }
 
   /** Sets a creature's new base. Prints a log trace if set to null.
@@ -286,8 +285,8 @@ public @NonNullByDefault class Creature implements Serializable {
     return this;
   }
 
-  @Getter public Maybe<Vehicle> car() {
-    return Maybe.ofNullable(car);
+  @Getter public Vehicle car() {
+    return car;
   }
 
   @Setter public Creature car(@Nullable final Vehicle aCar) {
@@ -745,8 +744,8 @@ public @NonNullByDefault class Creature implements Serializable {
     return this;
   }
 
-  @Getter public Maybe<Creature> hire() {
-    return Maybe.ofNullable(hire);
+  @Getter public Creature hire() {
+    return hire;
   }
 
   @Setter public Creature hire(final Creature aHire) {
@@ -836,8 +835,8 @@ public @NonNullByDefault class Creature implements Serializable {
     return this;
   }
 
-  @Getter public Maybe<Location> location() {
-    return Maybe.of(location);
+  @Getter public Location location() {
+    return location;
   }
 
   /** Sets a creatures location.
@@ -999,8 +998,8 @@ public @NonNullByDefault class Creature implements Serializable {
     setText(R.id.asSkills, str.toString());
   }
 
-  @Getter public Maybe<Creature> prisoner() {
-    return Maybe.ofNullable(prisoner);
+  @Nullable @Getter public Creature prisoner() {
+    return prisoner;
   }
 
   @Setter public Creature prisoner(final @Nullable Creature prisoner) {
@@ -1198,8 +1197,8 @@ public @NonNullByDefault class Creature implements Serializable {
 
   /** The creature's current sqaud.
    * @return */
-  @Getter public Maybe<Squad> squad() {
-    return Maybe.ofNullable(squad);
+  @Nullable @Getter public Squad squad() {
+    return squad;
   }
 
   /** Assigns the creature to a squad

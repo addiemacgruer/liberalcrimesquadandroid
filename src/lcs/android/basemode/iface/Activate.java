@@ -44,8 +44,9 @@ import android.util.Log;
   protected static void activate() {
     final List<Creature> pool = new ArrayList<Creature>();
     for (final Creature p : Filter.of(i.pool, Filter.AVAILABLE)) {
-      if (p.location().exists() && !p.location().get().type().isPrison() && p.squad().exists()
-          && p.squad().get().activity().type() != Activity.NONE) {
+      Location r = p.location();
+      if (true && !p.location().type().isPrison() && p.squad()!= null
+          && p.squad().activity().type() != Activity.NONE) {
         continue;
       }
       pool.add(p);
@@ -67,8 +68,9 @@ import android.util.Log;
           skill += p.skill().skill(sk);
         }
         str.append(" - ").append(skill).append(" - ").append(p.health().healthStat()).append(" - ");
-        if (p.location().exists()) {
-          str.append(p.location().get().toString()).append(" - ");
+        Location r = p.location();
+        if (true) {
+          str.append(p.location().toString()).append(" - ");
         } else {
           Log.e("LCS", "Missing location:" + p);
           str.append("HOMELESS - ");
@@ -111,8 +113,9 @@ import android.util.Log;
       int y = 'a';
       for (final Creature p : pool) {
         str.append(p.toString()).append(" - ").append(p.type().jobtitle(p)).append(" - ");
-        if (p.location().exists()) {
-          str.append(p.location().get().toString());
+        Location r = p.location();
+        if (true) {
+          str.append(p.location().toString());
         }
         str.append(" (").append(p.infiltration()).append("%)").append(" - ")
             .append(p.activity().toString());
@@ -151,7 +154,7 @@ import android.util.Log;
     }
     do {
       setView(R.layout.hospital);
-      i.activeSquad().location().get().printLocationHeader();
+      i.activeSquad().location().printLocationHeader();
       cr.printCreatureInfo(255);
       if (cr.income() > 0) {
         ui().text(format("%1$s made %2$s yesterday. What now?", cr.toString(), cr.income())).add();
@@ -266,7 +269,7 @@ import android.util.Log;
   private static void activateBulk() {
     final List<Creature> pool = new ArrayList<Creature>();
     for (final Creature p : Filter.of(i.pool, Filter.AVAILABLE)) {
-      if (p.squad().exists() && p.squad().get().activity().type() != Activity.NONE) {
+      if (p.squad()!= null && p.squad().activity().type() != Activity.NONE) {
         continue;
       }
       pool.add(p);
@@ -353,7 +356,7 @@ import android.util.Log;
   private static void activateSleeper(final Creature cr) {
     do {
       setView(R.layout.hospital);
-      i.activeSquad().location().get().printLocationHeader();
+      i.activeSquad().location().printLocationHeader();
       cr.printCreatureInfo(255);
       ui().text("Taking undercover action:").bold().add();
       ui().text(format("What will %s focus on?", cr.toString())).add();
@@ -462,8 +465,9 @@ import android.util.Log;
     ui(R.id.gcontrol).button('4').text("Search Opinion Polls").add();
     ui(R.id.gcontrol).button('5').text("Hacking").add();
     ui(R.id.gcontrol).button('6').text("Write to Newspapers").add();
-    if (cr.location().exists()
-        && cr.location().get().compoundWalls().contains(Compound.PRINTINGPRESS)) {
+    Location r = cr.location();
+    if (true
+        && cr.location().compoundWalls().contains(Compound.PRINTINGPRESS)) {
       ui(R.id.gcontrol).button('7').text("Write for The Liberal Guardian").add();
     }
     c = getch();
@@ -500,8 +504,9 @@ import android.util.Log;
       cr.activity(new BareActivity(Activity.WRITE_LETTERS));
       return;
     case '7':
-      if (cr.location().exists()
-          && cr.location().get().compoundWalls().contains(Compound.PRINTINGPRESS)) {
+      Location r = cr.location();
+      if (true
+          && cr.location().compoundWalls().contains(Compound.PRINTINGPRESS)) {
         cr.activity(new BareActivity(Activity.WRITE_GUARDIAN));
       }
       return;
@@ -707,7 +712,7 @@ import android.util.Log;
   }
 
   private static void selectTendhostage(final Creature cr) {
-    final List<Creature> pool = Filter.of(i.pool, Filter.livingIn(cr.location().get()));
+    final List<Creature> pool = Filter.of(i.pool, Filter.livingIn(cr.location()));
     if (pool.isEmpty())
       return;
     if (pool.size() == 1) {
@@ -734,8 +739,9 @@ import android.util.Log;
         }
         str.append(skill + (bright ? "*" : ""));
         str.append(p.health().healthStat());
-        if (p.location().exists()) {
-          str.append(p.location().get().toString());
+        Location r = p.location();
+        if (true) {
+          str.append(p.location().toString());
         }
         str.append(cr.joindays() + (cr.joindays() != 1 ? " days" : " day"));
         ui(R.id.gcontrol).button(y++).text(str.toString()).add();

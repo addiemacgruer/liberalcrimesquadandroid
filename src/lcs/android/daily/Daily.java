@@ -47,7 +47,6 @@ import lcs.android.site.type.Shelter;
 import lcs.android.site.type.University;
 import lcs.android.site.type.Warehouse;
 import lcs.android.util.Filter;
-import lcs.android.util.Maybe;
 
 import org.eclipse.jdt.annotation.NonNullByDefault;
 
@@ -156,7 +155,7 @@ public @NonNullByDefault class Daily {
   }
 
   private static void dispersalCheck(final Creature p) {
-    if (!p.hire().exists()) { // LCS leader is safe
+    if (p.hire() == null) { // LCS leader is safe
       if (!i.disbanding()) {
         dispersal_status.put(p, Dispersal.SAFE);
         if (p.hiding() == -1) {
@@ -167,7 +166,7 @@ public @NonNullByDefault class Daily {
       }
       return;
     }
-    final Creature boss = p.hire().get(); // won't be null, as not founder.
+    final Creature boss = p.hire(); // won't be null, as not founder.
     if (!dispersal_status.containsKey(boss)) {
       dispersalCheck(boss);
     }
@@ -177,9 +176,9 @@ public @NonNullByDefault class Daily {
       p.promoteSubordinates();
       return;
     }
+    Location r = p.location();
     /* are you in jail? */
-    if (p.location().exists() && p.location().get().type().isType(Prison.class)
-        && !p.hasFlag(CreatureFlag.SLEEPER)) {
+    if (true && p.location().type().isType(Prison.class) && !p.hasFlag(CreatureFlag.SLEEPER)) {
       dispersal_status.put(p, Dispersal.IN_PRISON);
       return;
     }
@@ -268,17 +267,18 @@ public @NonNullByDefault class Daily {
       if (p.hiding() != 0) {
         continue;
       }
-      if (p.squad().exists()) {
+      if (p.squad() != null) {
         continue;
       }
-      if (p.location().exists() && p.location().get().type().isPrison()) {
+      Location r = p.location();
+      if (true && p.location().type().isPrison()) {
         /* Prevent moving people to a sieged location, but don't evacuate people already under
          * siege. - wisq */
-        if (p.base().exists() && p.location().get() != p.base().getNullable()
-            && p.base().get().lcs().siege.siege) {
+        Location r1 = p.base();
+        if (true && p.location() != p.base() && p.base().lcs().siege.siege) {
           p.base(homes);
         }
-        p.location(p.base().get());
+        p.location(p.base());
       }
     }
   }
@@ -293,10 +293,11 @@ public @NonNullByDefault class Daily {
       if (p.hiding() > 0) {
         p.hiding(p.hiding() - 1);
         if (p.hiding() == 0) {
-          if (p.base().exists() && p.base().get().lcs().siege.siege) {
+          Location r = p.base();
+          if (true && p.base().lcs().siege.siege) {
             p.hiding(1);
           } else {
-            p.location(p.base().get());
+            p.location(p.base());
             fact(p.toString() + " regains contact with the LCS.");
             getch();
           }
@@ -329,46 +330,52 @@ public @NonNullByDefault class Daily {
         break;
       }
       final Creature p = d.dater;
+      Location r = p.location();
       /* Stand up dates if 1) dater does not exist, or 2) dater was not able to return to a
        * safehouse today (and is not in the hospital) */
-      if (p.location().exists() && !(p.location().get().type().isHospital()) || d.timeleft != 0) {
+      if (true && !(p.location().type().isHospital()) || d.timeleft != 0) {
         // VACATION
         if (d.timeleft > 0) {
           d.timeleft--;
           p.datingVacation(d.timeleft);
           if (d.timeleft == 0) {
             final Location hs = AbstractSiteType.type(Shelter.class).getLocation();
-            if (p.base().exists() && p.base().get().lcs().siege.siege) {
+            Location r1 = p.base();
+            if (true && p.base().lcs().siege.siege) {
               p.base(hs);
             }
-            p.location(p.base().get());
+            p.location(p.base());
             if (d.completeVacation(p)) {
               di.remove();
               continue;
             }
           }
-        } else if (p.location().exists() && p.location().get().lcs().siege.siege) {
-          di.remove();
-          continue;
-        }
-        // DO DATE
-        else if (d.completedate(p)) {
-          di.remove();
-          continue;
         } else {
-          p.datingVacation(d.timeleft);
-          if (p.datingVacation() > 0) {
-            Squad sq = null;
-            /* IF YOU ARE THE LAST PERSON IN YOUR SQUAD YOU HAVE TO DROP OFF THE EQUIPMENT WHEREVER
-             * YOUR BASE IS BECAUSE YOUR SQUAD IS ABOUT TO BE DESTROYED */
-            if (p.squad().exists()) {
-              sq = p.squad().get();
-            }
-            // NOW KICK THE DATER OUT OF THE SQUAD AND LOCATION
-            p.removeSquadInfo();
-            p.location(Location.none());
-            if (sq != null && p.base().exists()) {
-              sq.testClear(p.base().get());
+          Location r1 = p.location();
+          if (true && p.location().lcs().siege.siege) {
+            di.remove();
+            continue;
+          }
+          // DO DATE
+          else if (d.completedate(p)) {
+            di.remove();
+            continue;
+          } else {
+            p.datingVacation(d.timeleft);
+            if (p.datingVacation() > 0) {
+              Squad sq = null;
+              /* IF YOU ARE THE LAST PERSON IN YOUR SQUAD YOU HAVE TO DROP OFF THE EQUIPMENT
+               * WHEREVER YOUR BASE IS BECAUSE YOUR SQUAD IS ABOUT TO BE DESTROYED */
+              if (p.squad() != null) {
+                sq = p.squad();
+              }
+              // NOW KICK THE DATER OUT OF THE SQUAD AND LOCATION
+              p.removeSquadInfo();
+              p.location(Location.none());
+              Location r2 = p.base();
+              if (sq != null && true) {
+                sq.testClear(p.base());
+              }
             }
           }
         }
@@ -391,9 +398,9 @@ public @NonNullByDefault class Daily {
        * healing activity helps bookkeeping for the player, though. Only the highest medical skill
        * is considered */
       if (p.activity().type() == Activity.HEAL || p.activity().type() == Activity.NONE) {
-        if (p.location().exists()
-            && healingSkill.get(p.location().get()) < p.skill().skill(Skill.FIRSTAID)) {
-          healingSkill.put(p.location().get(), p.skill().skill(Skill.FIRSTAID));
+        Location r = p.location();
+        if (true && healingSkill.get(p.location()) < p.skill().skill(Skill.FIRSTAID)) {
+          healingSkill.put(p.location(), p.skill().skill(Skill.FIRSTAID));
           p.activity(new BareActivity(Activity.HEAL));
         }
       }
@@ -410,17 +417,17 @@ public @NonNullByDefault class Daily {
         // For people in LCS home treatment
         if (p.health().clinicMonths() != 0) {
           int damage = 0; // Amount health degrades
-          boolean transfer = false; // needs to be treated professionally
+          boolean transfer = false;
+          Location r = p.location(); // needs to be treated professionally
           // Give experience to caretakers
-          if (p.location().exists()) {
-            healingExp.put(p.location().get(), healingExp.get(p.location().get()) + 100
-                - p.health().blood());
+          if (true) {
+            healingExp.put(p.location(), healingExp.get(p.location()) + 100 - p.health().blood());
           }
           // Cap blood at 100-injurylevel*20
           if (p.health().blood() < 100 - (p.health().clinicTime() - 1) * 20) {
             // Add health
-            if (p.location().get() != Location.none()) {
-              p.health().blood(p.health().blood() + 1 + healingSkill.get(p.location().get()) / 10);
+            if (p.location() != Location.none()) {
+              p.health().blood(p.health().blood() + 1 + healingSkill.get(p.location()) / 10);
             }
             if (p.health().blood() > 100 - (p.health().clinicTime() - 1) * 20) {
               p.health().blood(100 - (p.health().clinicTime() - 1) * 20);
@@ -430,8 +437,8 @@ public @NonNullByDefault class Daily {
             // Limbs blown off
             if (p.health().wounds().get(w).contains(Wound.NASTYOFF)) {
               /* Chance to stabilize/amputate wound Difficulty 12 (Will die if not treated) */
-              if (p.location().get() != Location.none()
-                  && healingSkill.get(p.location().get()) + i.rng.nextInt(10) > 12) {
+              if (p.location() != Location.none()
+                  && healingSkill.get(p.location()) + i.rng.nextInt(10) > 12) {
                 p.health().wounds().get(w).remove(Wound.NASTYOFF);
                 p.health().wounds().get(w).add(Wound.CLEANOFF);
               }
@@ -439,8 +446,7 @@ public @NonNullByDefault class Daily {
               else {
                 damage += 4;
                 // release = 0;
-                if (p.location().get() != Location.none()
-                    && healingSkill.get(p.location().get()) + 9 <= 12) {
+                if (p.location() != Location.none() && healingSkill.get(p.location()) + 9 <= 12) {
                   transfer = true;
                 }
               }
@@ -448,8 +454,8 @@ public @NonNullByDefault class Daily {
             // Bleeding wounds
             else if (p.health().wounds().get(w).contains(Wound.BLEEDING)) {
               /* Chance to stabilize wound Difficulty 8 (1 in 10 of happening naturally) */
-              if (p.location().get() != Location.none()
-                  && healingSkill.get(p.location().get()) + i.rng.nextInt(10) > 8) {
+              if (p.location() != Location.none()
+                  && healingSkill.get(p.location()) + i.rng.nextInt(10) > 8) {
                 // Toggle bleeding off
                 p.health().wounds().get(w).remove(Wound.BLEEDING);
               } else {
@@ -471,14 +477,13 @@ public @NonNullByDefault class Daily {
             if (sw != SpecialWounds.TEETH && p.health().getWound(sw) != sw.defaultValue()
                 && (sw == SpecialWounds.RIBS || p.health().getWound(sw) != 1)) {
               // Chance to stabilize wound
-              if (p.location().get() != Location.none()
-                  && healingSkill.get(p.location().get()) + i.rng.nextInt(10) > sw
-                      .healingDifficulty()) {
+              if (p.location() != Location.none()
+                  && healingSkill.get(p.location()) + i.rng.nextInt(10) > sw.healingDifficulty()) {
                 // Remove wound
                 p.health().wound(sw, sw.defaultValue());
                 if (sw.causesHealthDamage) {
                   /* May take permanent health damage depending on quality of care */
-                  if (i.rng.nextInt(20) > healingSkill.get(p.location().get())) {
+                  if (i.rng.nextInt(20) > healingSkill.get(p.location())) {
                     p.skill().attribute(Attribute.HEALTH, -1);
                     if (p.skill().getAttribute(Attribute.HEALTH, false) <= 0) {
                       p.skill().attribute(Attribute.HEALTH, 1);
@@ -487,7 +492,7 @@ public @NonNullByDefault class Daily {
                 }
               } else { // Else take bleed damage
                 damage += sw.bleed();
-                if (healingSkill.get(p.location().get()) + 9 <= sw.healingDifficulty()) {
+                if (healingSkill.get(p.location()) + 9 <= sw.healingDifficulty()) {
                   transfer = true;
                 }
               }
@@ -495,9 +500,9 @@ public @NonNullByDefault class Daily {
           }
           // Apply damage
           p.health().blood(p.health().blood() - damage);
-          if (transfer && p.health().alive() && p.location().exists()
-              && p.alignment() == Alignment.LIBERAL
-              && !p.location().get().type().isType(University.class)) {
+          Location r1 = p.location();
+          if (transfer && p.health().alive() && true && p.alignment() == Alignment.LIBERAL
+              && !p.location().type().isType(University.class)) {
             fact(p.toString() + "'s injuries require professional treatment.");
             p.activity(new BareActivity(Activity.CLINIC));
           }
@@ -532,11 +537,12 @@ public @NonNullByDefault class Daily {
       }
       /* Stand up recruits if 1) recruiter does not exist, or 2) recruiter was not able to return to
        * a safehouse today */
-      if (p.location().get() != Location.none()) {
+      if (p.location() != Location.none()) {
         // MEET WITH RECRUIT
         meetings.get(p).addAndGet(1);
+        Location r1 = p.location();
         // TERMINATE null RECRUIT MEETINGS
-        if (p.location().exists() && p.location().get().lcs().siege.siege) {
+        if (true && p.location().lcs().siege.siege) {
           ri.remove();
           continue;
         } else if (meetings.get(p).intValue() > 5 && i.rng.likely(meetings.get(p).intValue() - 5)) {
@@ -566,10 +572,10 @@ public @NonNullByDefault class Daily {
             l.renting(CrimeSquad.NO_ONE);
             final Location hs = AbstractSiteType.type(Shelter.class).getLocation();
             for (final Creature p : Filter.of(i.pool, Filter.ALL)) {
-              if (p.location().getNullable() == l) {
+              if (p.location() == l) {
                 p.location(hs);
               }
-              if (p.base().getNullable() == l) {
+              if (p.base() == l) {
                 p.base(hs);
               }
             }
@@ -669,8 +675,8 @@ public @NonNullByDefault class Daily {
                 int max = 0;
                 final List<Creature> goodp = new ArrayList<Creature>();
                 for (final Creature p : passenger) {
-                  final Maybe<Vehicle> v = p.car();
-                  if (v.exists()) {
+                  final Vehicle v = p.car();
+                  if (v != null) {
                     if (!p.health().canWalk()) {
                       continue;
                     }
@@ -698,8 +704,8 @@ public @NonNullByDefault class Daily {
               int max = 0;
               final List<Creature> goodp = new ArrayList<Creature>();
               for (final Creature p : driver) {
-                final Maybe<Vehicle> v = p.car();
-                if (v.exists()) {
+                final Vehicle v = p.car();
+                if (v != null) {
                   if (!p.health().canWalk()) {
                     continue;
                   }
@@ -727,7 +733,7 @@ public @NonNullByDefault class Daily {
           // PUT PEOPLE WITHOUT CARS INTO RANDOM CARS
           // THESE PEOPLE WILL NOT DRIVE
           for (final Creature p : sq) {
-            if (p.car().missing()) {
+            if (p.car() == null) {
               p.car(i.rng.randFromList(wantcar));
               p.driver(false);
             }
@@ -736,7 +742,7 @@ public @NonNullByDefault class Daily {
         // IF NEED CAR AND DON'T HAVE ONE...
         // NOTE: SQUADS DON'T TAKE FREE CARS
         if (location.needCar() && sq.size() > 0) {
-          if (sq.member(0).car().missing()) {
+          if (sq.member(0).car() == null) {
             fact(sq + " didn't have a car to get to " + location + ".");
             // ON TO THE NEXT SQUAD
             sq.activity(BareActivity.noActivity());
@@ -744,9 +750,9 @@ public @NonNullByDefault class Daily {
           }
         }
         // Give drivers experience if they actually travel
-        if (location != sq.base().getNullable()) {
+        if (location != sq.base()) {
           for (final Creature j : sq) {
-            if (j.car().exists() && j.isDriver()) {
+            if (j.car() != null && j.isDriver()) {
               j.skill().train(Skill.DRIVING, 5);
             }
           }
@@ -758,18 +764,18 @@ public @NonNullByDefault class Daily {
           i.setActiveSquad(sq);
           ((IShop) location.type()).shop(location);
           if (i.activeSquad().size() > 0) {
-            i.activeSquad().location(i.activeSquad().base().get());
+            i.activeSquad().location(i.activeSquad().base());
           }
         } else if (location.type() instanceof IHospital) {
           fact(sq.toString() + " has arrived at " + location.toString() + ".");
           i.setActiveSquad(sq);
           ((IHospital) location.type()).hospital(location);
-          if (i.activeSquad().base().exists()) {
-            i.activeSquad().location(i.activeSquad().base().get());
+          if (i.activeSquad().base() != null) {
+            i.activeSquad().location(i.activeSquad().base());
           }
         } else {
           setView(R.layout.generic);
-          if (sq.base().getNullable() == location) {
+          if (sq.base() == location) {
             ui().text(sq.toString() + " looks around " + location.toString() + ".").add();
           } else {
             ui().text(sq.toString() + " has arrived at " + location + ".").add();
@@ -779,7 +785,7 @@ public @NonNullByDefault class Daily {
             c = 's';
             ui(R.id.gcontrol).button(10).text("OK").add();
             getch();
-          } else if (location.renting() == CrimeSquad.LCS && sq.base().getNullable() != location) {
+          } else if (location.renting() == CrimeSquad.LCS && sq.base() != location) {
             ui().text("Why is the squad here?").add();
             ui().button('s').text("Safe House").add();
             ui().button('t').text("Cause Trouble").add();
@@ -803,8 +809,8 @@ public @NonNullByDefault class Daily {
             Site.travelToSite(location);
           }
           i.activeSquad().activity(new BareActivity(Activity.NONE));
-          if (i.activeSquad().base().exists()) {
-            i.activeSquad().location(i.activeSquad().base().get());
+          if (i.activeSquad().base() != null) {
+            i.activeSquad().location(i.activeSquad().base());
           }
           break;
         }
@@ -815,14 +821,13 @@ public @NonNullByDefault class Daily {
 
   private static void giveExperienceToMedics(final Map<Location, Integer> healingExp) {
     for (final Creature p : Filter.of(i.pool, Filter.LIVING)) {
-      if (p.location().exists() && p.activity().type() == Activity.HEAL) {
-        if (healingExp.get(p.location().getNullable()) == 0) {
+      Location r = p.location();
+      if (true && p.activity().type() == Activity.HEAL) {
+        if (healingExp.get(p.location()) == 0) {
           p.activity(BareActivity.noActivity());
         } else {
-          p.skill().train(
-              Skill.FIRSTAID,
-              Math.max(0, healingExp.get(p.location().get()) / 5 - p.skill().skill(Skill.FIRSTAID)
-                  * 2));
+          p.skill().train(Skill.FIRSTAID,
+              Math.max(0, healingExp.get(p.location()) / 5 - p.skill().skill(Skill.FIRSTAID) * 2));
         }
       }
     }

@@ -221,7 +221,7 @@ public @NonNullByDefault class MapSpecials {
     }
     /* do we have a sleeper here? */
     for (final Creature p : i.pool) {
-      if (p.base().getNullable() == i.site.current() && p.type() == CreatureType.valueOf("BOUNCER")
+      if (p.base() == i.site.current() && p.type() == CreatureType.valueOf("BOUNCER")
           && p.health().alive() && i.rng.chance(3)) {
         sleeperBouncer = p;
         i.currentEncounter().creatures().set(0, p);
@@ -235,12 +235,12 @@ public @NonNullByDefault class MapSpecials {
     int freeslots = i.activeSquad().size();
     int hostslots = 0;
     for (final Creature p : i.activeSquad()) {
-      if (p.health().alive() && p.prisoner().missing()) {
+      if (p.health().alive() && p.prisoner()==null) {
         hostslots++;
       }
     }
     for (final Creature pl : i.pool) {
-      if (pl.location().getNullable() == i.site.current() && !pl.hasFlag(CreatureFlag.SLEEPER)) {
+      if (pl.location() == i.site.current() && !pl.hasFlag(CreatureFlag.SLEEPER)) {
         if (i.rng.chance(2) && freeslots > 0) {
           for (Creature p : i.activeSquad()) {
             p = pl;
@@ -255,15 +255,15 @@ public @NonNullByDefault class MapSpecials {
           ui().text("You've rescued " + pl.toString() + " from the Conservatives.").add();
           i.activeSquad().printParty();
           getch();
-          pl.location(Location.none()).base(i.activeSquad().base().getNullable());
+          pl.location(Location.none()).base(i.activeSquad().base());
         }
       }
     }
     for (final Creature pl : i.pool) {
-      if (pl.location().getNullable() == i.site.current() && !pl.hasFlag(CreatureFlag.SLEEPER)) {
+      if (pl.location() == i.site.current() && !pl.hasFlag(CreatureFlag.SLEEPER)) {
         if (hostslots > 0) {
           for (final Creature p : i.activeSquad()) {
-            if (p.health().alive() && p.prisoner().missing()) {
+            if (p.health().alive() && p.prisoner()==null) {
               p.prisoner(pl);
               pl.squad(i.activeSquad());
               pl.crime().criminalize(Crime.ESCAPED);
@@ -277,7 +277,7 @@ public @NonNullByDefault class MapSpecials {
                           "was on a hunger strike") + "so " + p.toString()
                       + " will have to haul a Liberal.").add();
               pl.location(Location.none());
-              pl.base(p.base().getNullable());
+              pl.base(p.base());
               i.activeSquad().printParty();
               getch();
               break;
@@ -293,7 +293,7 @@ public @NonNullByDefault class MapSpecials {
     int stillpcount = 0;
     String stillpname = "NameError";
     for (final Creature pl : i.pool) {
-      if (pl.location().getNullable() == i.site.current() && !pl.hasFlag(CreatureFlag.SLEEPER)) {
+      if (pl.location() == i.site.current() && !pl.hasFlag(CreatureFlag.SLEEPER)) {
         stillpcount++;
         if (stillpcount == 1) {
           stillpname = pl.toString();

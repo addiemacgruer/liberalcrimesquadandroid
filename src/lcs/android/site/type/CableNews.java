@@ -237,8 +237,8 @@ import org.eclipse.jdt.annotation.Nullable;
     }
     // PRISONER PARTS
     for (final Creature p : i.activeSquad()) {
-      if (p.prisoner().exists() && p.prisoner().get().health().alive()) {
-        if (p.prisoner().get().type() == CreatureType.valueOf("NEWSANCHOR")) {
+      if (p.prisoner()!= null && p.prisoner().health().alive()) {
+        if (p.prisoner().type() == CreatureType.valueOf("NEWSANCHOR")) {
           viewhit = i.rng.randFromArray(Issue.values());
           // clearmessagearea();
           ui().text("The hostage ").add();
@@ -326,10 +326,10 @@ import org.eclipse.jdt.annotation.Nullable;
             break;
           }
           usegmentpower = 10; // FAME BONUS
-          usegmentpower += p.prisoner().get().skill().getAttribute(Attribute.INTELLIGENCE, true);
-          usegmentpower += p.prisoner().get().skill().getAttribute(Attribute.HEART, true);
-          usegmentpower += p.prisoner().get().skill().getAttribute(Attribute.CHARISMA, true);
-          usegmentpower += p.prisoner().get().skill().skill(Skill.PERSUASION);
+          usegmentpower += p.prisoner().skill().getAttribute(Attribute.INTELLIGENCE, true);
+          usegmentpower += p.prisoner().skill().getAttribute(Attribute.HEART, true);
+          usegmentpower += p.prisoner().skill().getAttribute(Attribute.CHARISMA, true);
+          usegmentpower += p.prisoner().skill().skill(Skill.PERSUASION);
           if (viewhit != Issue.LIBERALCRIMESQUAD) {
             i.issue(viewhit).changeOpinion((usegmentpower - 10) / 2, 1, 100);
           } else {

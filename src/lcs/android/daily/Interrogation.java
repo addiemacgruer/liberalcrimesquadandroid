@@ -54,13 +54,13 @@ public @NonNullByDefault class Interrogation implements Serializable {
     cr.name(query("The Education of " + cr.properName() + "\n\n"
         + "What name will you use for this " + cr.type().jobtitle(cr) + " in its presence?",
         cr.properName()));
-    cr.location(kidnapper.base().get());
-    cr.base(kidnapper.base().get());
+    cr.location(kidnapper.base());
+    cr.base(kidnapper.base());
     cr.addFlag(CreatureFlag.MISSING);
     // Kidnapped wearing normal clothes and no weapon
-    if (kidnapper.base().exists()) {
-      cr.weapon().dropWeaponsAndClips(kidnapper.base().get().lcs().loot);
-      cr.strip(kidnapper.base().get().lcs().loot);
+    if (kidnapper.base()!= null) {
+      cr.weapon().dropWeaponsAndClips(kidnapper.base().lcs().loot);
+      cr.strip(kidnapper.base().lcs().loot);
     }
     cr.giveArmor(new Armor("ARMOR_CLOTHES"), null);
     if (i.pool.contains(cr)) {
@@ -841,7 +841,7 @@ public @NonNullByDefault class Interrogation implements Serializable {
         if (ca.creature() == cr) {
           /* If they're in the same location as the hostage, include them in the interrogation */
           if (p.location() == cr.location()) {
-            if (p.location().get() != Location.none()) {
+            if (p.location() != Location.none()) {
               temppool.add(p);
             }
           } else {
@@ -861,8 +861,8 @@ public @NonNullByDefault class Interrogation implements Serializable {
           + cr.skill().getAttribute(Attribute.STRENGTH, true)
           && cr.joindays() >= 5) {
         fact(cr.toString() + " has escaped!");
-        if (cr.location().exists()) {
-          cr.location().get().lcs().siege.timeUntilLocated = 3;
+        if (cr.location()!= null) {
+          cr.location().lcs().siege.timeUntilLocated = 3;
         }
         // clear activities for tenders
         i.interrogations.remove(this);

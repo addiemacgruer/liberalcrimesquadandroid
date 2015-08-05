@@ -75,7 +75,7 @@ import org.eclipse.jdt.annotation.Nullable;
         ui(R.id.gcontrol).button(10).text("Done").add();
       } else {
         setView(R.layout.hospital);
-        i.activeSquad().location().get().printLocationHeader();
+        i.activeSquad().location().printLocationHeader();
         i.activeSquad().printParty();
         ui(R.id.gcontrol).button('c').text("Purchase Halloween Costumes").add();
         ui(R.id.gcontrol).button('m').text("Purchase Medieval Gear").add();
@@ -176,21 +176,22 @@ import org.eclipse.jdt.annotation.Nullable;
           in_halloween = 2;
         }
       }
-      if (armorbought != null && i.activeSquad().base().exists()) {
+      if (armorbought != null && i.activeSquad().base()!= null) {
         final Armor a = new Armor(armorbought);
-        buyer.giveArmor(a, i.activeSquad().base().get().lcs().loot);
+        buyer.giveArmor(a, i.activeSquad().base().lcs().loot);
       }
-      if (weaponbought != null && i.activeSquad().base().exists()) {
+      if (weaponbought != null && i.activeSquad().base()!= null) {
         Weapon w = new Weapon(weaponbought);
-        buyer.weapon().giveWeapon(w, i.activeSquad().base().get().lcs().loot);
+        buyer.weapon().giveWeapon(w, i.activeSquad().base().lcs().loot);
         if (w.isEmpty()) {
           w = null;
         } else {
-          i.activeSquad().base().get().lcs().loot.add(w);
+          i.activeSquad().base().lcs().loot.add(w);
         }
       }
-      if (c == 'e' && i.activeSquad().location().exists()) {
-        AbstractItem.equip(i.activeSquad().location().get().lcs().loot, null);
+      Location r = i.activeSquad().location();
+      if (c == 'e' && true) {
+        AbstractItem.equip(i.activeSquad().location().lcs().loot, null);
       }
       if (c == 'b') {
         buyer = Shop.choose_buyer();

@@ -471,7 +471,7 @@ public @NonNullByDefault class CreatureType implements Configurable, Serializabl
    *          so they don't change).
    * @return a suitable job title */
   public String jobtitle(final Creature c) {
-    if (lcsname.length() != 0 && c.squad().exists()) {
+    if (lcsname.length() != 0 && c.squad()!= null) {
       return lcsname;
     }
     if (names.size() == 1) {
