@@ -51,7 +51,7 @@ public @NonNullByDefault class Vehicle extends AbstractItem<VehicleType> {
 
   /** How much of a getaway bonus this vehicle is to drive. Up to 3 for sports and agent cars */
   public int driveBonus() {
-    return platonicIdeal.drivebonus_;
+    return type.drivebonus_;
   }
 
   @Override public String equipTitle() {
@@ -100,7 +100,7 @@ public @NonNullByDefault class Vehicle extends AbstractItem<VehicleType> {
 
   /** Long description. */
   public String longName() {
-    return platonicIdeal.toString();
+    return type.toString();
   }
 
   @Override public boolean merge(final AbstractItem<? extends AbstractItemType> other) {
@@ -109,13 +109,13 @@ public @NonNullByDefault class Vehicle extends AbstractItem<VehicleType> {
 
   /** Cost to buy. Up to $80k for the (military) hummvee. */
   public int price() {
-    return platonicIdeal.price_;
+    return type.price_;
   }
 
   /** Likelihood a sensor alarm is fitted. 15 for a sportscar
    * @return percentage chance. */
   public int senseAlarmChance() {
-    return platonicIdeal.sensealarmchance_;
+    return type.sensealarmchance_;
   }
 
   /** Change where the vehicle is kept. */
@@ -124,7 +124,7 @@ public @NonNullByDefault class Vehicle extends AbstractItem<VehicleType> {
   }
 
   public String shortname() {
-    return platonicIdeal.shortname();
+    return type.shortname();
   }
 
   @Override public AbstractItem<VehicleType> split(final int count) {
@@ -134,12 +134,12 @@ public @NonNullByDefault class Vehicle extends AbstractItem<VehicleType> {
   /** Bonus heat for thieving one of these. Up to 16 for police cars, prevents you from ever selling
    * them full prices. */
   public int stealExtraHeat() {
-    return platonicIdeal.steal_extraheat_;
+    return type.steal_extraheat_;
   }
 
   /** Bonus juice for stealing one of these. 2 for a police car. */
   public int stealJuice() {
-    return platonicIdeal.steal_juice_;
+    return type.steal_juice_;
   }
 
   @Override public String toString() {
@@ -149,11 +149,11 @@ public @NonNullByDefault class Vehicle extends AbstractItem<VehicleType> {
   /** Likelihood a touch alarm is fitted. 95 for a sportscar
    * @return percentage chance. */
   public int touchAlarmChance() {
-    return platonicIdeal.touchalarmchance_;
+    return type.touchalarmchance_;
   }
 
   private boolean displayscolor() {
-    return platonicIdeal.displaycolor_;
+    return type.displaycolor_;
   }
 
   private static final long serialVersionUID = Game.VERSION;

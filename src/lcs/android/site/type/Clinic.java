@@ -18,21 +18,21 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
   @Override public void hospital(final Location loc) {
     // if (i.activeSquad == null)
     // return;
-    i.activeSquad.location(loc);
+    i.activeSquad().location(loc);
     do {
       setView(R.layout.hospital);
-      i.activeSquad.location().get().printLocationHeader();
-      i.activeSquad.printParty();
-      if (i.activeSquad.highlightedMember() != -1) {
+      i.activeSquad().location().get().printLocationHeader();
+      i.activeSquad().printParty();
+      if (i.activeSquad().highlightedMember() != -1) {
         ui(R.id.gcontrol).button('f').text("Go in and fix up Conservative wounds").add();
       }
       ui(R.id.gcontrol).button(10).text("Leave").add();
       final int c = getch();
-      i.activeSquad.displaySquadInfo(c);
+      i.activeSquad().displaySquadInfo(c);
       if (c == 'f') {
-        i.activeSquad.member(i.activeSquad.size() - 1).health().hospitalize(loc);
+        i.activeSquad().member(i.activeSquad().size() - 1).health().hospitalize(loc);
       }
-      if (i.activeSquad.isEmpty() || c == ENTER) {
+      if (i.activeSquad().isEmpty() || c == ENTER) {
         break;
       }
     } while (true);

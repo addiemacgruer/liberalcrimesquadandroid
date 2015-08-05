@@ -15,6 +15,7 @@ import lcs.android.R;
 import lcs.android.activities.BareActivity;
 import lcs.android.activities.CreatureActivity;
 import lcs.android.activities.iface.Activity;
+import lcs.android.basemode.iface.Location;
 import lcs.android.creature.Attribute;
 import lcs.android.creature.Creature;
 import lcs.android.creature.CreatureFlag;
@@ -53,8 +54,8 @@ public @NonNullByDefault class Interrogation implements Serializable {
     cr.name(query("The Education of " + cr.properName() + "\n\n"
         + "What name will you use for this " + cr.type().jobtitle(cr) + " in its presence?",
         cr.properName()));
-    cr.location(kidnapper.base().getNullable());
-    cr.base(kidnapper.base().getNullable());
+    cr.location(kidnapper.base().get());
+    cr.base(kidnapper.base().get());
     cr.addFlag(CreatureFlag.MISSING);
     // Kidnapped wearing normal clothes and no weapon
     if (kidnapper.base().exists()) {
@@ -62,8 +63,9 @@ public @NonNullByDefault class Interrogation implements Serializable {
       cr.strip(kidnapper.base().get().lcs().loot);
     }
     cr.giveArmor(new Armor("ARMOR_CLOTHES"), null);
-    if (i.pool.contains(cr))
+    if (i.pool.contains(cr)) {
       throw new RuntimeException("HaulKidnap.kidnaptransfer: Adding a pool member as hostage.");
+    }
     cr.giveFundsToLCS();
     i.pool.add(cr);
     i.score.kidnappings++;
@@ -90,13 +92,16 @@ public @NonNullByDefault class Interrogation implements Serializable {
    * nb! removes itself from the i.interrogations if the interrogation is concluded: you need to
    * iterate over a copy of the interrogations to use this method. */
   void tendhostage() {
-    if (!cr.health().alive())
+    if (!cr.health().alive()) {
       return;
+    }
     final List<Creature> temppool = generateTempPool();
-    if (isEscapeSuccessful(temppool))
+    if (isEscapeSuccessful(temppool)) {
       return;
-    if (temppool.size() == 0)
+    }
+    if (temppool.size() == 0) {
       return;
+    }
     final Pair<Creature, Integer> leaderp = determineInterrogationLeader(temppool);
     final Creature leader = leaderp.first;
     int attack = leaderp.second;
@@ -112,8 +117,9 @@ public @NonNullByDefault class Interrogation implements Serializable {
       techniques.remove(Techniques.DRUGS);
     }
     if (techniques.contains(Techniques.KILL)) {
-      if (executeHostage(temppool))
+      if (executeHostage(temppool)) {
         return;
+      }
     }
     if (techniques.contains(Techniques.RESTRAIN)) {
       ui().text(
@@ -835,7 +841,7 @@ public @NonNullByDefault class Interrogation implements Serializable {
         if (ca.creature() == cr) {
           /* If they're in the same location as the hostage, include them in the interrogation */
           if (p.location() == cr.location()) {
-            if (p.location() != null) {
+            if (p.location().get() != Location.none()) {
               temppool.add(p);
             }
           } else {

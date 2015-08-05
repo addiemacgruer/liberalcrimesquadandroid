@@ -47,7 +47,7 @@ public enum Unlockable {
       difficulty = CheckDifficulty.AUTOMATIC;
       break;
     }
-    final Maybe<Creature> bestSecurityTest = Filter.best(i.activeSquad,
+    final Maybe<Creature> bestSecurityTest = Filter.best(i.activeSquad(),
         Filter.skill(Skill.SECURITY));
     if (bestSecurityTest.exists()) {
       final Creature bestSecurity = bestSecurityTest.get();
@@ -79,7 +79,7 @@ public enum Unlockable {
           ui().text(bestSecurity.toString() + " picks the lock!").add();
         }
         /* If people witness a successful unlock, they learn a little bit. */
-        for (final Creature j : i.activeSquad) {
+        for (final Creature j : i.activeSquad()) {
           if (j == bestSecurity) {
             continue;
           }

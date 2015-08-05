@@ -267,7 +267,7 @@ final public @NonNullByDefault class Site {
   public void noticeCheck(final CheckDifficulty difficulty, final Creature... exclude) {
     if (alarm)
       return;
-    final Maybe<Creature> topTest = Filter.best(i.activeSquad, Filter.skill(Skill.STEALTH));
+    final Maybe<Creature> topTest = Filter.best(i.activeSquad(), Filter.skill(Skill.STEALTH));
     if (topTest.missing())
       return;
     final Creature top = topTest.get();
@@ -360,10 +360,10 @@ final public @NonNullByDefault class Site {
     i.site.current().changes().add(change);
     // }
     i.site.crime(i.site.crime() + 1);
-    for (final Creature p : i.activeSquad) {
+    for (final Creature p : i.activeSquad()) {
       p.addJuice(1, 50);
     }
-    i.activeSquad.criminalizeParty(Crime.VANDALISM);
+    i.activeSquad().criminalizeParty(Crime.VANDALISM);
     i.siteStory.addNews(NewsEvent.TAGGING);
     return;
   }
@@ -403,13 +403,13 @@ final public @NonNullByDefault class Site {
 
   private void defeatCCS() {
     // DEAL WITH PRISONERS AND STOP BLEEDING
-    for (final Creature p : i.activeSquad) {
+    for (final Creature p : i.activeSquad()) {
       if (p.prisoner().exists()) {
         if (p.prisoner().get().squad().exists()) {
           p.prisoner().get().squad(null).location(p.base().getNullable())
               .base(p.base().getNullable());
         } else {
-          Interrogation.create(p.prisoner().get(), i.activeSquad.member(0));
+          Interrogation.create(p.prisoner().get(), i.activeSquad().member(0));
         }
         p.prisoner(null);
       }
@@ -445,7 +445,7 @@ final public @NonNullByDefault class Site {
     // Only start to penalize the player's disguise/stealth checks after the
     // first turn.
     timer--;
-    for (final Creature p : i.activeSquad) {
+    for (final Creature p : i.activeSquad()) {
       if (p.isNaked() && p.type().animal() != Animal.ANIMAL) {
         forcecheck = true;
       }
@@ -485,12 +485,12 @@ final public @NonNullByDefault class Site {
         difficulty += 3;
       }
       // Make the attempt!
-      for (final Creature p : i.activeSquad) {
+      for (final Creature p : i.activeSquad()) {
         // Try to sneak.
         int result = p.skill().skillRoll(Skill.STEALTH);
         result -= timer;
         // Sneaking with a party is hard
-        if (result < difficulty + i.activeSquad.size() - 1) {
+        if (result < difficulty + i.activeSquad().size() - 1) {
           // Guns of death and doom are not very casual.
           if (p.weaponCheck() == Quality.POOR) {
             noticed = n;
@@ -512,20 +512,20 @@ final public @NonNullByDefault class Site {
     setView(R.layout.generic);
     // Give feedback on the Liberal Performance
     if (noticed == null) {
-      for (final Creature p : i.activeSquad) {
+      for (final Creature p : i.activeSquad()) {
         p.skill().train(Skill.STEALTH, 10);
       }
       if (timer == 0) {
-        if (i.activeSquad.size() > 1) {
+        if (i.activeSquad().size() > 1) {
           ui().text("The squad fades into the shadows.").color(Color.CYAN).add();
         } else {
-          ui().text(i.activeSquad.member(0).toString() + " fades into the shadows.")
+          ui().text(i.activeSquad().member(0).toString() + " fades into the shadows.")
               .color(Color.CYAN).add();
         }
       }
     } else {
       if (blew_it == null) {
-        for (final Creature p : i.activeSquad) {
+        for (final Creature p : i.activeSquad()) {
           if (p.hasDisguise() != Quality.NONE) {
             p.skill().train(Skill.DISGUISE, 10);
           }
@@ -660,7 +660,7 @@ final public @NonNullByDefault class Site {
     ui(R.id.smcontrols).button('m').text("Map").add();
     ui(R.id.smcontrols).button('s').text("Wait").add();
     if (enemy == 0 || !alarm) {
-      for (final Creature p : i.activeSquad) {
+      for (final Creature p : i.activeSquad()) {
         if (p.weapon().canReload()) {
           ui(R.id.smcontrols).button('l').text("Reload").add();
           break;
@@ -680,7 +680,7 @@ final public @NonNullByDefault class Site {
           || siteLevelmap[locx - 1][locy][locz].flag.contains(TileSpecial.BLOCK)
           || siteLevelmap[locx][locy + 1][locz].flag.contains(TileSpecial.BLOCK)
           || siteLevelmap[locx][locy - 1][locz].flag.contains(TileSpecial.BLOCK)) {
-        for (final Creature p : i.activeSquad) {
+        for (final Creature p : i.activeSquad()) {
           if (p.weapon().weapon().canGraffiti()) {
             graffiti = true;
             break;
@@ -749,7 +749,7 @@ final public @NonNullByDefault class Site {
     }
     // MAKE SURE YOU ARE GUILTY OF SOMETHING
     boolean guilty = false;
-    for (final Creature p : i.activeSquad) {
+    for (final Creature p : i.activeSquad()) {
       if (p.crime().isCriminal()) {
         guilty = true;
       }
@@ -760,10 +760,10 @@ final public @NonNullByDefault class Site {
     final FootChase fc = new FootChase(Encounter.createEncounter(type, level)); // TODO check all
                                                                                 // this
     boolean havecar = false;
-    for (final Creature p : i.activeSquad) {
+    for (final Creature p : i.activeSquad()) {
       if (p.car().exists()) {
         havecar = true;
-        for (final Creature creature : i.activeSquad) {
+        for (final Creature creature : i.activeSquad()) {
           if (creature != null && creature.car().exists()) {
             creature.car(p.car().get());
           }
@@ -780,7 +780,7 @@ final public @NonNullByDefault class Site {
     // If you survived
     if (gotout) {
       // Check for hauled prisoners/corpses
-      for (final Creature p : i.activeSquad) {
+      for (final Creature p : i.activeSquad()) {
         if (p == null) {
           continue;
         }
@@ -794,7 +794,7 @@ final public @NonNullByDefault class Site {
             p.prisoner().get().squad(null).location(p.base().getNullable())
                 .base(p.base().getNullable());
           } else {
-            Interrogation.create(p.prisoner().get(), i.activeSquad.member(0));
+            Interrogation.create(p.prisoner().get(), i.activeSquad().member(0));
           }
           // delete
           // p.prisoner;
@@ -841,7 +841,7 @@ final public @NonNullByDefault class Site {
   private boolean hostageCheck() {
     boolean havehostage = false;
     // Check your whole squad
-    for (final Creature p : i.activeSquad) {
+    for (final Creature p : i.activeSquad()) {
       // If they're unarmed and dragging someone
       if (p.prisoner().exists() && !p.weapon().isArmed()) {
         // And that someone is not an LCS member
@@ -862,7 +862,7 @@ final public @NonNullByDefault class Site {
     if (havehostage) {
       alienationCheck(true);
       crime += 5;
-      i.activeSquad.criminalizeParty(Crime.KIDNAPPING);
+      i.activeSquad().criminalizeParty(Crime.KIDNAPPING);
     }
     return havehostage;
   }
@@ -976,11 +976,11 @@ final public @NonNullByDefault class Site {
   }
 
   private void modeSite() {
-    if (i.activeSquad == null)
+    if (i.activeSquad() == null)
       return;
     Fight.reloadparty();
     boolean bail_on_base = true;
-    if (current == i.activeSquad.base().getNullable()) {
+    if (current == i.activeSquad().base().getNullable()) {
       bail_on_base = false;
     }
     SiteMap.knowmap(locx, locy, locz);
@@ -996,8 +996,8 @@ final public @NonNullByDefault class Site {
       if (changes) {
         setView(R.layout.sitemode);
       }
-      final int partysize = i.activeSquad.size();
-      int partyalive = Filter.count(i.activeSquad, Filter.LIVING);
+      final int partysize = i.activeSquad().size();
+      int partyalive = Filter.count(i.activeSquad(), Filter.LIVING);
       int freeable = 0;
       int enemy = 0;
       int talkers = 0;
@@ -1046,7 +1046,7 @@ final public @NonNullByDefault class Site {
       }
       // PRINT PARTY
       if (changes) {
-        i.activeSquad.printParty();
+        i.activeSquad().printParty();
       }
       // PRINT SITE INSTRUCTIONS
       if (partyalive > 0) {
@@ -1143,14 +1143,14 @@ final public @NonNullByDefault class Site {
       } else if (c == 'o' && partysize > 1) {
         Squad.orderParty();
       } else if (c == '0') {
-        i.activeSquad.highlightedMember(-1);
+        i.activeSquad().highlightedMember(-1);
       } else if (c == 'm') {
         displayMap();
       } else if (c == 'f' && enemy != 0) {
         if (i.currentEncounter().creatures().get(0).health().blood() > 60
             && i.currentEncounter().creatures().get(0).type() == CreatureType.valueOf("COP")) {
           boolean subdue = true;
-          for (final Creature d : i.activeSquad) {
+          for (final Creature d : i.activeSquad()) {
             if (d.health().alive() && d.health().blood() > 40) {
               subdue = false;
               break;
@@ -1167,18 +1167,18 @@ final public @NonNullByDefault class Site {
         // waitOnOK();
         encounter_timer++;
       } else if (c == 'r' && current.lcs().siege.siege && libnum > 6) {
-        ReviewMode.assemblesquad(i.activeSquad);
+        ReviewMode.assemblesquad(i.activeSquad());
         current.autoPromote();
       } else if (c == 'r' && freeable > 0 && (enemy == 0 || !alarm) && !current.lcs().siege.siege) {
         releaseOppressed(partysize, enemy);
       } else if (c >= '1' && c <= '6') {
-        if (i.activeSquad.member(c - '1') != null) {
-          i.activeSquad.highlightedMember(c - '1');
+        if (i.activeSquad().member(c - '1') != null) {
+          i.activeSquad().highlightedMember(c - '1');
         }
       } else if (c == '7') {
-        Squad.fullStatus(i.activeSquad.highlightedMember());
+        Squad.fullStatus(i.activeSquad().highlightedMember());
       } else if (c == 'e') {
-        AbstractItem.equip(i.activeSquad.loot(), null);
+        AbstractItem.equip(i.activeSquad().loot(), null);
         if (enemy > 0 && alarm) {
           setView(R.layout.generic);
           Fight.fight(Fighting.THEM);
@@ -1216,7 +1216,7 @@ final public @NonNullByDefault class Site {
         Advance.creatureAdvance();
         encounter_timer++;
         partyalive = 0;
-        for (final Creature p : i.activeSquad) {
+        for (final Creature p : i.activeSquad()) {
           if (p.health().alive()) {
             partyalive++;
           }
@@ -1230,7 +1230,7 @@ final public @NonNullByDefault class Site {
         locz = nlocz;
         // CHECK FOR EXIT
         if (siteLevelmap[locx][locy][locz].flag.contains(TileSpecial.EXIT)
-            || i.activeSquad.base().getNullable() == current && !current.lcs().siege.siege
+            || i.activeSquad().base().getNullable() == current && !current.lcs().siege.siege
             && bail_on_base) {
           exitSite();
           return;
@@ -1455,7 +1455,7 @@ final public @NonNullByDefault class Site {
 
   private void reflectOnIneptitude() {
     // DESTROY ALL CARS BROUGHT ALONG WITH PARTY
-    for (final Creature p : i.activeSquad) {
+    for (final Creature p : i.activeSquad()) {
       if (!current.lcs().siege.siege && p.car().exists()) {
         final Vehicle v = p.car().get();
         i.vehicle.remove(v);
@@ -1508,7 +1508,7 @@ final public @NonNullByDefault class Site {
             Creature j = null;
             // Check for people who can recruit
             // followers
-            for (final Creature k : i.activeSquad) {
+            for (final Creature k : i.activeSquad()) {
               if (k.subordinatesLeft() > 0) {
                 j = k;
                 break;
@@ -1524,7 +1524,7 @@ final public @NonNullByDefault class Site {
               newcr.hire(j);
               i.pool.add(newcr);
               i.score.recruits++;
-              i.activeSquad.add(newcr);
+              i.activeSquad().add(newcr);
               actgot++;
               partysize++;
             }
@@ -1602,7 +1602,7 @@ final public @NonNullByDefault class Site {
             p.removeFlag(CreatureFlag.SLEEPER);
             ui().text("Sleeper " + p.toString() + " has been outed by your bold attack!").add();
             ui().text("The Liberal is now at your command as a normal squad member.").add();
-            p.base(i.activeSquad.base().getNullable());
+            p.base(i.activeSquad().base().getNullable());
             p.location(p.base().getNullable());
             getch();
           }
@@ -1962,7 +1962,7 @@ final public @NonNullByDefault class Site {
           }
         }
         // DEAL WITH PRISONERS AND STOP BLEEDING
-        for (final Creature p : i.activeSquad) {
+        for (final Creature p : i.activeSquad()) {
           if (p == null) {
             continue;
           }
@@ -1972,7 +1972,7 @@ final public @NonNullByDefault class Site {
               p.prisoner().get().squad(null).location(p.base().getNullable())
                   .base(p.base().getNullable());
             } else {
-              Interrogation.create(p.prisoner().get(), i.activeSquad.member(0));
+              Interrogation.create(p.prisoner().get(), i.activeSquad().member(0));
             }
             // delete
             // p.prisoner;
@@ -2031,7 +2031,7 @@ final public @NonNullByDefault class Site {
         }
       }
     }
-    i.activeSquad.loot().add(item);
+    i.activeSquad().loot().add(item);
     fact("You find " + item.equipTitle());
   }
 
@@ -2059,7 +2059,7 @@ final public @NonNullByDefault class Site {
         AbstractItem<? extends AbstractItemType> b;
         while (lplus > 0) {
           b = i.rng.randFromList(current.lcs().loot);
-          i.activeSquad.loot().add(b);
+          i.activeSquad().loot().add(b);
           current.lcs().loot.remove(b);
           lplus--;
         }
@@ -2069,7 +2069,7 @@ final public @NonNullByDefault class Site {
       tookground = true;
     }
     // MAKE GROUND LOOT INTO MISSION LOOT
-    i.activeSquad.loot().addAll(i.groundLoot());
+    i.activeSquad().loot().addAll(i.groundLoot());
     i.groundLoot().clear();
     if (enemy > 0 && alarm) {
       setView(R.layout.generic);
@@ -2079,8 +2079,8 @@ final public @NonNullByDefault class Site {
       disguiseCheckU(encounter_timer);
     }
     if (tookground) {
-      final Creature beststealer = i.activeSquad.member(0);
-      i.activeSquad.juice(1, 200);
+      final Creature beststealer = i.activeSquad().member(0);
+      i.activeSquad().juice(1, 200);
       alienationCheck(false);
       noticeCheck();
       crime++;
@@ -2099,7 +2099,7 @@ final public @NonNullByDefault class Site {
     int c;
     Creature forcesp = null;
     Creature forcetk = null;
-    for (final Creature p : i.activeSquad) {
+    for (final Creature p : i.activeSquad()) {
       if (p.health().alive()) {
         if (forcesp == null) {
           forcesp = p;
@@ -2129,7 +2129,7 @@ final public @NonNullByDefault class Site {
       ui().text("Which Liberal will speak? (Issues / Dating / Bluff").add();
       int y = '1';
       final StringBuilder sb = new StringBuilder();
-      for (final Creature p : i.activeSquad) {
+      for (final Creature p : i.activeSquad()) {
         if (p.health().alive()) {
           sb.setLength(0);
           sb.append(String.valueOf(y));
@@ -2151,7 +2151,7 @@ final public @NonNullByDefault class Site {
       do {
         c = getch();
         if (c >= '1' && c <= '6') {
-          sp = i.activeSquad.member(c - '1');
+          sp = i.activeSquad().member(c - '1');
           if (sp != null) {
             if (sp.health().alive()) {
               break;
@@ -2229,7 +2229,7 @@ final public @NonNullByDefault class Site {
   private void tryDoor(final int olocx, final int olocy, final int olocz) {
     int c;
     boolean has_security = false;
-    for (final Creature j : i.activeSquad) {
+    for (final Creature j : i.activeSquad()) {
       if (j != null && j.skill().skill(Skill.SECURITY) != 0) {
         has_security = true;
         break;
@@ -2280,7 +2280,7 @@ final public @NonNullByDefault class Site {
           }
           crime++;
           i.siteStory.addNews(NewsEvent.BROKE_DOWN_DOOR);
-          i.activeSquad.criminalizeParty(Crime.BREAKING);
+          i.activeSquad().criminalizeParty(Crime.BREAKING);
         }
         if (actual.madeNoise()) {
           alienationCheck(true);
@@ -2306,7 +2306,7 @@ final public @NonNullByDefault class Site {
             || siteLevelmap[locx][locy + 1][locz].flag.contains(TileSpecial.BLOCK) || siteLevelmap[locx][locy - 1][locz].flag
             .contains(TileSpecial.BLOCK))) {
       boolean spray = false;
-      for (final Creature p : i.activeSquad) {
+      for (final Creature p : i.activeSquad()) {
         if (p == null) {
           break;
         }
@@ -2365,7 +2365,7 @@ final public @NonNullByDefault class Site {
     if (sneakable) {
       // for () {
       squad: for (final Creature f : i.currentEncounter().creatures()) {
-        for (final Creature j : i.activeSquad) {
+        for (final Creature j : i.activeSquad()) {
           if (!j.skill().skillCheck(Skill.STEALTH, CheckDifficulty.HARD)) {
             sneakable = false;
             fact(j + " is spotted by " + f + "!");
@@ -2376,7 +2376,7 @@ final public @NonNullByDefault class Site {
     }
     // If snuck past everyone
     if (sneakable) {
-      for (final Creature j : i.activeSquad) {
+      for (final Creature j : i.activeSquad()) {
         j.skill().train(Skill.STEALTH, 10);
       }
       fact("The squad sneaks past the conservatives!");
@@ -2394,12 +2394,12 @@ final public @NonNullByDefault class Site {
     int hostagefreed = 0;
     int stolen = 0;
     // Police assess stolen goods in inventory
-    for (final AbstractItem<? extends AbstractItemType> l : i.activeSquad.loot()) {
+    for (final AbstractItem<? extends AbstractItemType> l : i.activeSquad().loot()) {
       if (l instanceof Loot) {
         stolen++;
       }
     }
-    for (final Creature p : i.activeSquad) {
+    for (final Creature p : i.activeSquad()) {
       if (p.prisoner().exists()) {
         p.prisoner(null);
         hostagefreed++;
@@ -2407,7 +2407,7 @@ final public @NonNullByDefault class Site {
       p.crime().incrementCrime(Crime.THEFT, stolen);
       p.captureByPolice(Crime.THEFT);
     }
-    i.activeSquad.clear();
+    i.activeSquad().clear();
     for (final Creature p : Filter.of(i.pool, Filter.LIVING)) {
       p.health().stopBleeding();
     }

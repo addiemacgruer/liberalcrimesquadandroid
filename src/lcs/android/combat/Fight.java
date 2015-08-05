@@ -45,7 +45,7 @@ public final @NonNullByDefault class Fight {
     },
     US {
       @Override List<Creature> fighters() {
-        return new ArrayList<Creature>(i.activeSquad);
+        return new ArrayList<Creature>(i.activeSquad());
       }
     },
     THEM {
@@ -56,7 +56,7 @@ public final @NonNullByDefault class Fight {
     BOTH {
       @Override List<Creature> fighters() {
         final List<Creature> rval = new ArrayList<Creature>();
-        rval.addAll(i.activeSquad);
+        rval.addAll(i.activeSquad());
         rval.addAll(i.currentEncounter().creatures());
         return rval;
       }
@@ -92,7 +92,7 @@ public final @NonNullByDefault class Fight {
     final List<Creature> fighters = who.fighters();
     Collections.sort(fighters, Fight.FASTEST);
     for (final Creature p : fighters) {
-      if (i.activeSquad.contains(p)) {
+      if (i.activeSquad().contains(p)) {
         youattack(p);
       } else {
         enemyattack(p);
@@ -111,9 +111,9 @@ public final @NonNullByDefault class Fight {
   /** everybody reload!
    * @param wasteful true will dispose of part-filled clips */
   public static void reloadparty(final boolean wasteful) {
-    if (i.activeSquad == null)
+    if (i.activeSquad() == null)
       return;
-    for (final Creature p : i.activeSquad) {
+    for (final Creature p : i.activeSquad()) {
       if (!p.health().alive()) {
         continue;
       }
@@ -1012,7 +1012,7 @@ public final @NonNullByDefault class Fight {
     final List<Creature> goodtarg = new ArrayList<Creature>();
     final List<Creature> badtarg = new ArrayList<Creature>();
     if (encounter.enemy()) {
-      for (final Creature p : i.activeSquad) {
+      for (final Creature p : i.activeSquad()) {
         if (p.health().alive()) {
           goodtarg.add(p);
         }
@@ -1290,7 +1290,7 @@ public final @NonNullByDefault class Fight {
         && (damAmount > target.health().blood() || damAmount >= 10)
         && (bp == BodyPart.HEAD || bp == BodyPart.BODY)) {
       /* Oh Noes!!!! Find a liberal to jump in front of the bullet!!! */
-      for (final Creature liberal : i.activeSquad) {
+      for (final Creature liberal : i.activeSquad()) {
         if (liberal == target) {
           continue;
         }
@@ -1510,7 +1510,7 @@ public final @NonNullByDefault class Fight {
             break;
           }
           target.health().die();
-          i.activeSquad.remove(target);
+          i.activeSquad().remove(target);
         }
       } else if (target.juice() >= 100) {
         ui().text(target.toString()).add();
@@ -1535,7 +1535,7 @@ public final @NonNullByDefault class Fight {
   }
 
   private static boolean squadIsArmed() {
-    for (final Creature j : i.activeSquad) {
+    for (final Creature j : i.activeSquad()) {
       if (j.weapon().isArmed())
         return true;
     }
@@ -1606,7 +1606,7 @@ public final @NonNullByDefault class Fight {
     if (!target.health().alive()) {
       i.currentEncounter().creatures().remove(target);
       if (!mistake) {
-        for (final Creature q : i.activeSquad) {
+        for (final Creature q : i.activeSquad()) {
           if (q.health().alive()) {
             q.addJuice(5, 500);
           }

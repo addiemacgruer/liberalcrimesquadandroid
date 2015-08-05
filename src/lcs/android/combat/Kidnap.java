@@ -62,7 +62,7 @@ public @NonNullByDefault class Kidnap {
         i.site.alienationCheck(true);
         i.site.alarm(true);
         i.site.crime(i.site.crime() + 5);
-        i.activeSquad.criminalizeParty(Crime.KIDNAPPING);
+        i.activeSquad().criminalizeParty(Crime.KIDNAPPING);
         offendSpecial(target);
       }
     }
@@ -80,7 +80,7 @@ public @NonNullByDefault class Kidnap {
     do {
       ui(R.id.gcontrol).text("Choose a Liberal squad member to do the job.").add();
       int y = '1';
-      for (final Creature creature : i.activeSquad) {
+      for (final Creature creature : i.activeSquad()) {
         if (creature.health().alive() && creature.prisoner().missing()) {
           ui(R.id.gcontrol).button(y++).text(creature.toString()).add();
         }
@@ -94,7 +94,7 @@ public @NonNullByDefault class Kidnap {
       if (c == ENTER)
         return null;
       if (c >= '1' && c < y) {
-        final Creature k = i.activeSquad.member(c - '1');
+        final Creature k = i.activeSquad().member(c - '1');
         if (k.health().alive() && k.prisoner().missing())
           return k;
       }

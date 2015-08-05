@@ -27,7 +27,7 @@ public @NonNullByDefault class Clip extends AbstractItem<ClipType> {
   }
 
   @Override public String equipTitle() {
-    return ideal().toString();
+    return type.toString();
   }
 
   @Override public boolean isEmpty() {
@@ -35,7 +35,7 @@ public @NonNullByDefault class Clip extends AbstractItem<ClipType> {
   }
 
   @Override public boolean merge(final AbstractItem<? extends AbstractItemType> i) {
-    if (i instanceof Clip && ideal() == i.ideal()) {
+    if (i instanceof Clip && type == i.type) {
       number += i.number();
       i.number = 0;
       return true;
@@ -50,19 +50,19 @@ public @NonNullByDefault class Clip extends AbstractItem<ClipType> {
     if (aNumber > number) {
       lNumber = number;
     }
-    final Clip newi = new Clip(ideal());
+    final Clip newi = new Clip(type);
     newi.number = lNumber;
     number -= lNumber;
     return newi;
   }
 
   @Override public String toString() {
-    return ideal().toString();
+    return type.toString();
   }
 
   /** The number of bullets contained in a clip of this kind. */
   int ammoAmmount() {
-    return ideal().ammo;
+    return type.ammo;
   }
 
   private static final long serialVersionUID = Game.VERSION;

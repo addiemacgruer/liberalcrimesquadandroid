@@ -81,7 +81,7 @@ public @NonNullByDefault class Armor extends AbstractItem<ArmorType> {
       return;
     i.site.currentTile().flag.add(TileSpecial.BLOODY2);
     // HIT EVERYTHING
-    for (final Creature p : i.activeSquad) {
+    for (final Creature p : i.activeSquad()) {
       if (!p.isNaked()) {
         if (i.rng.chance(2)) {
           p.getArmor().setBloody(true);
@@ -100,13 +100,13 @@ public @NonNullByDefault class Armor extends AbstractItem<ArmorType> {
   /** Whether this armor conceal a weapon. Depends only on size.
    * @param weapon */
   public boolean concealsWeapon(final Weapon weapon) {
-    return platonicIdeal.concealsWeaponsize(weapon.size());
+    return type.concealsWeaponsize(weapon.size());
   }
 
   /** Whether this armor covers a given bodypart. Not currently used much.
    * @param bodypart */
   public boolean covers(final BodyPart bodypart) {
-    return platonicIdeal.covers(bodypart);
+    return type.covers(bodypart);
   }
 
   /** Damages the part of the armor (if it covers a specific bodypart)
@@ -121,7 +121,7 @@ public @NonNullByDefault class Armor extends AbstractItem<ArmorType> {
    * @param bodypart
    * @return an integer from (0 to 10): all but the heaviest of armors provide 0 */
   public int defense(final BodyPart bodypart) {
-    return platonicIdeal.defense(bodypart);
+    return type.defense(bodypart);
   }
 
   @Override public void displayStats(final int viewID) {
@@ -129,11 +129,11 @@ public @NonNullByDefault class Armor extends AbstractItem<ArmorType> {
         .text(
             "Quality: " + quality + " rate" + (bloody ? ", bloody" : "")
                 + (damaged ? ", damaged" : "")).add();
-    platonicIdeal.displayStats(viewID);
+    type.displayStats(viewID);
   }
 
   @Override public String equipTitle() {
-    String et = platonicIdeal.toString();
+    String et = type.toString();
     if (bloody || damaged || quality != Rating.FIRST) {
       et += "[";
       if (quality != Rating.FIRST) {
@@ -153,13 +153,13 @@ public @NonNullByDefault class Armor extends AbstractItem<ArmorType> {
   /** Bonus to interrogation, due to intimidation or authority.
    * @return an integer bonus, from 0 (naked) to 8 (death squad armor) */
   public int interrogationBasepower() {
-    return platonicIdeal.interrogationBasepower;
+    return type.interrogationBasepower;
   }
 
   /** bonus to interrogation when our guest is drugged.
    * @return 0 (most things) to 4 (surreal things) */
   public int interrogationDrugbonus() {
-    return platonicIdeal.interrogationDrugbonus();
+    return type.interrogationDrugbonus();
   }
 
   /** you've got red on you */
@@ -175,7 +175,7 @@ public @NonNullByDefault class Armor extends AbstractItem<ArmorType> {
   /** whether the armor protects from fire
    * @return true if fireman outfit, false otherwise */
   public boolean isFireprotection() {
-    return platonicIdeal.fireprotection;
+    return type.fireprotection;
   }
 
   /** whether the armor is unbloody and undamaged */
@@ -186,23 +186,23 @@ public @NonNullByDefault class Armor extends AbstractItem<ArmorType> {
   /** is it a mask?
    * @return probably false, masks aren't very useful in game, although they have a cheap drug bonus */
   public boolean isMask() {
-    return platonicIdeal.mask;
+    return type.mask;
   }
 
   /** would the police wear this? */
   public boolean isPolice() {
-    return platonicIdeal.police;
+    return type.police;
   }
 
   /** How hard it is for a given creature to create this outfit.
    * @param cr The creature in question
    * @return an integer, corresponding to a {@link CheckDifficulty} */
   public int makeDifficulty(final Creature cr) {
-    return platonicIdeal.makeDifficulty(cr);
+    return type.makeDifficulty(cr);
   }
 
   @Override public boolean merge(final AbstractItem<? extends AbstractItemType> ai) {
-    if (ai instanceof Armor && platonicIdeal == ai.platonicIdeal) {
+    if (ai instanceof Armor && type == ai.type) {
       final Armor a = (Armor) ai; // cast -XML
       if (bloody == a.bloody && damaged == a.damaged && quality == a.quality) {
         number += a.number;
@@ -217,7 +217,7 @@ public @NonNullByDefault class Armor extends AbstractItem<ArmorType> {
    * expensive (suit|dress)
    * @return an integer from (0 to 4) */
   public int professionalism() {
-    return platonicIdeal.professionalism;
+    return type.professionalism;
   }
 
   /** the quality rating of this outfit
@@ -250,7 +250,7 @@ public @NonNullByDefault class Armor extends AbstractItem<ArmorType> {
 
   @Override public Armor split(final int aNumber) {
     final int n = Math.min(aNumber, number);
-    final Armor newi = new Armor(platonicIdeal, quality);
+    final Armor newi = new Armor(type, quality);
     newi.number = n;
     number -= n;
     return newi;
@@ -259,7 +259,7 @@ public @NonNullByDefault class Armor extends AbstractItem<ArmorType> {
   /** The sneakiness of this outfit.
    * @return an integer between 0 and 3 (ninja suit) */
   public int stealthValue() {
-    return platonicIdeal.stealthValue;
+    return type.stealthValue;
   }
 
   @Override public String toString() {

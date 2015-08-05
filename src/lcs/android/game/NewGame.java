@@ -41,9 +41,9 @@ public @NonNullByDefault class NewGame {
       @Override void create(final Creature boss, final Squad squad, final Location where) {
         for (int j = 0; j < 4; j++) {
           final Creature recruit = CreatureType.withType(CreatureType.valueOf("GANGMEMBER"));
-          if (recruit.weapon().weapon().ideal()
+          if (recruit.weapon().weapon().type
               .equals(Game.type.weapon.get("WEAPON_AUTORIFLE_AK47"))
-              || recruit.weapon().weapon().ideal().equals(Game.type.weapon.get("WEAPON_SMG_MP5"))
+              || recruit.weapon().weapon().type.equals(Game.type.weapon.get("WEAPON_SMG_MP5"))
               || !recruit.weapon().isArmed()) {
             recruit.weapon().giveWeapon(new Weapon("WEAPON_SEMIPISTOL_9MM"), null)
                 .takeClips(new Clip("CLIP_9", 4), 4);
@@ -518,7 +518,7 @@ public @NonNullByDefault class NewGame {
     }
     // newcr.juice=0;
     i.squad.add(newsq);
-    i.activeSquad = newsq;
+    i.setActiveSquad(newsq);
     if (datingLawyer) {
       makeLawyer(newcr, gayLawyer);
     }

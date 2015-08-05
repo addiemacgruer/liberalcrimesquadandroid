@@ -39,7 +39,11 @@ public @NonNullByDefault class Date implements Serializable {
     MEETTOMORROW
   }
 
-  public Creature dater;
+  public Date(Creature dater) {
+    this.dater = dater;
+  }
+
+  public final Creature dater;
 
   public final List<Creature> dates = new ArrayList<Creature>();
 
@@ -72,8 +76,9 @@ public @NonNullByDefault class Date implements Serializable {
     }
     setView(R.layout.generic);
     ui().text(sb.toString()).add();
-    if (dates.size() > 1 && i.rng.chance(dates.size() > 2 ? 4 : 6))
+    if (dates.size() > 1 && i.rng.chance(dates.size() > 2 ? 4 : 6)) {
       return badDate(p);
+    }
     for (final Iterator<Creature> di = new ArrayList<Creature>(dates).iterator(); di.hasNext();) {
       final Creature date = di.next();
       do {
@@ -167,8 +172,9 @@ public @NonNullByDefault class Date implements Serializable {
         }
         if (test) {
           final DateResult result = dateresult(aroll, troll, date, p);
-          if (result == DateResult.ARRESTED)
+          if (result == DateResult.ARRESTED) {
             return true;
+          }
           break;
         }
         if (c == 'c' && p.health().clinicMonths() != 0 && p.health().blood() == 100) {

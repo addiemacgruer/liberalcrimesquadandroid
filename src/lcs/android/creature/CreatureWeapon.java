@@ -42,7 +42,7 @@ public @NonNullByDefault class CreatureWeapon implements Serializable {
 
   public ClipType clipType() {
     if (!clips().isEmpty())
-      return clips().get(0).ideal();
+      return clips().get(0).type;
     return ClipType.none();
   }
 

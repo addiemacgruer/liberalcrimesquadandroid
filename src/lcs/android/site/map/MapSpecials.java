@@ -58,7 +58,7 @@ public @NonNullByDefault class MapSpecials {
     BouncerRejectReason rejected = BouncerRejectReason.NOT_REJECTED;
     // Size up the squad for entry
     if (sleeperBouncer != null) {
-      for (final Creature s : i.activeSquad) {
+      for (final Creature s : i.activeSquad()) {
         // Wrong clothes? Gone
         if (s.isNaked() && s.type().animal() != Animal.ANIMAL) {
           rejected = BouncerRejectReason.NUDE;
@@ -232,9 +232,9 @@ public @NonNullByDefault class MapSpecials {
   }
 
   static void partyrescue() {
-    int freeslots = i.activeSquad.size();
+    int freeslots = i.activeSquad().size();
     int hostslots = 0;
-    for (final Creature p : i.activeSquad) {
+    for (final Creature p : i.activeSquad()) {
       if (p.health().alive() && p.prisoner().missing()) {
         hostslots++;
       }
@@ -242,9 +242,9 @@ public @NonNullByDefault class MapSpecials {
     for (final Creature pl : i.pool) {
       if (pl.location().getNullable() == i.site.current() && !pl.hasFlag(CreatureFlag.SLEEPER)) {
         if (i.rng.chance(2) && freeslots > 0) {
-          for (Creature p : i.activeSquad) {
+          for (Creature p : i.activeSquad()) {
             p = pl;
-            p.squad(i.activeSquad);
+            p.squad(i.activeSquad());
             p.crime().criminalize(Crime.ESCAPED);
             p.addFlag(CreatureFlag.JUST_ESCAPED);
             break;
@@ -253,19 +253,19 @@ public @NonNullByDefault class MapSpecials {
           freeslots--;
           // clearmessagearea();
           ui().text("You've rescued " + pl.toString() + " from the Conservatives.").add();
-          i.activeSquad.printParty();
+          i.activeSquad().printParty();
           getch();
-          pl.location(Location.none()).base(i.activeSquad.base().getNullable());
+          pl.location(Location.none()).base(i.activeSquad().base().getNullable());
         }
       }
     }
     for (final Creature pl : i.pool) {
       if (pl.location().getNullable() == i.site.current() && !pl.hasFlag(CreatureFlag.SLEEPER)) {
         if (hostslots > 0) {
-          for (final Creature p : i.activeSquad) {
+          for (final Creature p : i.activeSquad()) {
             if (p.health().alive() && p.prisoner().missing()) {
               p.prisoner(pl);
-              pl.squad(i.activeSquad);
+              pl.squad(i.activeSquad());
               pl.crime().criminalize(Crime.ESCAPED);
               pl.addFlag(CreatureFlag.JUST_ESCAPED);
               ui().text("You've rescued " + pl.toString() + " from the Conservatives.").add();
@@ -278,7 +278,7 @@ public @NonNullByDefault class MapSpecials {
                       + " will have to haul a Liberal.").add();
               pl.location(Location.none());
               pl.base(p.base().getNullable());
-              i.activeSquad.printParty();
+              i.activeSquad().printParty();
               getch();
               break;
             }

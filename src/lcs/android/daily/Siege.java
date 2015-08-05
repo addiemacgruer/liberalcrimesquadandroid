@@ -133,10 +133,10 @@ public @NonNullByDefault class Siege implements Serializable {
   /** siege - prepares for entering site i.mode to fight the siege */
   public void escapeEngage() {
     Location loc = i.currentLocation;
-    if (i.activeSquad != null && i.activeSquad.location().exists()) {
-      loc = i.activeSquad.location().get();
+    if (i.activeSquad().location().get() != Location.none()) {
+      loc = i.activeSquad().location().get();
     }
-    if (loc == null) {
+    if (loc == Location.none()) {
       return;
     }
     fact("UNDER ATTACK: ESCAPE OR ENGAGE\n\n"
@@ -172,23 +172,23 @@ public @NonNullByDefault class Siege implements Serializable {
     // DELETE ALL SQUADS IN THIS AREA UNLESS THEY ARE THE activesquad
     for (final Iterator<Squad> si = i.squad.iterator(); si.hasNext();) {
       final Squad sq = si.next();
-      if (sq == i.activeSquad) {
+      if (sq == i.activeSquad()) {
         continue;
       }
       if (sq.size() > 0) {
         if (sq.location().getNullable() == loc) {
-          if (i.activeSquad != null) {
+          if (i.activeSquad() != null) {
             for (final Creature p : sq) {
               p.squad(null);
             }
             si.remove();
           } else {
-            i.activeSquad = sq;
+            i.setActiveSquad(sq);
           }
         }
       }
     }
-    if (i.activeSquad == null) {
+    if (i.activeSquad() == null) {
       final Squad squad = new Squad();
       i.squad.add(squad);
       if (i.currentLocation.lcs().frontBusiness == null) {
@@ -204,7 +204,7 @@ public @NonNullByDefault class Siege implements Serializable {
           break;
         }
       }
-      i.activeSquad = squad;
+      i.setActiveSquad(squad);
     }
     loc.autoPromote();
     final NewsStory ns = new NewsStory(underAttack ? StoryType.SQUAD_FLEDATTACK
@@ -232,11 +232,11 @@ public @NonNullByDefault class Siege implements Serializable {
       final Location homes = AbstractSiteType.type(Shelter.class).getLocation();
       // dump retrieved loot in homeless shelter - is there anywhere
       // better to put it?
-      if (i.activeSquad != null && homes != null) {
-        homes.lcs().loot.addAll(i.activeSquad.loot());
-        i.activeSquad.loot().clear();
+      if (i.activeSquad() != null && homes != null) {
+        homes.lcs().loot.addAll(i.activeSquad().loot());
+        i.activeSquad().loot().clear();
       }
-      i.activeSquad = null;
+      i.setActiveSquad(null);
       /* active squad cannot be disbanded in CommonActions.removesquadinfo, but we need to disband
        * current squad as the people are going to be 'away'. GET RID OF DEAD, etc. */
       i.site.current().renting(null);
@@ -290,8 +290,8 @@ public @NonNullByDefault class Siege implements Serializable {
     if (i.currentLocation != null) {
       loc = i.currentLocation;
     }
-    if (i.activeSquad != null && i.activeSquad.location().exists()) {
-      loc = i.activeSquad.location().get();
+    if (i.activeSquad() != null && i.activeSquad().location().exists()) {
+      loc = i.activeSquad().location().get();
     }
     if (loc == null) {
       return;
@@ -477,8 +477,8 @@ public @NonNullByDefault class Siege implements Serializable {
     if (i.currentLocation != null) {
       loc = i.currentLocation;
     }
-    if (i.activeSquad != null && i.activeSquad.location().exists()) {
-      loc = i.activeSquad.location().get();
+    if (i.activeSquad() != null && i.activeSquad().location().exists()) {
+      loc = i.activeSquad().location().get();
     }
     if (loc == null) {
       return;
@@ -498,19 +498,19 @@ public @NonNullByDefault class Siege implements Serializable {
     // DELETE ALL SQUADS IN THIS AREA UNLESS THEY ARE THE i.activesquad
     for (final Iterator<Squad> sqi = i.squad.iterator(); sqi.hasNext();) {
       final Squad sq = sqi.next();
-      if (sq == i.activeSquad) {
+      if (sq == i.activeSquad()) {
         continue;
       }
       if (sq.size() > 0) {
         if (sq.location().getNullable() == loc) {
-          if (i.activeSquad != null) {
+          if (i.activeSquad() != null) {
             for (final Creature p : sq) {
               p.squad(null);
             }
             // delete sq;
             sqi.remove();
           } else {
-            i.activeSquad = sq;
+            i.setActiveSquad(sq);
           }
         }
       }
@@ -531,7 +531,7 @@ public @NonNullByDefault class Siege implements Serializable {
         break;
       }
     }
-    i.activeSquad = squad;
+    i.setActiveSquad(squad);
     // MAKE SURE PARTY IS ORGANIZED
     loc.autoPromote();
     // START FIGHTING
@@ -603,7 +603,7 @@ public @NonNullByDefault class Siege implements Serializable {
       setView(R.layout.hospital);
       locale.toString();
       // Player's party
-      i.activeSquad.printParty();
+      i.activeSquad().printParty();
       if (partyalive > 0) {
         // Options
         maybeAddButton(R.id.gcontrol, 'o', "Change the squad's Liberal order", partysize > 1);
@@ -631,7 +631,7 @@ public @NonNullByDefault class Siege implements Serializable {
           Squad.orderParty();
         }
         // View status
-        i.activeSquad.displaySquadInfo(c);
+        i.activeSquad().displaySquadInfo(c);
         // Surrender
         if (c == 'g') {
           giveup();
@@ -641,7 +641,7 @@ public @NonNullByDefault class Siege implements Serializable {
         if (c == 'd') {
           if (siegeEncounter.creatures().get(0).type() == CreatureType.valueOf("COP")) {
             i.siteStory.addNews(NewsEvent.FOOT_CHASE);
-            i.activeSquad.criminalizeParty(Crime.RESIST);
+            i.activeSquad().criminalizeParty(Crime.RESIST);
           }
           final FootChase fc = new FootChase(siegeEncounter);
           fc.encounter();

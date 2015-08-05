@@ -159,7 +159,7 @@ public @NonNullByDefault class Health implements Serializable {
           || i.issue(Issue.ANIMALRESEARCH).law() == Alignment.ELITELIBERAL) {
         i.site.crime(i.site.crime() + 10);
         i.siteStory.addNews(NewsEvent.KILLED_SOMEBODY);
-        i.activeSquad.criminalizeParty(Crime.MURDER);
+        i.activeSquad().criminalizeParty(Crime.MURDER);
       }
     }
     if (i.mode() == GameMode.SITE) {
@@ -269,7 +269,7 @@ public @NonNullByDefault class Health implements Serializable {
       if (c.base().exists() && c.base().get().lcs().siege.siege) {
         c.base(hs);
       }
-      c.location(c.base().getNullable());
+      c.location(c.base().get());
     }
   }
 

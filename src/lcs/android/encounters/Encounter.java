@@ -90,7 +90,7 @@ public abstract @NonNullByDefault class Encounter implements Serializable {
 
   private static final long serialVersionUID = Game.VERSION;
 
-  @Nullable public static Encounter createEncounter(@Nullable final AbstractSiteType sitetype,
+  public static Encounter createEncounter(@Nullable final AbstractSiteType sitetype,
       final int siteCrime) {
     if (siteCrime == 0) {
       return new EmptyEncounter();

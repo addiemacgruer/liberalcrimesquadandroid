@@ -58,16 +58,16 @@ public @NonNullByDefault class CarChase extends Encounter {
     sq.add(liberal);
     liberal.car(vehicle).driver(true);
     boolean ret = false;
-    if (i.activeSquad != null) {
-      final Squad originalActiveSquad = i.activeSquad;
-      final int ops = i.activeSquad.highlightedMember();
-      i.activeSquad = sq;
-      i.activeSquad.highlightedMember(0);
+    if (i.activeSquad() != null) {
+      final Squad originalActiveSquad = i.activeSquad();
+      final int ops = i.activeSquad().highlightedMember();
+      i.setActiveSquad(sq);
+      i.activeSquad().highlightedMember(0);
       ret = encounter();
-      i.activeSquad.highlightedMember(ops);
-      i.activeSquad = originalActiveSquad;
+      i.activeSquad().highlightedMember(ops);
+      i.setActiveSquad(originalActiveSquad);
     } else {
-      i.activeSquad = sq;
+      i.setActiveSquad(sq);
       ret = encounter();
     }
     if (ret) {
@@ -85,7 +85,7 @@ public @NonNullByDefault class CarChase extends Encounter {
     if (encounter.isEmpty())
       return true;
     friendcar.clear();
-    if (i.activeSquad != null) {
+    if (i.activeSquad() != null) {
       addFriendlyCarDrivers();
     }
     i.mode(GameMode.CHASECAR);
@@ -96,7 +96,7 @@ public @NonNullByDefault class CarChase extends Encounter {
     do {
       int partysize = 0;
       int partyalive = 0;
-      for (final Creature p : i.activeSquad) {
+      for (final Creature p : i.activeSquad()) {
         if (p != null) {
           partysize++;
         } else {
@@ -109,7 +109,7 @@ public @NonNullByDefault class CarChase extends Encounter {
       setView(R.layout.hospital);
       ui().text(location.toString()).add();
       // PRINT PARTY
-      i.activeSquad.printParty();
+      i.activeSquad().printParty();
       if (partyalive > 0) {
         // PRINT DRIVING SITUATION AND INSTRUCTIONS
         if (obstacle == CarChaseObstacles.NONE) {
@@ -149,7 +149,7 @@ public @NonNullByDefault class CarChase extends Encounter {
       clearChildren(R.id.gcontrol);
       if (partyalive == 0 && c == 'c') {
         // DESTROY ALL CARS BROUGHT ALONG WITH PARTY
-        for (final Creature p : i.activeSquad) {
+        for (final Creature p : i.activeSquad()) {
           if (p == null) {
             continue;
           }
@@ -157,10 +157,10 @@ public @NonNullByDefault class CarChase extends Encounter {
             i.vehicle.remove(p.car().get());
           }
         }
-        for (final Creature p : i.activeSquad) {
+        for (final Creature p : i.activeSquad()) {
           p.health().die();
         }
-        i.activeSquad.clear();
+        i.activeSquad().clear();
         EndGame.endcheck(null);
         i.mode(GameMode.BASE);
         return false;
@@ -169,13 +169,13 @@ public @NonNullByDefault class CarChase extends Encounter {
         if (c == 'o' && partysize > 1) {
           Squad.orderParty();
         }
-        i.activeSquad.displaySquadInfo(c);
+        i.activeSquad().displaySquadInfo(c);
         if (c == 'b') {
           for (final Vehicle v : friendcar) {
             i.vehicle.remove(v);
           }
           friendcar.clear();
-          for (final Creature p : i.activeSquad) {
+          for (final Creature p : i.activeSquad()) {
             if (p == null) {
               continue;
             }
@@ -193,7 +193,7 @@ public @NonNullByDefault class CarChase extends Encounter {
               if (location != null) {
                 i.siteStory.addNews(NewsEvent.CARCHASE);
               }
-              i.activeSquad.criminalizeParty(Crime.RESIST);
+              i.activeSquad().criminalizeParty(Crime.RESIST);
             }
             evasiveDrive();
             Fight.fight(Fighting.BOTH);
@@ -211,7 +211,7 @@ public @NonNullByDefault class CarChase extends Encounter {
               if (location != null) {
                 i.siteStory.addNews(NewsEvent.CARCHASE);
               }
-              i.activeSquad.criminalizeParty(Crime.RESIST);
+              i.activeSquad().criminalizeParty(Crime.RESIST);
             }
             Fight.fight(Fighting.BOTH);
             Advance.creatureAdvance();
@@ -219,7 +219,7 @@ public @NonNullByDefault class CarChase extends Encounter {
               return new FootChase(this).encounter();
           }
           if (c == 'e') {
-            AbstractItem.equip(i.activeSquad.loot(), null);
+            AbstractItem.equip(i.activeSquad().loot(), null);
           }
         } else {
           switch (obstacle) {
@@ -248,7 +248,7 @@ public @NonNullByDefault class CarChase extends Encounter {
         // THEN LEAVE
         partysize = 0;
         partyalive = 0;
-        for (final Creature p : i.activeSquad) {
+        for (final Creature p : i.activeSquad()) {
           if (p != null) {
             partysize++;
           } else {
@@ -300,7 +300,7 @@ public @NonNullByDefault class CarChase extends Encounter {
   }
 
   private void addFriendlyCarDrivers() {
-    for (final Creature p : i.activeSquad) {
+    for (final Creature p : i.activeSquad()) {
       if (p.car().exists()) {
         final Vehicle v = p.car().get();
         for (final Vehicle v2 : friendcar) {
@@ -318,7 +318,7 @@ public @NonNullByDefault class CarChase extends Encounter {
     i.vehicle.removeAll(friendcar);
     friendcar.clear();
     int hostagefreed = 0;
-    for (final Creature p : i.activeSquad) {
+    for (final Creature p : i.activeSquad()) {
       p.squad(null).car(null).location(ps);
       p.weapon().dropWeaponsAndClips(null);
       p.activity(BareActivity.noActivity());
@@ -329,7 +329,7 @@ public @NonNullByDefault class CarChase extends Encounter {
         p.freeHostage(Creature.Situation.CAPTURED);
       }
     }
-    i.activeSquad.clear();
+    i.activeSquad().clear();
     for (final Creature p : i.pool) {
       p.health().stopBleeding();
     }
@@ -345,7 +345,7 @@ public @NonNullByDefault class CarChase extends Encounter {
 
   private void evasiveDrive() {
     final List<Integer> yourrolls = new ArrayList<Integer>();
-    for (final Creature p : i.activeSquad) {
+    for (final Creature p : i.activeSquad()) {
       if (p == null) {
         continue;
       }

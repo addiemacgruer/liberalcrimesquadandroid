@@ -35,13 +35,13 @@ import org.eclipse.jdt.annotation.Nullable;
       clipTypeCount = new Range(ammo[1]);
     } else {
       clipType = null;
-      clipTypeCount = null;
+      clipTypeCount = Range.of(0);
     }
   }
 
   @Nullable private final ClipType clipType;
 
-  @Nullable private final Range clipTypeCount;
+  private final Range clipTypeCount;
 
   private final WeaponType weaponType;
 
@@ -57,6 +57,7 @@ import org.eclipse.jdt.annotation.Nullable;
     }
     if (clipType != null) {
       final int count = clipTypeCount.aValue();
+      assert clipType != null;
       final Clip clip = new Clip(clipType, count);
       creature.weapon().takeClips(clip, count);
     }

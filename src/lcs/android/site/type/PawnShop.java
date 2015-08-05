@@ -28,8 +28,8 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
   private static final long serialVersionUID = Game.VERSION;
 
   public static void pawnshop(final Location loc) {
-    i.activeSquad.location(loc);
+    i.activeSquad().location(loc);
     final Shop pawnshop = new Shop("pawnshop.xml");
-    pawnshop.enter(i.activeSquad);
+    pawnshop.enter(i.activeSquad());
   }
 }

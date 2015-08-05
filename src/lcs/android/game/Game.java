@@ -50,6 +50,7 @@ import lcs.android.politics.Politics;
 import lcs.android.scoring.HighScore;
 import lcs.android.site.Site;
 import lcs.android.site.Squad;
+import lcs.android.site.SquadList;
 import lcs.android.site.creation.SiteMap;
 import lcs.android.site.map.MapTile;
 import lcs.android.util.Color;
@@ -101,9 +102,6 @@ public final @NonNullByDefault class Game implements Serializable {
   /** Records how the player wants various menu lists of creatures presented. */
   public final Map<CreatureList, SortingChoice> activeSortingChoice = SparseMap
       .of(CreatureList.class);
-
-  /** The squad we're working with at the moment. */
-  public Squad activeSquad;
 
   /** How many amendments there have been to the US constitution. Starts at 28; goes up if we
    * implement some Arch-(Liberal|Conservative) amendments. */
@@ -205,7 +203,7 @@ public final @NonNullByDefault class Game implements Serializable {
   public NewsStory siteStory = new NewsStory(StoryType.NO_STORY);
 
   /** a list of all your Liberal squads. */
-  public final List<Squad> squad = new ArrayList<Squad>();
+  public final SquadList squad = new SquadList();
 
   /** The supreme court of the United States. LCS for DOS did have these as a pair of arrays (names /
    * alignment), but Creatures aren't that expensive to create, and it means that in future we could
@@ -243,6 +241,10 @@ public final @NonNullByDefault class Game implements Serializable {
   private GameMode mode = GameMode.TITLE;
 
   private final Map<Issue, Attitude> issues = new HashMap<Issue, Attitude>();
+
+  public Squad activeSquad() {
+    return squad.current();
+  }
 
   /** get currentEncounter.
    * @return currentEncounter */
@@ -314,6 +316,10 @@ public final @NonNullByDefault class Game implements Serializable {
   @Setter public void mode(final GameMode aMode) {
     Log.i("LCS", "MODE: " + mode + " -> " + aMode);
     mode = aMode;
+  }
+
+  public void setActiveSquad(Squad activeSquad) {
+    squad.select(activeSquad);
   }
 
   private void initGame() {

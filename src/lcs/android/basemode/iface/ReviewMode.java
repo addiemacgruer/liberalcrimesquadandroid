@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -18,7 +17,6 @@ import lcs.android.creature.Creature;
 import lcs.android.creature.CreatureFlag;
 import lcs.android.creature.Gender;
 import lcs.android.creature.skill.Skill;
-import lcs.android.game.GameMode;
 import lcs.android.items.AbstractItem;
 import lcs.android.items.AbstractItemType;
 import lcs.android.law.Crime;
@@ -36,23 +34,21 @@ import android.util.Log;
 public @NonNullByDefault class ReviewMode {
   private ReviewMode() {}
 
-  public static void assemblesquad(final Squad aSquad) {
+  public static void assemblesquad(@Nullable final Squad aSquad) {
     Squad squad = aSquad;
     boolean newsquad = false;
     if (squad == null) {
-      i.activeSquad = squad = new Squad();
+      i.setActiveSquad(squad = new Squad());
       newsquad = true;
     }
     final Location culloc = i.currentLocation; // squad.location().getNullable();
     final List<Creature> temppool = new ArrayList<Creature>();
-    if (culloc != null) {
-      for (final Creature p : Filter.of(i.pool, Filter.ALL)) {
-        if (p.health().alive() && p.alignment() == Alignment.LIBERAL
-            && p.health().clinicMonths() == 0 && p.datingVacation() == 0 && p.hiding() == 0
-            && !p.hasFlag(CreatureFlag.SLEEPER) && p.location().exists()
-            && !p.location().get().type().isPrison() && (p.location().get() == culloc)) {
-          temppool.add(p);
-        }
+    for (final Creature p : Filter.of(i.pool, Filter.ALL)) {
+      if (p.health().alive() && p.alignment() == Alignment.LIBERAL
+          && p.health().clinicMonths() == 0 && p.datingVacation() == 0 && p.hiding() == 0
+          && !p.hasFlag(CreatureFlag.SLEEPER) && p.location().exists()
+          && !p.location().get().type().isPrison() && (p.location().get() == culloc)) {
+        temppool.add(p);
       }
     }
     i.activeSortingChoice.get(CreatureList.ASSEMBLESQUAD).sort(temppool);
@@ -66,7 +62,7 @@ public @NonNullByDefault class ReviewMode {
     Color color = Color.WHITE;
     final StringBuilder sb = new StringBuilder();
     do {
-      final int squadsize = i.activeSquad.size();
+      final int squadsize = i.activeSquad().size();
       setView(R.layout.generic);
       if (squadsize < 6) {
         ui().text("Assemble the squad!").add();
@@ -76,7 +72,7 @@ public @NonNullByDefault class ReviewMode {
       if (newsquad) {
         ui().text("New Squad").add();
       } else {
-        ui().text("Squad: " + i.activeSquad.toString()).add();
+        ui().text("Squad: " + i.activeSquad().toString()).add();
       }
       ui(R.id.gcontrol).text("CODE NAME - SKILL - HEALTH - PROFESSION").add();
       int y = 'a';
@@ -88,14 +84,14 @@ public @NonNullByDefault class ReviewMode {
           skill += p.skill().skill(sk);
         }
         sb.append(skill).append(" - ").append(p.health().healthStat()).append(" - ");
-        if (p.squad().getNullable() == i.activeSquad) {
+        if (p.squad().getNullable() == i.activeSquad()) {
           sb.append("SQUAD");
           color = Color.GREEN;
         } else if (p.squad().getNullable() != null) {
           sb.append("OTHER");
           color = Color.YELLOW;
-        } else if (i.activeSquad.location().exists()) {
-          if (i.activeSquad.location().get() != p.location().get()) {
+        } else if (i.activeSquad().location().exists()) {
+          if (i.activeSquad().location().get() != p.location().get()) {
             sb.append("AWAY");
             color = Color.BLUE;
           } else if (p.activity().type() == Activity.NONE) {
@@ -133,14 +129,14 @@ public @NonNullByDefault class ReviewMode {
         if (liberal == null) {
           continue;
         }
-        if (squadsize != 0 && i.activeSquad.location() != liberal.location()) {
+        if (squadsize != 0 && i.activeSquad().location() != liberal.location()) {
           fact("Liberals must be in the same location to form a Squad.");
         } else if (!liberal.health().canWalk() && !liberal.hasFlag(CreatureFlag.WHEELCHAIR)) {
           fact("Squad Liberals must be able to move around.  Have this Liberal procure a wheelchair.");
         } else if (liberal.squad().getNullable() == squad) {
           squad.remove(liberal);
         } else if (squadsize < 6) {
-          i.activeSquad.add(liberal);
+          i.activeSquad().add(liberal);
         }
       }
       if (c == '7') {
@@ -151,7 +147,7 @@ public @NonNullByDefault class ReviewMode {
         // CHECK IF GOOD
         boolean good = true;
         boolean care = false;
-        for (final Creature p : i.activeSquad) {
+        for (final Creature p : i.activeSquad()) {
           if (p.alignment() == Alignment.LIBERAL) {
             care = true;
             break;
@@ -164,35 +160,21 @@ public @NonNullByDefault class ReviewMode {
         fact("You cannot form a Squad with only Conservatives!");
       }
       if (c == '9') {
-        for (final Creature p : i.activeSquad) {
+        for (final Creature p : i.activeSquad()) {
           p.squad(null);
         }
-        i.activeSquad.clear();
+        i.activeSquad().clear();
       }
     } while (true);
     // FINALIZE NEW SQUADS
-    boolean hasmembers = i.activeSquad.size() > 0;
+    boolean hasmembers = i.activeSquad().size() > 0;
     if (newsquad) {
       if (hasmembers) {
-        i.activeSquad.name(query("What shall we designate this Liberal squad?",
-            i.activeSquad.toString()));
-        i.squad.add(i.activeSquad);
+        i.activeSquad().name(
+            query("What shall we designate this Liberal squad?", i.activeSquad().toString()));
+        i.squad.add(i.activeSquad());
       } else {
-        i.activeSquad = null;
-      }
-    }
-    for (final Iterator<Squad> is = i.squad.iterator(); is.hasNext();) {
-      final Squad sq = is.next();
-      hasmembers = sq.size() > 0;
-      if (!hasmembers && i.mode() == GameMode.BASE) {
-        if (squadloc.get(sq) != null) {
-          squadloc.get(sq).lcs().loot.addAll(sq.loot());
-          sq.loot().clear();
-        }
-        if (i.activeSquad == sq) {
-          i.activeSquad = null;
-        }
-        is.remove();
+        i.setActiveSquad(null);
       }
     }
   }
@@ -212,7 +194,7 @@ public @NonNullByDefault class ReviewMode {
         sb.append(" - ");
         if (p.location().exists()) {
           sb.append(p.location().get().toString());
-          if (p == i.activeSquad) {
+          if (p == i.activeSquad()) {
             sb.append(" (active squad)");
           }
           sb.append(" - ");
@@ -272,10 +254,10 @@ public @NonNullByDefault class ReviewMode {
       if (c >= 'a') {
         final Squad sq = i.squad.get(c - 'a');
         if (sq != null) {
-          if (sq == i.activeSquad) {
+          if (sq == i.activeSquad()) {
             assemblesquad(sq);
           } else {
-            i.activeSquad = sq;
+            i.setActiveSquad(sq);
           }
         }
       }
@@ -287,8 +269,8 @@ public @NonNullByDefault class ReviewMode {
       }
       if (c == 12) {
         assemblesquad(null);
-        if (i.activeSquad == null && i.squad.size() > 0) {
-          i.activeSquad = i.squad.get(i.squad.size() - 1);
+        if (i.activeSquad() == null && i.squad.size() > 0) {
+          i.setActiveSquad(i.squad.get(i.squad.size() - 1));
         }
       }
       if (c == 13) {

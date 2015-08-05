@@ -31,7 +31,7 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
       i.site.currentTile().flag.add(TileSpecial.FIRE_START);
       i.site.crime(i.site.crime() + 3);
       a.addJuice(5, 500);
-      i.activeSquad.criminalizeParty(Crime.ARSON);
+      i.activeSquad().criminalizeParty(Crime.ARSON);
       i.siteStory.addNews(NewsEvent.ARSON);
     }
   }

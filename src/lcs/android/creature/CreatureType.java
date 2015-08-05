@@ -779,10 +779,9 @@ public @NonNullByDefault class CreatureType implements Configurable, Serializabl
    * @return a Creature. */
   public static Creature withType(final CreatureType template) {
     CreatureType modifiedTemplate = template;
-    final Creature cr = new Creature(modifiedTemplate.animalGloss);
     if (modifiedTemplate == CreatureType.valueOf("COP")
         && i.issue(Issue.POLICEBEHAVIOR).law() == Alignment.ELITELIBERAL
-        && cr.alignment() == Alignment.LIBERAL && i.rng.likely(3)) {
+        && template.alignment == Alignment.LIBERAL && i.rng.likely(3)) {
       modifiedTemplate = CreatureType.valueOf("POLICE_NEGOTIATOR");
     }
     if (modifiedTemplate == CreatureType.valueOf("DEATHSQUAD")
@@ -797,6 +796,7 @@ public @NonNullByDefault class CreatureType implements Configurable, Serializabl
     if (modifiedTemplate == CreatureType.valueOf("FIREFIGHTER") && !i.freeSpeech()) {
       modifiedTemplate = CreatureType.valueOf("FIREMAN");
     }
+    final Creature cr = new Creature(modifiedTemplate.animalGloss, modifiedTemplate);
     cr.squad(null);
     cr.type(modifiedTemplate);
     if (modifiedTemplate.names.size() > 0) {

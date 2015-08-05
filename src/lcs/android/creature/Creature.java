@@ -52,8 +52,6 @@ import lcs.android.util.Setter;
 import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.jdt.annotation.Nullable;
 
-import android.util.Log;
-
 public @NonNullByDefault class Creature implements Serializable {
   public enum Situation {
     TURNED,
@@ -61,18 +59,20 @@ public @NonNullByDefault class Creature implements Serializable {
     CAPTURED
   }
 
-  Creature(final Animal animal) {
+  Creature(final Animal animal, CreatureType type) {
     genderLiberal = genderConservative = i.rng.choice(Gender.MALE, Gender.FEMALE);
     properName = new CreatureName(genderLiberal, animal);
+    name = properName.toString();
+    this.type = type;
   }
 
   private AbstractActivity activity = BareActivity.noActivity();
 
   private Alignment alignment = Alignment.MODERATE;
 
-  @Nullable private Armor armor = null;
+  private Armor armor = Armor.none();
 
-  @Nullable private Location base = null;
+  private Location base = Location.none();
 
   private final LcsDate birth = LcsDate.withAge(18 + i.rng.nextInt(40));
 
@@ -108,7 +108,7 @@ public @NonNullByDefault class Creature implements Serializable {
 
   private float juice = 0;
 
-  private Location location = null;
+  private Location location = Location.none();
 
   private int money = i.rng.nextInt(21) + 20;
 
@@ -136,7 +136,7 @@ public @NonNullByDefault class Creature implements Serializable {
 
   private final CreatureWeapon weapon = new CreatureWeapon(this);
 
-  @Nullable private Location workLocation = null;
+  private Location workLocation = Location.none();
 
   public AbstractActivity activity() {
     return activity;
@@ -207,12 +207,7 @@ public @NonNullByDefault class Creature implements Serializable {
   /** Sets a creature's new base. Prints a log trace if set to null.
    * @param aBase base to set
    * @return this */
-  public Creature base(@Nullable final Location aBase) {
-    if (aBase == null) {
-      Log.e("LCS", "Creature.base->null:" + toString(), new RuntimeException("thread trace"));
-    }
-    Log.e("LCS", "Set base:" + toString() + " to:" + aBase, new IllegalArgumentException(
-        "Set location to null"));
+  public Creature base(final Location aBase) {
     base = aBase;
     return this;
   }
@@ -295,7 +290,7 @@ public @NonNullByDefault class Creature implements Serializable {
     return Maybe.ofNullable(car);
   }
 
-  @Setter public Creature car(final Vehicle aCar) {
+  @Setter public Creature car(@Nullable final Vehicle aCar) {
     car = aCar;
     return this;
   }
@@ -607,17 +602,18 @@ public @NonNullByDefault class Creature implements Serializable {
   /** hostage freed due to host unable to haul
    * @param why they've been freed, not null */
   public void freeHostage(final Situation situation) {
-    if (prisoner == null || !prisoner.health.alive()) {
+    final Creature mPrisoner = prisoner;
+    if (mPrisoner == null || !mPrisoner.health.alive()) {
       return;
     }
     switch (situation) {
     case TURNED:
-      if (prisoner.squad == null) {
+      if (mPrisoner.squad == null) {
         ui().text(" and a hostage is freed").add();
       } else {
         ui().text(" and ").add();
-        ui().text(prisoner.name).add();
-        if (prisoner.hasFlag(CreatureFlag.JUST_ESCAPED)) {
+        ui().text(mPrisoner.name).add();
+        if (mPrisoner.hasFlag(CreatureFlag.JUST_ESCAPED)) {
           ui().text(" is recaptured").add();
         } else {
           ui().text(" is captured").add();
@@ -625,11 +621,11 @@ public @NonNullByDefault class Creature implements Serializable {
       }
       break;
     case DIED:
-      if (prisoner.squad == null) {
+      if (mPrisoner.squad == null) {
         ui().text("A hostage escapes!").add();
       } else {
-        ui().text(prisoner.name).add();
-        if (prisoner.hasFlag(CreatureFlag.JUST_ESCAPED)) {
+        ui().text(mPrisoner.name).add();
+        if (mPrisoner.hasFlag(CreatureFlag.JUST_ESCAPED)) {
           ui().text(" is recaptured.").add();
         } else {
           ui().text(" is captured.").add();
@@ -708,11 +704,7 @@ public @NonNullByDefault class Creature implements Serializable {
 
   public Quality hasDisguise() {
     AbstractSiteType mType = null;
-    if (i.site.current() != null) {
-      mType = i.site.current().type();
-    } else {
-      return Quality.NONE; // otherwise we'll NPE on the following checks
-    }
+    mType = i.site.current().type();
     Quality uniformed = Quality.NONE;
     if (i.site.current().lcs().siege.siege) {
       uniformed = i.site.current().lcs().siege.siegetype.uniform.hasDisguise(this);
@@ -793,7 +785,7 @@ public @NonNullByDefault class Creature implements Serializable {
   }
 
   public boolean isNaked() {
-    return armor == null;
+    return armor == Armor.none();
   }
 
   public boolean isPrisoner() {
@@ -908,11 +900,11 @@ public @NonNullByDefault class Creature implements Serializable {
     return type.observationSkill();
   }
 
-  @Getter public Vehicle prefCar() { // TODO make maybe
+  @Nullable @Getter public Vehicle prefCar() { // TODO make maybe
     return prefCar;
   }
 
-  @Setter public Creature prefCar(final Vehicle prefCar) {
+  @Setter public Creature prefCar(@Nullable final Vehicle prefCar) {
     this.prefCar = prefCar;
     return this;
   }
@@ -945,8 +937,10 @@ public @NonNullByDefault class Creature implements Serializable {
       } else if (type.idName().equals("JUDGE_CONSERVATIVE")) {
         str.append(getString(R.string.cdJudgeConservative));
       } else {
-        assert prisoner != null;
-        str.append(prisoner.name);
+        final Creature prisoner2 = prisoner;
+        if (prisoner2 != null) {
+          str.append(prisoner2.name);
+        }
       }
     }
     setText(R.id.asName, str.toString());
@@ -1169,7 +1163,7 @@ public @NonNullByDefault class Creature implements Serializable {
         .add();
     ui(R.id.gcontrol).button('a')
         .text(format("Come to %s as a regular member.", recruiter.location.toString())).add();
-    if (workLocation != null) {
+    if (workLocation != Location.none()) {
       ui(R.id.gcontrol).button('b')
           .text(format("Stay at %s as a sleeper agent.", workLocation.toString())).add();
     }
@@ -1177,7 +1171,7 @@ public @NonNullByDefault class Creature implements Serializable {
     do {
       keystroke = Curses.getch();
     } while (keystroke != 'a' && keystroke != 'b');
-    if (workLocation != null && keystroke == 'b') {
+    if (workLocation != Location.none() && keystroke == 'b') {
       addFlag(CreatureFlag.SLEEPER);
       location = base = workLocation;
       workLocation.interrogated(true).hidden(false);
@@ -1228,10 +1222,10 @@ public @NonNullByDefault class Creature implements Serializable {
   /** Discards any clothing worn to a lootpile
    * @param lootpile can be null */
   public void strip(@Nullable final List<AbstractItem<? extends AbstractItemType>> lootpile) {
-    if (armor != null && lootpile != null) {
+    if (armor != Armor.none() && lootpile != null) {
       lootpile.add(armor);
     }
-    armor = null;
+    armor = Armor.none();
   }
 
   @Getter public int stunned() {
@@ -1351,7 +1345,7 @@ public @NonNullByDefault class Creature implements Serializable {
       name = "Soldier";
     } else if (getArmor().ofType("ARMOR_HEAVYARMOR")) {
       name = "Hardened Veteran";
-    } else if (weapon().weapon().ideal().equals(Game.type.weapon.get("WEAPON_SHOTGUN_PUMP"))
+    } else if (weapon().weapon().type.equals(Game.type.weapon.get("WEAPON_SHOTGUN_PUMP"))
         || i.rng.nextInt(2) == 1) {
       name = i.rng.choice("Country Boy", "Hick", "Redneck", "Rube", "Yokel");
     } else {
@@ -1378,9 +1372,9 @@ public @NonNullByDefault class Creature implements Serializable {
 
   private String describeArmor() {
     final CreatureType ct = CreatureType.inCharacter(this);
-    if (ct == null) {
-      return getArmor() + " - not in disguise.";
-    }
+    // if (ct == null) {
+    // return getArmor() + " - not in disguise.";
+    // }
     return getArmor() + " - dressed as a " + ct.jobtitle(this) + ".";
   }
 

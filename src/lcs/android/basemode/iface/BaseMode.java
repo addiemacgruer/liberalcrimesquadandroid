@@ -44,9 +44,9 @@ public @NonNullByDefault class BaseMode {
     int oldForceMonth = i.score.date.month();
     do {
       Visibility.resolveVision();
-      final int partySize = i.activeSquad.size();
-      if (i.activeSquad.location().exists()) {
-        i.currentLocation = i.activeSquad.location().get();
+      final int partySize = i.activeSquad().size();
+      if (i.activeSquad().location().exists()) {
+        i.currentLocation = i.activeSquad().location().get();
       } else {
         nextLocation();
       }
@@ -59,7 +59,7 @@ public @NonNullByDefault class BaseMode {
         nonSightTime = 0;
         Curses.setView(R.layout.basemode);
         i.currentLocation.printLocationHeader();
-        i.activeSquad.printParty();
+        i.activeSquad().printParty();
         if (sieged) {
           updateSiegeDisplay(underAttack);
         }
@@ -86,7 +86,7 @@ public @NonNullByDefault class BaseMode {
         }
         Curses.pauseMs(25);
       }
-      if (i.activeSquad.displaySquadInfo(c)) {
+      if (i.activeSquad().displaySquadInfo(c)) {
         continue;
       }
       switch (c) {
@@ -104,7 +104,7 @@ public @NonNullByDefault class BaseMode {
           i.currentLocation.lcs().siege.giveup();
           Squad.cleanGoneSquads();
         } else {
-          i.activeSquad.activity(BareActivity.noActivity());
+          i.activeSquad().activity(BareActivity.noActivity());
         }
         break;
       case 'f':
@@ -136,9 +136,9 @@ public @NonNullByDefault class BaseMode {
         nextLocation();
         break;
       case 'e':
-        i.activeSquad.highlightedMember(-1);
-        if (i.activeSquad.location().exists()) {
-          AbstractItem.equip(i.activeSquad.loot(), i.activeSquad.location().get());
+        i.activeSquad().highlightedMember(-1);
+        if (i.activeSquad().location().exists()) {
+          AbstractItem.equip(i.activeSquad().loot(), i.activeSquad().location().get());
         }
         break;
       case 'r':
@@ -204,8 +204,8 @@ public @NonNullByDefault class BaseMode {
   private static void buyFlag() {
     i.ledger.subtractFunds(20, Ledger.ExpenseType.COMPOUND);
     i.currentLocation.lcs().haveFlag = true;
-    if (i.activeSquad.base().exists()) {
-      i.activeSquad.base().get().lcs().haveFlag = true;
+    if (i.activeSquad().base().exists()) {
+      i.activeSquad().base().get().lcs().haveFlag = true;
     }
     i.score.flagsBought++;
     BaseAction.raiseFlag(FLAG);
@@ -228,13 +228,15 @@ public @NonNullByDefault class BaseMode {
       }
       if (l.lcs().siege.underAttack) {
         // Allow siege if no liberals present
-        if (locationCount.get(l) != 0)
+        if (locationCount.get(l) != 0) {
           return true;
+        }
         break;
       }
       // NOTE: returns -1 if no eaters, so is okay
-      if (l.foodDaysLeft() == 0)
+      if (l.foodDaysLeft() == 0) {
         return true;
+      }
     }
     return false;
   }
@@ -248,7 +250,7 @@ public @NonNullByDefault class BaseMode {
     Curses.setEnabled(R.id.basemodeV, i.vehicle.size() > 0 && partysize > 0);
     Curses.setEnabled(R.id.basemodeR, i.pool.size() > 0);
     Curses.setEnabled(R.id.basemodeOrder, partysize > 1 && !sieged);
-    Curses.setText(R.id.squadname, i.activeSquad.toString());
+    Curses.setText(R.id.squadname, i.activeSquad().toString());
     Curses.setEnabled(R.id.basemodeNextSquad, i.squad.size() > 1 || i.squad.size() > 0);
     Curses.setEnabled(R.id.basemodeLocation, lcsLocations() > 1);
     Curses.setEnabled(R.id.basemodeB, false);
@@ -261,7 +263,7 @@ public @NonNullByDefault class BaseMode {
     } else {
       Curses.setEnabled(R.id.basemodeF, partysize > 0);
       Curses.setEnabled(R.id.basemodeC, partysize > 0
-          && i.activeSquad.activity().type() != Activity.NONE);
+          && i.activeSquad().activity().type() != Activity.NONE);
     }
     if (cannotWait()) {
       setText(R.id.basemodeW, "Cannot Wait until Siege Resolved");
@@ -282,8 +284,8 @@ public @NonNullByDefault class BaseMode {
   private static boolean haveFlag() {
     boolean haveflag = true;
     haveflag = i.currentLocation.lcs().haveFlag;
-    if (i.activeSquad.location().exists()) {
-      haveflag = i.activeSquad.location().get().lcs().haveFlag;
+    if (i.activeSquad().location().exists()) {
+      haveflag = i.activeSquad().location().get().lcs().haveFlag;
     }
     return haveflag;
   }
@@ -307,9 +309,10 @@ public @NonNullByDefault class BaseMode {
   }
 
   private static void nextLocation() {
-    if (lcsLocations() == 0)
+    if (lcsLocations() == 0) {
       throw new LcsRuntimeException("No LCS safehouses!");
-    i.activeSquad = Squad.none();
+    }
+    i.setActiveSquad(Squad.none());
     int sl = 0;
     sl = i.location.indexOf(i.currentLocation);
     sl = (sl + 1) % i.location.size();
@@ -324,12 +327,7 @@ public @NonNullByDefault class BaseMode {
   }
 
   private static void nextSquad() {
-    int index = i.squad.indexOf(i.activeSquad);
-    index++;
-    if (index >= i.squad.size()) {
-      index = 0;
-    }
-    i.activeSquad = i.squad.get(index);
+    i.squad.next();
   }
 
   private static void updateSiegeDisplay(final boolean underattack) {

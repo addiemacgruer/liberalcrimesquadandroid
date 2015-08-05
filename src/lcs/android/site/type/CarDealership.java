@@ -30,13 +30,13 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
 
   /* active squad visits the car dealership */
   @Override public void shop(final Location loc) {
-    Creature buyer = i.activeSquad.member(0);
-    i.activeSquad.location(loc);
-    final int partysize = i.activeSquad.size();
+    Creature buyer = i.activeSquad().member(0);
+    i.activeSquad().location(loc);
+    final int partysize = i.activeSquad().size();
     do {
       setView(R.layout.hospital);
-      i.activeSquad.location().get().printLocationHeader();
-      i.activeSquad.printParty();
+      i.activeSquad().location().get().printLocationHeader();
+      i.activeSquad().printParty();
       Vehicle car_to_sell = null;
       int price = 0;
       if (buyer.car().exists()) {
@@ -107,7 +107,7 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
       if (c == 'b') {
         buyer = Shop.choose_buyer();
       }
-      i.activeSquad.displaySquadInfo(c);
+      i.activeSquad().displaySquadInfo(c);
     } while (true);
   }
 

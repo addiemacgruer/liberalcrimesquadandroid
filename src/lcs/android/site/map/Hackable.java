@@ -21,7 +21,7 @@ enum Hackable {
     int maxattack = 0;
     boolean blind = false;
     Creature hacker = null;
-    for (final Creature p : i.activeSquad) {
+    for (final Creature p : i.activeSquad()) {
       if (p.health().alive() && p.skill().skill(Skill.COMPUTERS) > 0) {
         final int roll = p.skill().skillRoll(Skill.COMPUTERS);
         if (roll > maxattack) {

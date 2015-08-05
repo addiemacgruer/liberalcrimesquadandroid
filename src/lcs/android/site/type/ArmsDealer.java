@@ -25,8 +25,8 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
 
   /* select a gun for arms dealership */
   public static void armsdealer(final Location loc) {
-    i.activeSquad.location(loc);
+    i.activeSquad().location(loc);
     final Shop armsdealer = new Shop("armsdealer.xml");
-    armsdealer.enter(i.activeSquad);
+    armsdealer.enter(i.activeSquad());
   }
 }

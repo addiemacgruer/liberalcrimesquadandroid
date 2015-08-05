@@ -100,7 +100,7 @@ import org.eclipse.jdt.annotation.Nullable;
       getch();
       return false;
     }
-    i.activeSquad.criminalizeParty(Crime.DISTURBANCE);
+    i.activeSquad().criminalizeParty(Crime.DISTURBANCE);
     ui().text("The Squad steps in front of the cameras and").add();
     Issue viewhit = i.rng.randFromArray(Issue.values());
     switch (viewhit) {
@@ -188,7 +188,7 @@ import org.eclipse.jdt.annotation.Nullable;
     int segmentpower = 0;
     int usegmentpower;
     int partysize = 0;
-    for (final Creature p : i.activeSquad) {
+    for (final Creature p : i.activeSquad()) {
       if (!p.health().alive()) {
         continue;
       }
@@ -236,7 +236,7 @@ import org.eclipse.jdt.annotation.Nullable;
       i.issue(viewhit).changeOpinion(segmentpower / 10, 1, 100);
     }
     // PRISONER PARTS
-    for (final Creature p : i.activeSquad) {
+    for (final Creature p : i.activeSquad()) {
       if (p.prisoner().exists() && p.prisoner().get().health().alive()) {
         if (p.prisoner().get().type() == CreatureType.valueOf("NEWSANCHOR")) {
           viewhit = i.rng.randFromArray(Issue.values());

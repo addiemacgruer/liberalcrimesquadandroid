@@ -23,9 +23,9 @@ public enum Bashable {
         crowable = teamHasCrowbar() ? true : crowbarInLoot();
       }
       int maxattack = 0;
-      Creature maxp = i.activeSquad.member(0);
+      Creature maxp = i.activeSquad().member(0);
       if (!crowable) {
-        for (final Creature p : i.activeSquad) {
+        for (final Creature p : i.activeSquad()) {
           if (p.health().alive()
               && p.skill().getAttribute(Attribute.STRENGTH, true)
                   * p.weapon().weapon().bashstrengthmod() > maxattack) {
@@ -81,7 +81,7 @@ public enum Bashable {
   /** Test whether there is a crowbar-like item on the ground.
    * @return true if so. */
   protected boolean crowbarInLoot() {
-    for (final AbstractItem<? extends AbstractItemType> l : i.activeSquad.loot()) {
+    for (final AbstractItem<? extends AbstractItemType> l : i.activeSquad().loot()) {
       if (l instanceof Weapon) {
         final Weapon w = (Weapon) l;
         if (w.autoBreaksLocks())
@@ -94,7 +94,7 @@ public enum Bashable {
   /** Check whether anyone on the team has a crowbar
    * @return true if so. */
   protected boolean teamHasCrowbar() {
-    for (final Creature p : i.activeSquad) {
+    for (final Creature p : i.activeSquad()) {
       if (p.weapon().weapon().autoBreaksLocks())
         return true;
     }

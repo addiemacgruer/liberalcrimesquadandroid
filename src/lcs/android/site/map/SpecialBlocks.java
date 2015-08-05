@@ -57,9 +57,9 @@ public @NonNullByDefault enum SpecialBlocks {
             final Weapon de = new Weapon("WEAPON_M249_MACHINEGUN");
             final Clip r = new Clip("CLIP_DRUM");
             de.reload(r);
-            i.activeSquad.loot().add(de);
+            i.activeSquad().loot().add(de);
             it = new Clip("CLIP_DRUM", 9);
-            i.activeSquad.loot().add(it);
+            i.activeSquad().loot().add(it);
             i.findUniqueWeapon(UniqueWeapons.M249);
             empty = false;
           }
@@ -71,9 +71,9 @@ public @NonNullByDefault enum SpecialBlocks {
               final Weapon de = new Weapon("WEAPON_AUTORIFLE_M16");
               final Clip r = new Clip("CLIP_ASSAULT");
               de.reload(r);
-              i.activeSquad.loot().add(de);
+              i.activeSquad().loot().add(de);
               it = new Clip("CLIP_ASSAULT", 5);
-              i.activeSquad.loot().add(it);
+              i.activeSquad().loot().add(it);
               num++;
             } while (num < 2 || i.rng.chance(2) && num < 5);
             empty = false;
@@ -86,9 +86,9 @@ public @NonNullByDefault enum SpecialBlocks {
               final Weapon de = new Weapon("WEAPON_CARBINE_M4");
               final Clip r = new Clip("CLIP_ASSAULT");
               de.reload(r);
-              i.activeSquad.loot().add(de);
+              i.activeSquad().loot().add(de);
               it = new Clip("CLIP_ASSAULT", 5);
-              i.activeSquad.loot().add(it);
+              i.activeSquad().loot().add(it);
               num++;
             } while (num < 2 || i.rng.chance(2) && num < 5);
             empty = false;
@@ -99,13 +99,13 @@ public @NonNullByDefault enum SpecialBlocks {
             int num = 0;
             do {
               final Armor de = new Armor("ARMOR_ARMYARMOR");
-              i.activeSquad.loot().add(de);
+              i.activeSquad().loot().add(de);
               num++;
             } while (num < 2 || i.rng.chance(2) && num < 5);
             empty = false;
           }
           if (empty) {
-            i.activeSquad.criminalizeParty(Crime.TREASON);
+            i.activeSquad().criminalizeParty(Crime.TREASON);
             ui().text("It's a trap!  The armory is empty.").add();
             getch();
             int numleft = i.rng.nextInt(8) + 2;
@@ -114,11 +114,11 @@ public @NonNullByDefault enum SpecialBlocks {
               numleft--;
             } while (numleft > 0);
           } else {
-            i.activeSquad.juice(50, 1000);
+            i.activeSquad().juice(50, 1000);
             i.site.crime(i.site.crime() + 40);
             i.siteStory.addNews(NewsEvent.ARMY_ARMORY);
-            i.activeSquad.criminalizeParty(Crime.THEFT);
-            i.activeSquad.criminalizeParty(Crime.TREASON);
+            i.activeSquad().criminalizeParty(Crime.THEFT);
+            i.activeSquad().criminalizeParty(Crime.TREASON);
             int time = 20 + i.rng.nextInt(10);
             if (time < 1) {
               time = 1;
@@ -169,10 +169,10 @@ public @NonNullByDefault enum SpecialBlocks {
             // clearmessagearea();
             ui().text("The Squad has found some very interesting files.").add();
             AbstractItem<? extends AbstractItemType> it = new Loot("LOOT_CORPFILES");
-            i.activeSquad.loot().add(it);
+            i.activeSquad().loot().add(it);
             it = new Loot("LOOT_CORPFILES");
-            i.activeSquad.loot().add(it);
-            i.activeSquad.juice(50, 1000);
+            i.activeSquad().loot().add(it);
+            i.activeSquad().juice(50, 1000);
             i.site.crime(i.site.crime() + 40);
             int time = 20 + i.rng.nextInt(10);
             if (time < 1) {
@@ -189,7 +189,7 @@ public @NonNullByDefault enum SpecialBlocks {
             i.site.currentTile().special = null;
             i.site.crime(i.site.crime() + 3);
             i.siteStory.addNews(NewsEvent.CORP_FILES);
-            i.activeSquad.criminalizeParty(Crime.THEFT);
+            i.activeSquad().criminalizeParty(Crime.THEFT);
           }
           return;
         } else if (c == 'n')
@@ -210,7 +210,7 @@ public @NonNullByDefault enum SpecialBlocks {
           boolean succeed = false;
           int maxattack = 0;
           Creature maxp = null;
-          for (final Creature p : i.activeSquad) {
+          for (final Creature p : i.activeSquad()) {
             if (p.health().alive()) {
               if (p.skill().getAttribute(Attribute.CHARISMA, true)
                   + p.skill().getAttribute(Attribute.INTELLIGENCE, true)
@@ -310,7 +310,7 @@ public @NonNullByDefault enum SpecialBlocks {
               i.currentEncounter().printEncounter();
               i.site.alarm(true).alienate(Alienation.ALL).crime(i.site.crime() + 10);
               i.siteStory.addNews(NewsEvent.JURY_TAMPERING);
-              i.activeSquad.criminalizeParty(Crime.JURY);
+              i.activeSquad().criminalizeParty(Crime.JURY);
             }
           }
           return;
@@ -332,7 +332,7 @@ public @NonNullByDefault enum SpecialBlocks {
               i.currentEncounter().makeEncounterCreature("PRISONER");
               numleft--;
             } while (numleft > 0);
-            i.activeSquad.juice(50, 1000);
+            i.activeSquad().juice(50, 1000);
             i.site.crime(i.site.crime() + 20);
             int time = 20 + i.rng.nextInt(10);
             if (time < 1) {
@@ -350,7 +350,7 @@ public @NonNullByDefault enum SpecialBlocks {
             i.site.currentTile().special = null;
             i.site.crime(i.site.crime() + 3);
             i.siteStory.addNews(NewsEvent.COURTHOUSE_LOCKUP);
-            i.activeSquad.criminalizeParty(Crime.HELPESCAPE);
+            i.activeSquad().criminalizeParty(Crime.HELPESCAPE);
           }
           return;
         } else if (c == 'n')
@@ -380,9 +380,9 @@ public @NonNullByDefault enum SpecialBlocks {
               final Weapon de = new Weapon("WEAPON_DESERT_EAGLE");
               final Clip r = new Clip("CLIP_50AE");
               de.reload(r);
-              i.activeSquad.loot().add(de);
+              i.activeSquad().loot().add(de);
               it = new Clip("CLIP_50AE", 9);
-              i.activeSquad.loot().add(it);
+              i.activeSquad().loot().add(it);
               i.findUniqueWeapon(UniqueWeapons.DEAGLE);
               empty = false;
             }
@@ -391,7 +391,7 @@ public @NonNullByDefault enum SpecialBlocks {
               ui().text("This guy sure had a lot of $100 bills.").add();
               getch();
               it = new Money(1000 * (1 + i.rng.nextInt(10)));
-              i.activeSquad.loot().add(it);
+              i.activeSquad().loot().add(it);
               empty = false;
             }
             if (i.rng.chance(2)) {
@@ -400,7 +400,7 @@ public @NonNullByDefault enum SpecialBlocks {
               ui().text("jewelery here.  The squad will take that.").add();
               getch();
               it = new Loot("LOOT_EXPENSIVEJEWELERY", 3);
-              i.activeSquad.loot().add(it);
+              i.activeSquad().loot().add(it);
               empty = false;
             }
             if (i.rng.chance(3)) {
@@ -408,7 +408,7 @@ public @NonNullByDefault enum SpecialBlocks {
               ui().text("There are some... very compromising photos here.").add();
               getch();
               it = new Loot("LOOT_CEOPHOTOS");
-              i.activeSquad.loot().add(it);
+              i.activeSquad().loot().add(it);
               empty = false;
             }
             if (i.rng.chance(3)) {
@@ -423,7 +423,7 @@ public @NonNullByDefault enum SpecialBlocks {
               ui().text("The squad will take those.").add();
               getch();
               it = new Loot("LOOT_CEOLOVELETTERS");
-              i.activeSquad.loot().add(it);
+              i.activeSquad().loot().add(it);
               empty = false;
             }
             if (i.rng.chance(3)) {
@@ -431,7 +431,7 @@ public @NonNullByDefault enum SpecialBlocks {
               ui().text("These documents show serious tax evasion.").add();
               getch();
               it = new Loot("LOOT_CEOTAXPAPERS");
-              i.activeSquad.loot().add(it);
+              i.activeSquad().loot().add(it);
               empty = false;
             }
             if (empty) {
@@ -439,10 +439,10 @@ public @NonNullByDefault enum SpecialBlocks {
               ui().text("Wow, it's empty.  That sucks.").add();
               getch();
             } else {
-              i.activeSquad.juice(50, 1000);
+              i.activeSquad().juice(50, 1000);
               i.site.crime(i.site.crime() + 40);
               i.siteStory.addNews(NewsEvent.HOUSE_PHOTOS);
-              i.activeSquad.criminalizeParty(Crime.THEFT);
+              i.activeSquad().criminalizeParty(Crime.THEFT);
               int time = 20 + i.rng.nextInt(10);
               if (time < 1) {
                 time = 1;
@@ -480,9 +480,9 @@ public @NonNullByDefault enum SpecialBlocks {
           if (actual.first) {
             // clearmessagearea();
             ui().text("The Squad obtains sensitive information.").add();
-            i.activeSquad.juice(50, 1000);
+            i.activeSquad().juice(50, 1000);
             final AbstractItem<? extends AbstractItemType> it = new Loot("LOOT_INTHQDISK");
-            i.activeSquad.loot().add(it);
+            i.activeSquad().loot().add(it);
             getch();
           }
           if (actual.second) {
@@ -498,7 +498,7 @@ public @NonNullByDefault enum SpecialBlocks {
             i.site.currentTile().special = null;
             i.site.crime(i.site.crime() + 3);
             i.siteStory.addNews(NewsEvent.HACK_INTEL);
-            i.activeSquad.criminalizeParty(Crime.TREASON);
+            i.activeSquad().criminalizeParty(Crime.TREASON);
           }
           return;
         } else if (c == 'n')
@@ -521,9 +521,9 @@ public @NonNullByDefault enum SpecialBlocks {
               i.site.alarmTimer(time);
             }
             i.site.crime(i.site.crime() + 1);
-            i.activeSquad.juice(3, 100);
+            i.activeSquad().juice(3, 100);
             i.siteStory.addNews(NewsEvent.FREE_RABBITS);
-            i.activeSquad.criminalizeParty(Crime.VANDALISM);
+            i.activeSquad().criminalizeParty(Crime.VANDALISM);
           }
           if (actual.madeNoise()) {
             i.site.alienationCheck(false);
@@ -551,9 +551,9 @@ public @NonNullByDefault enum SpecialBlocks {
               i.site.alarmTimer(time);
             }
             i.site.crime(i.site.crime() + 1);
-            i.activeSquad.juice(5, 200);
+            i.activeSquad().juice(5, 200);
             i.siteStory.addNews(NewsEvent.FREE_BEASTS);
-            i.activeSquad.criminalizeParty(Crime.VANDALISM);
+            i.activeSquad().criminalizeParty(Crime.VANDALISM);
             if (i.rng.chance(2)) {
               // clearmessagearea();
               ui().text("Uh, maybe that idea was Conservative in retrospect...").add();
@@ -616,7 +616,7 @@ public @NonNullByDefault enum SpecialBlocks {
           i.site.currentTile().special = null;
           final CheckDifficulty max = CheckDifficulty.HARD;
           Creature maxs = null;
-          for (final Creature p : i.activeSquad) {
+          for (final Creature p : i.activeSquad()) {
             if (p.health().alive()) {
               if (p.skill().skillCheck(Skill.SCIENCE, max)) {
                 maxs = p;
@@ -639,26 +639,26 @@ public @NonNullByDefault enum SpecialBlocks {
               i.issue(Issue.NUCLEARPOWER).changeOpinion(15, 0, 95);
               i.issue(Issue.LIBERALCRIMESQUAD).changeOpinion(-100, 0, 0);
               getch();
-              i.activeSquad.juice(40, 1000); // Instant juice!
+              i.activeSquad().juice(40, 1000); // Instant juice!
               i.siteStory.addNews(NewsEvent.SHUTDOWN_REACTOR);
             } else {
               ui().text("The lights dim...  power must be out state-wide.").add();
               i.issue(Issue.NUCLEARPOWER).changeOpinion(15, 0, 95);
               getch();
-              i.activeSquad.juice(100, 1000); // Instant juice!
+              i.activeSquad().juice(100, 1000); // Instant juice!
               i.siteStory.addNews(NewsEvent.SHUTDOWN_REACTOR);
             }
           } else {
             ui().text("After some failed attempts, and a very loud alarm,").add();
             ui().text("the Squad resigns to just leaving a threatening note.").add();
             getch();
-            i.activeSquad.juice(15, 500);
+            i.activeSquad().juice(15, 500);
           }
           i.site.alarm(true);
           i.site.alienationCheck(true);
           i.site.currentTile().special = null;
           i.site.crime(i.site.crime() + 5);
-          i.activeSquad.criminalizeParty(Crime.TERRORISM);
+          i.activeSquad().criminalizeParty(Crime.TERRORISM);
           return;
         } else if (c == 'n')
           return;
@@ -683,7 +683,7 @@ public @NonNullByDefault enum SpecialBlocks {
               i.currentEncounter().makeEncounterCreature("PRISONER");
               numleft--;
             } while (numleft > 0);
-            i.activeSquad.juice(50, 1000);
+            i.activeSquad().juice(50, 1000);
             i.site.crime(i.site.crime() + 20);
             int time = 20 + i.rng.nextInt(10);
             if (time < 1) {
@@ -701,7 +701,7 @@ public @NonNullByDefault enum SpecialBlocks {
             i.site.currentTile().special = null;
             i.site.crime(i.site.crime() + 2);
             i.siteStory.addNews(NewsEvent.POLICE_LOCKUP);
-            i.activeSquad.criminalizeParty(Crime.HELPESCAPE);
+            i.activeSquad().criminalizeParty(Crime.HELPESCAPE);
           }
           return;
         } else if (c == 'n')
@@ -727,9 +727,9 @@ public @NonNullByDefault enum SpecialBlocks {
           i.site.noticeCheck(CheckDifficulty.HEROIC);
           i.site.currentTile().special = null;
           i.site.crime(i.site.crime() + 2);
-          i.activeSquad.juice(5, 100);
+          i.activeSquad().juice(5, 100);
           i.siteStory.addNews(NewsEvent.BREAK_FACTORY);
-          i.activeSquad.criminalizeParty(Crime.VANDALISM);
+          i.activeSquad().criminalizeParty(Crime.VANDALISM);
           return;
         } else if (c == 'n')
           return;
@@ -760,9 +760,9 @@ public @NonNullByDefault enum SpecialBlocks {
           i.site.noticeCheck();
           i.site.currentTile().special = null;
           i.site.crime(i.site.crime() + 30);
-          i.activeSquad.juice(50, 1000);
+          i.activeSquad().juice(50, 1000);
           i.siteStory.addNews(NewsEvent.PRISON_RELEASE);
-          i.activeSquad.criminalizeParty(Crime.HELPESCAPE);
+          i.activeSquad().criminalizeParty(Crime.HELPESCAPE);
           return;
         } else if (c == 'n')
           return;
@@ -822,9 +822,9 @@ public @NonNullByDefault enum SpecialBlocks {
           i.site.noticeCheck(CheckDifficulty.HEROIC);
           i.site.currentTile().special = null;
           i.site.crime(i.site.crime() + 1);
-          i.activeSquad.juice(5, 100);
+          i.activeSquad().juice(5, 100);
           i.siteStory.addNews(NewsEvent.BREAK_SWEATSHOP);
-          i.activeSquad.criminalizeParty(Crime.VANDALISM);
+          i.activeSquad().criminalizeParty(Crime.VANDALISM);
           return;
         } else if (c == 'n')
           return;

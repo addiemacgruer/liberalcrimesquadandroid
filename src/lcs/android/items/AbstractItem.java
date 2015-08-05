@@ -22,8 +22,8 @@ import org.eclipse.jdt.annotation.Nullable;
  * have other quality modifiers. */
 abstract public @NonNullByDefault class AbstractItem<AIT extends AbstractItemType> implements
     Serializable {
-  protected AbstractItem(final AIT platonicIdeal) {
-    this.platonicIdeal = platonicIdeal;
+  protected AbstractItem(final AIT type) {
+    this.type = type;
   }
 
   /** The count of items in this pile. */
@@ -31,7 +31,7 @@ abstract public @NonNullByDefault class AbstractItem<AIT extends AbstractItemTyp
 
   /** The kind of items in this pile (<a
    * href="http://en.wikipedia.org/wiki/Platonic_idealism">Platonic Ideal</a>) */
-  protected final AIT platonicIdeal;
+  public final AIT type;
 
   /** Reduces this pile of items by some amount
    * @param decrease the amount to decrease. */
@@ -41,7 +41,7 @@ abstract public @NonNullByDefault class AbstractItem<AIT extends AbstractItemTyp
 
   /** Display a help screen for the item */
   public void displayStats(final int viewID) {
-    platonicIdeal.displayStats(viewID);
+    type.displayStats(viewID);
   }
 
   /** Returns the long name for this item, used when equipping
@@ -51,20 +51,14 @@ abstract public @NonNullByDefault class AbstractItem<AIT extends AbstractItemTyp
   /** How many $$$ you get for selling this item.
    * @return dollars */
   public int fenceValue() {
-    return platonicIdeal.fencevalue;
+    return type.fencevalue;
   }
 
   /** The unique ID for an item of this type. Generally all upper-cased, and starting with an
    * indicator of what type it is: ARMOR_, CLIP_, LOOT_, MONEY_, VEHICLE, WEAPON_.
    * @return unique ID. */
   public String id() {
-    return platonicIdeal.idname;
-  }
-
-  /** Returns the AbstractItemType (the Platonic ideal) for the item
-   * @return the ideal. */
-  public AIT ideal() {
-    return platonicIdeal;
+    return type.idname;
   }
 
   /** whether an item is used up.
@@ -94,8 +88,13 @@ abstract public @NonNullByDefault class AbstractItem<AIT extends AbstractItemTyp
   /** Whether the abstract type ID is equal to a given ID.
    * @param id ID to check against, can be null.
    * @return whether the types are equal. */
-  public boolean ofType(final String id) {
-    return id().equals(id);
+  public boolean ofType(final String... id) {
+    for (String anId : id) {
+      if (id().equals(anId)) {
+        return true;
+      }
+    }
+    return false;
   }
 
   /** Splits these items into two piles, creating a new item in the process. The number of items in
@@ -108,7 +107,7 @@ abstract public @NonNullByDefault class AbstractItem<AIT extends AbstractItemTyp
    * @param ai another item
    * @return true if the item is the same type (not necessarily {@link #merge} able) */
   protected boolean isSameType(final AbstractItem<? extends AbstractItemType> ai) {
-    return platonicIdeal == ai.platonicIdeal;
+    return type == ai.type;
   }
 
   final static private Comparator<AbstractItem<? extends AbstractItemType>> ALPHABETICALLY = new Comparator<AbstractItem<? extends AbstractItemType>>() {
@@ -158,7 +157,7 @@ abstract public @NonNullByDefault class AbstractItem<AIT extends AbstractItemTyp
       setView(R.layout.generic);
       ui().text("Equip the Squad").add();
       int y = 'a';
-      for (final Creature p : i.activeSquad) {
+      for (final Creature p : i.activeSquad()) {
         ui(R.id.gcontrol).button(y++).text(p.toString()).add();
       }
       ui(R.id.gcontrol).button(10).text("Continue the struggle.").add();
@@ -170,7 +169,7 @@ abstract public @NonNullByDefault class AbstractItem<AIT extends AbstractItemTyp
         continue;
       }
       clearChildren(R.id.gcontrol);
-      final Creature squaddie = i.activeSquad.member(c - 'a');
+      final Creature squaddie = i.activeSquad().member(c - 'a');
       do {
         setView(R.layout.generic);
         ui().text("Equipping " + squaddie.toString()).bold().add();
@@ -204,7 +203,7 @@ abstract public @NonNullByDefault class AbstractItem<AIT extends AbstractItemTyp
         }
         ui(R.id.gcontrol).text("Other actions:").add();
         maybeAddButton(R.id.gcontrol, 11, "Drop " + squaddie.toString() + "'s Conservative weapon",
-            squaddie.weapon().weapon().platonicIdeal != Weapon.none().platonicIdeal);
+            squaddie.weapon().weapon().type != Weapon.none().type);
         maybeAddButton(R.id.gcontrol, 12, "Liberally Strip " + squaddie.toString(),
             !squaddie.isNaked());
         maybeAddButton(R.id.gcontrol, 13, "Change ammo allocation", squaddie.weapon().weapon()

@@ -151,7 +151,7 @@ import android.util.Log;
     }
     do {
       setView(R.layout.hospital);
-      i.activeSquad.location().get().printLocationHeader();
+      i.activeSquad().location().get().printLocationHeader();
       cr.printCreatureInfo(255);
       if (cr.income() > 0) {
         ui().text(format("%1$s made %2$s yesterday. What now?", cr.toString(), cr.income())).add();
@@ -353,7 +353,7 @@ import android.util.Log;
   private static void activateSleeper(final Creature cr) {
     do {
       setView(R.layout.hospital);
-      i.activeSquad.location().get().printLocationHeader();
+      i.activeSquad().location().get().printLocationHeader();
       cr.printCreatureInfo(255);
       ui().text("Taking undercover action:").bold().add();
       ui().text(format("What will %s focus on?", cr.toString())).add();

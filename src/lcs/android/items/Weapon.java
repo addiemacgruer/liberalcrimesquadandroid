@@ -33,16 +33,16 @@ public @NonNullByDefault class Weapon extends AbstractItem<WeaponType> {
   @Nullable private ClipType loaded_cliptype_;
 
   public boolean acceptableAmmo(final Clip c) {
-    return platonicIdeal.acceptableAmmo(c.platonicIdeal);
+    return type.acceptableAmmo(c.type);
   }
 
   public boolean acceptableAmmo(final ClipType c) {
-    return platonicIdeal.acceptableAmmo(c);
+    return type.acceptableAmmo(c);
   }
 
   public Attack attack(final boolean force_ranged, final boolean force_melee,
       final boolean force_no_reload) {
-    final List<Attack> attacks = platonicIdeal.get_attacks();
+    final List<Attack> attacks = type.get_attacks();
     for (final Attack as : attacks) {
       if (force_ranged && !as.ranged) {
         continue;
@@ -62,23 +62,23 @@ public @NonNullByDefault class Weapon extends AbstractItem<WeaponType> {
   }
 
   public boolean autoBreaksLocks() {
-    return platonicIdeal.auto_break_lock_;
+    return type.auto_break_lock_;
   }
 
   public float bashstrengthmod() {
-    return platonicIdeal.bashstrengthmod_;
+    return type.bashstrengthmod_;
   }
 
   public boolean canGraffiti() {
-    return platonicIdeal.can_graffiti_;
+    return type.can_graffiti_;
   }
 
   public boolean canTakeHostages() {
-    return platonicIdeal.can_take_hostages_;
+    return type.can_take_hostages_;
   }
 
   public boolean canThreatenHostages() {
-    return platonicIdeal.can_threaten_hostages_;
+    return type.can_threaten_hostages_;
   }
 
   public void decreaseAmmo(final int d) {
@@ -86,7 +86,7 @@ public @NonNullByDefault class Weapon extends AbstractItem<WeaponType> {
   }
 
   @Override public String equipTitle() {
-    String et = platonicIdeal.toString();
+    String et = type.toString();
     if (usesAmmo()) {
       et += " (" + ammo_ + ")";
     }
@@ -98,7 +98,7 @@ public @NonNullByDefault class Weapon extends AbstractItem<WeaponType> {
   }
 
   public boolean is_same_type(final Weapon w) {
-    return platonicIdeal == w.platonicIdeal;
+    return type == w.type;
   }
 
   @Override public boolean isEmpty() {
@@ -106,31 +106,31 @@ public @NonNullByDefault class Weapon extends AbstractItem<WeaponType> {
   }
 
   public boolean isInstrument() {
-    return platonicIdeal.instrument_;
+    return type.instrument_;
   }
 
   public boolean isMusical() {
-    return platonicIdeal.musical_attack_;
+    return type.musical_attack_;
   }
 
   public boolean isRanged() {
-    return platonicIdeal.is_ranged();
+    return type.is_ranged();
   }
 
   public boolean isSuspicious() {
-    return platonicIdeal.suspicious_;
+    return type.suspicious_;
   }
 
   public boolean isThreatening() {
-    return platonicIdeal.threatening_;
+    return type.threatening_;
   }
 
   public boolean isThrowable() {
-    return platonicIdeal.is_throwable();
+    return type.is_throwable();
   }
 
   @Override public boolean merge(final AbstractItem<? extends AbstractItemType> i) {
-    if (i instanceof Weapon && i.platonicIdeal == platonicIdeal) {
+    if (i instanceof Weapon && i.type == type) {
       final Weapon w = (Weapon) i; // cast -XML
       if (loaded_cliptype_ == w.loaded_cliptype_ && ammo_ == w.ammo_ || ammo_ == 0 && w.ammo_ == 0) {
         number += w.number;
@@ -142,12 +142,12 @@ public @NonNullByDefault class Weapon extends AbstractItem<WeaponType> {
   }
 
   public boolean protectsAgainstKidnapping() {
-    return platonicIdeal.protects_against_kidnapping_;
+    return type.protects_against_kidnapping_;
   }
 
   public boolean reload(final Clip clip) {
     if (acceptableAmmo(clip) && !clip.isEmpty()) {
-      loaded_cliptype_ = clip.platonicIdeal;
+      loaded_cliptype_ = clip.type;
       ammo_ = clip.ammoAmmount();
       clip.decrease(1);
       return true;
@@ -156,11 +156,11 @@ public @NonNullByDefault class Weapon extends AbstractItem<WeaponType> {
   }
 
   public String shortName() {
-    return platonicIdeal.shortname();
+    return type.shortname();
   }
 
   public int size() {
-    return platonicIdeal.size_;
+    return type.size_;
   }
 
   @Override public Weapon split(final int aNumber) throws IllegalArgumentException {
@@ -170,23 +170,23 @@ public @NonNullByDefault class Weapon extends AbstractItem<WeaponType> {
     if (lNumber > number) {
       lNumber = number;
     }
-    final Weapon newi = new Weapon(platonicIdeal);
+    final Weapon newi = new Weapon(type);
     newi.number = lNumber;
     number -= lNumber;
     return newi;
   }
 
   @Override public String toString() {
-    return platonicIdeal.toString();
+    return type.toString();
   }
 
   public boolean usesAmmo() {
-    return platonicIdeal.usesAmmo();
+    return type.usesAmmo();
   }
 
   boolean acceptableAmmo(final AbstractItem<? extends AbstractItemType> c) {
     if (c instanceof Clip)
-      return platonicIdeal.acceptableAmmo((ClipType) c.platonicIdeal);
+      return type.acceptableAmmo((ClipType) c.type);
     return false;
   }
 

@@ -30,7 +30,7 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
 public @NonNullByDefault class Advance {
   /** handles end of round stuff for living creatures */
   public static void creatureAdvance() {
-    for (final Creature p : Filter.of(i.activeSquad, Filter.LIVING)) {
+    for (final Creature p : Filter.of(i.activeSquad(), Filter.LIVING)) {
       advanceCreature(p);
       if (p.prisoner().exists()) {
         advancePrisoner(p);
@@ -179,7 +179,7 @@ public @NonNullByDefault class Advance {
   private static Maybe<Creature> getTopMedical(final Creature cr) {
     int topmedicalskill = -1;
     Creature topmedical = null;
-    for (final Creature p : i.activeSquad) {
+    for (final Creature p : i.activeSquad()) {
       if (p.health().alive() && p.stunned() == 0 && p.health().blood() > 40 && p != cr
           && p.skill().skill(Skill.FIRSTAID) > topmedicalskill) {
         topmedical = p;
@@ -318,7 +318,7 @@ public @NonNullByDefault class Advance {
   private static void squadgrabImmobile(final boolean dead) {
     // DRAGGING PEOPLE OUT IF POSSIBLE
     int hostslots = 0;
-    for (final Creature p : i.activeSquad) {
+    for (final Creature p : i.activeSquad()) {
       if (p.health().alive() && (p.health().canWalk() || p.hasFlag(CreatureFlag.WHEELCHAIR))
           && p.prisoner().exists()) {
         hostslots++;
@@ -330,7 +330,7 @@ public @NonNullByDefault class Advance {
         p.prisoner().get().freeHostage(Creature.Situation.DIED);
       }
     }
-    for (final Creature p : Filter.of(i.activeSquad, Filter.ALL)) {
+    for (final Creature p : Filter.of(i.activeSquad(), Filter.ALL)) {
       if (!p.health().alive() && dead || p.health().alive() && !p.hasFlag(CreatureFlag.WHEELCHAIR)
           && !p.health().canWalk() && !dead) {
         if (hostslots == 0) {
@@ -345,7 +345,7 @@ public @NonNullByDefault class Advance {
             p.captureByPolice(Crime.LOITERING);
           }
         } else {
-          for (final Creature carrier : i.activeSquad) {
+          for (final Creature carrier : i.activeSquad()) {
             if (carrier == p) {
               continue;
             }
@@ -362,7 +362,7 @@ public @NonNullByDefault class Advance {
           }
           hostslots--;
         }
-        i.activeSquad.remove(p);
+        i.activeSquad().remove(p);
       }
     }
   }

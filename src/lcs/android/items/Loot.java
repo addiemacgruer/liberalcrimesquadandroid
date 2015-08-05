@@ -22,12 +22,12 @@ public @NonNullByDefault class Loot extends AbstractItem<LootType> {
   }
 
   @Override public String equipTitle() {
-    return platonicIdeal.toString();
+    return type.toString();
   }
 
   /** Whether this is cloth, and can be used to make item crafting cheaper. */
   public boolean isCloth() {
-    return platonicIdeal.cloth;
+    return type.cloth;
   }
 
   @Override public boolean merge(final AbstractItem<? extends AbstractItemType> i) {
@@ -42,7 +42,7 @@ public @NonNullByDefault class Loot extends AbstractItem<LootType> {
   /** Prevents you from selling the item. If the item is unique, such as CEO photos, then it needs to
    * be used up in the newsletter instead. */
   public boolean noQuickFencing() {
-    return platonicIdeal.noQuickFencing;
+    return type.noQuickFencing;
   }
 
   @Override public Loot split(final int aNumber) throws IllegalArgumentException {
@@ -52,18 +52,18 @@ public @NonNullByDefault class Loot extends AbstractItem<LootType> {
     if (lNumber > number) {
       lNumber = number;
     }
-    final Loot newi = new Loot(platonicIdeal);
+    final Loot newi = new Loot(type);
     newi.number = lNumber;
     number -= lNumber;
     return newi;
   }
 
   @Override public String toString() {
-    return platonicIdeal.toString();
+    return type.toString();
   }
 
   private boolean isStackable() {
-    return platonicIdeal.stackable;
+    return type.stackable;
   }
 
   private static final long serialVersionUID = Game.VERSION;

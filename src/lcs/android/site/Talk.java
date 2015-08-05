@@ -60,9 +60,9 @@ import org.eclipse.jdt.annotation.Nullable;
       }
       ui(R.id.gcontrol).button('c')
           .text(getString("On second thought, don't say anything") + nudey + ".").add();
-      if (t.type().ofType("LANDLORD") && i.site.current().renting() == null) {
+      if (t.type().ofType("LANDLORD") && i.site.current().renting() == CrimeSquad.NO_ONE) {
         ui(R.id.gcontrol).button('d').text(getString("Rent a room") + nudey + ".").add();
-      } else if (t.type().ofType("LANDLORD") && i.site.current().renting() != null) {
+      } else if (t.type().ofType("LANDLORD") && i.site.current().renting() != CrimeSquad.NO_ONE) {
         ui(R.id.gcontrol).button('d').text(getString("Stop renting a room") + nudey + ".").add();
       }
       if (t.type().ofType("GANGMEMBER") || t.type().ofType("MERC")) {
@@ -76,9 +76,11 @@ import org.eclipse.jdt.annotation.Nullable;
         return dropAPickupLine(a, t);
       } else if (c == 'c') {
         return false;
-      } else if (t.type().ofType("LANDLORD") && i.site.current().renting() == null && c == 'd') {
+      } else if (t.type().ofType("LANDLORD") && i.site.current().renting() == CrimeSquad.NO_ONE
+          && c == 'd') {
         return startRenting(a, t);
-      } else if (t.type().ofType("LANDLORD") && i.site.current().renting() != null && c == 'd') {
+      } else if (t.type().ofType("LANDLORD") && i.site.current().renting() != CrimeSquad.NO_ONE
+          && c == 'd') {
         return stopRenting(a, t);
       } else if (t.type().ofType("GANGMEMBER") || t.type().ofType("MERC") && c == 'd') {
         return buyWeapons(a, t);
@@ -254,12 +256,11 @@ import org.eclipse.jdt.annotation.Nullable;
         }
       }
       if (newd == null) {
-        newd = new Date();
-        newd.dater = lcs;
+        newd = new Date(lcs);
         i.dates.add(newd);
       }
       tk.location(lcs.location().get());
-      tk.base(lcs.base().getNullable());
+      tk.base(lcs.base().get());
       newd.dates.add(tk);
       i.currentEncounter().creatures().remove(tk);
     } else {
@@ -346,7 +347,7 @@ import org.eclipse.jdt.annotation.Nullable;
     int hostages = 0;
     int weaponhostage = 0;
     final boolean cop = t.type().isPolice();
-    for (final Creature p : i.activeSquad) {
+    for (final Creature p : i.activeSquad()) {
       if (p.prisoner().exists() && p.prisoner().get().health().alive()
           && p.prisoner().get().enemy()) {
         hostages++;
@@ -440,7 +441,7 @@ import org.eclipse.jdt.annotation.Nullable;
       i.site.current().renting(CrimeSquad.LCS);
       i.site.current().rent(rent);
       i.site.current().lcs().newRental = true;
-      i.activeSquad.base(i.site.current());
+      i.activeSquad().base(i.site.current());
       return true;
     }
     if (c == 'b') {
@@ -455,7 +456,7 @@ import org.eclipse.jdt.annotation.Nullable;
     }
     if (c == 'c') {
       Creature armed_liberal = null;
-      for (final Creature p : i.activeSquad) {
+      for (final Creature p : i.activeSquad()) {
         if (p.weapon().weapon().isThreatening()) {
           armed_liberal = p;
           break;
@@ -489,7 +490,7 @@ import org.eclipse.jdt.annotation.Nullable;
       getch();
       // Either he calls the cops...
       if (roll < difficulty) {
-        for (final Creature p : i.activeSquad) {
+        for (final Creature p : i.activeSquad()) {
           p.crime().criminalize(Crime.EXTORTION);
         }
         i.site.current().lcs().siege.timeUntilLocated = 2;
@@ -498,7 +499,7 @@ import org.eclipse.jdt.annotation.Nullable;
         rent = 0;
       }
       i.site.current().rent(rent).renting(CrimeSquad.LCS).lcs().newRental = true;
-      i.activeSquad.base(i.site.current());
+      i.activeSquad().base(i.site.current());
       return true;
     }
     return true;
@@ -540,8 +541,8 @@ import org.eclipse.jdt.annotation.Nullable;
   private static void surrenderToPolice() {
     ui().text("The police arrest the Squad.").add();
     getch();
-    final int stolen = Filter.count(i.activeSquad.loot(), Filter.IS_LOOT);
-    for (final Creature j : i.activeSquad) {
+    final int stolen = Filter.count(i.activeSquad().loot(), Filter.IS_LOOT);
+    for (final Creature j : i.activeSquad()) {
       j.crime().incrementCrime(Crime.THEFT, stolen);
       j.captureByPolice(Crime.TERRORISM); // TODO check which crime should be here.
     }
@@ -666,7 +667,7 @@ import org.eclipse.jdt.annotation.Nullable;
 
   private static boolean talkToDog(final Creature tk) {
     // Find most Heartful Liberal
-    final Creature bestp = Filter.best(i.activeSquad, Filter.attribute(Attribute.HEART, true))
+    final Creature bestp = Filter.best(i.activeSquad(), Filter.attribute(Attribute.HEART, true))
         .get();
     // Say something unbelievably hippie
     final int statement = i.rng.nextInt(stringArray(R.array.lovedogs).length);
@@ -714,7 +715,7 @@ import org.eclipse.jdt.annotation.Nullable;
       break;
     }
     i.site.crime(i.site.crime() + 5);
-    i.activeSquad.criminalizeParty(Crime.KIDNAPPING);
+    i.activeSquad().criminalizeParty(Crime.KIDNAPPING);
     liberal.addJuice(-2, -10); // DE-juice for this shit
     boolean noretreat = false;
     if (weaponhostage > 0) {
@@ -791,11 +792,11 @@ import org.eclipse.jdt.annotation.Nullable;
       }
       clearChildren(R.id.gcontrol);
       if (c == 'a') {
-        Creature executer = i.activeSquad.member(0);
+        Creature executer = i.activeSquad().member(0);
         if (liberal.prisoner().exists()) {
           executer = liberal;
         } else {
-          for (final Creature p : i.activeSquad) {
+          for (final Creature p : i.activeSquad()) {
             if (p.prisoner().exists() && p.prisoner().get().health().alive()
                 && p.prisoner().get().enemy()) {
               executer = p;
@@ -928,14 +929,14 @@ import org.eclipse.jdt.annotation.Nullable;
               ei.remove();
             }
           }
-          i.activeSquad.juice(15, 200);
+          i.activeSquad().juice(15, 200);
           /* Instant juice for successful hostage negotiation */
           if (hostages > 1) {
             ui().text("The squad releases all hostages in the trade.").add();
           } else {
             ui().text("The squad releases the hostage in the trade.").add();
           }
-          for (final Creature p : i.activeSquad) {
+          for (final Creature p : i.activeSquad()) {
             if (p.prisoner().exists() && p.prisoner().get().enemy()) {
               p.prisoner(null);
             }

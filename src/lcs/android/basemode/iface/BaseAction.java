@@ -162,7 +162,7 @@ import org.eclipse.jdt.annotation.Nullable;
         }
         if (squads.isEmpty()) {
           ui(R.id.gcontrol).button(y++).text(str.toString()).add();
-        } else if (squads.contains(i.activeSquad)) {
+        } else if (squads.contains(i.activeSquad())) {
           ui(R.id.gcontrol).button(y++).text(str.toString()).color(Color.GREEN).add();
         } else {
           ui(R.id.gcontrol).button(y++).text(str.toString()).color(Color.YELLOW).add();
@@ -181,7 +181,7 @@ import org.eclipse.jdt.annotation.Nullable;
         v.displayStats(R.id.gcontrol);
         y = 'a';
         boolean driver = false;
-        for (final Creature p : i.activeSquad) {
+        for (final Creature p : i.activeSquad()) {
           if (p.prefCar() == v && p.prefIsDriver()) {
             ui(R.id.gcontrol).button(y++).text(p.toString() + " (driver)").color(Color.GREEN).add();
             driver = true;
@@ -201,12 +201,12 @@ import org.eclipse.jdt.annotation.Nullable;
           break;
         }
         if (c >= '1') {
-          final Creature liberal = i.activeSquad.member(c - 'a');
+          final Creature liberal = i.activeSquad().member(c - 'a');
           if (liberal.prefCar() == v) {
             liberal.prefCar(null);
             if (liberal.prefIsDriver()) {
               liberal.prefIsDriver(false);
-              for (final Creature q : i.activeSquad) {
+              for (final Creature q : i.activeSquad()) {
                 if (q.prefCar() == v) {
                   q.prefIsDriver(true);
                   break;
@@ -226,7 +226,7 @@ import org.eclipse.jdt.annotation.Nullable;
 
   protected static void stopEvil() {
     boolean havecar = false;
-    for (final Creature p : i.activeSquad) {
+    for (final Creature p : i.activeSquad()) {
       if (p.prefCar() != null) {
         havecar = true;
         break;
@@ -242,7 +242,7 @@ import org.eclipse.jdt.annotation.Nullable;
       name.setLength(0);
       name.append(l.toString());
       boolean visitable = true;
-      if (l == i.activeSquad.location().getNullable()) {
+      if (l == i.activeSquad().location().getNullable()) {
         name.append(" (Current Location)");
         name.append(" Heat:" + l.heat() + "%");
         name.append(" Secrecy:" + l.heatProtection() + "%");
@@ -287,10 +287,10 @@ import org.eclipse.jdt.annotation.Nullable;
     ui(R.id.gcontrol).button(10).text(getString(R.string.seNotYet)).add();
     final int c = Curses.getch();
     if (c == 10 || c == 32) {
-      i.activeSquad.activity(BareActivity.noActivity());
+      i.activeSquad().activity(BareActivity.noActivity());
       return;
     }
-    i.activeSquad.activity(new LocationActivity(Activity.VISIT, i.location.get(c - 'a')));
+    i.activeSquad().activity(new LocationActivity(Activity.VISIT, i.location.get(c - 'a')));
   }
 
   private static void investLocationButton(final int cost, final char key, final String text,

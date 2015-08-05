@@ -60,8 +60,9 @@ public @NonNullByDefault class Squad extends ArrayList<Creature> {
   }
 
   @Override public boolean add(@Nullable final Creature p) {
-    if (p == null)
+    if (p == null) {
       throw new NullPointerException("Tried to add null to Squad:" + toString());
+    }
     if (contains(p)) {
       p.removeSquadInfo();
     }
@@ -73,8 +74,9 @@ public @NonNullByDefault class Squad extends ArrayList<Creature> {
   }
 
   @Getter public Maybe<Location> base() {
-    if (size() > 0)
+    if (size() > 0) {
       return get(0).base();
+    }
     return Maybe.empty();
   }
 
@@ -112,7 +114,7 @@ public @NonNullByDefault class Squad extends ArrayList<Creature> {
       return true;
     }
     if (c == '7') {
-      fullStatus(i.activeSquad.highlightedMember());
+      fullStatus(i.activeSquad().highlightedMember());
       return true;
     }
     return false;
@@ -144,8 +146,9 @@ public @NonNullByDefault class Squad extends ArrayList<Creature> {
   }
 
   public Maybe<Location> location() {
-    if (size() > 0)
+    if (size() > 0) {
       return get(0).location();
+    }
     return Maybe.empty();
   }
 
@@ -163,8 +166,9 @@ public @NonNullByDefault class Squad extends ArrayList<Creature> {
   }
 
   public Creature member(final int p) {
-    if (p >= size())
+    if (p >= size()) {
       throw new ArrayIndexOutOfBoundsException("Squad member " + p + " of " + size());
+    }
     return get(p);
   }
 
@@ -300,8 +304,9 @@ public @NonNullByDefault class Squad extends ArrayList<Creature> {
           haveact = true;
         }
       }
-      if (haveact && count > 1)
+      if (haveact && count > 1) {
         return "Acting Individually";
+      }
     }
     return s;
   }
@@ -379,8 +384,8 @@ public @NonNullByDefault class Squad extends ArrayList<Creature> {
       }
       if (!hasmembers) {
         // SQUAD LOOT WILL BE DESTROYED
-        if (i.activeSquad == ss) {
-          i.activeSquad = i.squad.get(0);
+        if (i.activeSquad() == ss) {
+          i.squad.next();
         }
         ssi.remove();
       }
@@ -411,23 +416,24 @@ public @NonNullByDefault class Squad extends ArrayList<Creature> {
     ui().text("Choose a squad member to move to front:").add();
     do {
       int y = 'a';
-      for (final Creature p : i.activeSquad) {
+      for (final Creature p : i.activeSquad()) {
         if (p != null) {
           ui(R.id.gcontrol).button(y++).text(p.toString()).add();
         }
       }
       ui(R.id.gcontrol).button(ENTER).text("Continue the struggle").add();
       final int c = getch();
-      if (c == ENTER)
+      if (c == ENTER) {
         return;
+      }
       clearChildren(R.id.gcontrol);
       if (c >= 'a') {
-        final Creature first = i.activeSquad.get(c - 'a');
+        final Creature first = i.activeSquad().get(c - 'a');
         if (first == null) {
           continue;
         }
-        i.activeSquad.remove(first);
-        i.activeSquad.add(0, first);
+        i.activeSquad().remove(first);
+        i.activeSquad().add(0, first);
       }
     } while (true);
   }
@@ -436,7 +442,7 @@ public @NonNullByDefault class Squad extends ArrayList<Creature> {
     int p = start;
     int code = ' ';
     do {
-      final Creature cr = i.activeSquad.get(p);
+      final Creature cr = i.activeSquad().get(p);
       setView(R.layout.profile);
       cr.filloutFullStatus();
       code = ' ';
@@ -446,12 +452,12 @@ public @NonNullByDefault class Squad extends ArrayList<Creature> {
       if (code == '[') {
         p--;
         if (p < 0) {
-          p = i.activeSquad.size() - 1;
+          p = i.activeSquad().size() - 1;
         }
       }
       if (code == ']') {
         p++;
-        if (p >= i.activeSquad.size()) {
+        if (p >= i.activeSquad().size()) {
           p = 0;
         }
       }

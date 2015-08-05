@@ -71,7 +71,7 @@ public @NonNullByDefault class Teaching extends ArrayList<Creature> implements D
       }
       // Count potential students for this teacher to get an idea of
       // efficiency
-      for (final Creature p : Filter.of(i.pool, Filter.livingIn(t.location().getNullable()))) {
+      for (final Creature p : Filter.of(i.pool, Filter.livingIn(t.location().get()))) {
         // Step through the array of skills to train
         for (final Skill j : skillarray) {
           // Otherwise, if the student has less skill than the
@@ -90,7 +90,7 @@ public @NonNullByDefault class Teaching extends ArrayList<Creature> implements D
           t.toString() + " taught " + studentcount + " student" + (studentcount != 1 ? "s" : "")
               + " about " + t.activity().type()).add();
       // Walk through and train people
-      for (final Creature p : Filter.of(i.pool, Filter.livingIn(t.location().getNullable()))) {
+      for (final Creature p : Filter.of(i.pool, Filter.livingIn(t.location().get()))) {
         // Step through the array of skills to train
         for (final Skill j : skillarray) {
           // Otherwise, if the student has less skill than the

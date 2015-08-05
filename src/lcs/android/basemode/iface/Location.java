@@ -29,6 +29,7 @@ import lcs.android.site.type.Warehouse;
 import lcs.android.util.Color;
 import lcs.android.util.Filter;
 import lcs.android.util.IBuilder;
+import lcs.android.util.Test;
 import lcs.android.util.Xml;
 import lcs.android.util.Xml.Configurable;
 
@@ -40,7 +41,7 @@ import android.util.Log;
 public @NonNullByDefault class Location implements Serializable {
   /** @author addie */
   public static class Builder implements Configurable, IBuilder<Location> {
-    private String parent;
+    @Nullable private String parent;
 
     private int rent;
 
@@ -50,13 +51,13 @@ public @NonNullByDefault class Location implements Serializable {
 
     private boolean hidden;
 
-    private String name;
+    private String name = "";
 
     private boolean needCar;
 
-    private AbstractSiteType type;
+    @Nullable private AbstractSiteType type;
 
-    private String shortname;
+    private String shortname = "";
 
     @Override public Location build() {
       return new Location(this);
@@ -118,20 +119,20 @@ public @NonNullByDefault class Location implements Serializable {
   public Location(Builder builder) {
     super();
     hidden = builder.hidden;
+    name = builder.name;
     shortname = builder.shortname;
     interrogated = builder.interrogated;
-    name = builder.name;
     needCar = builder.needCar;
     parent = findParent(builder.parent);
     rent = builder.rent;
     renting = builder.renting;
-    type = builder.type;
+    type = Test.nonNull(builder.type);
     initlocation();
   }
 
   private Location(Nowhere nowhere) {
     this.type = nowhere;
-    this.shortname = null;
+    this.shortname = name;
     this.parent = null;
   }
 
@@ -165,14 +166,14 @@ public @NonNullByDefault class Location implements Serializable {
 
   /** pushes people into the current squad (used in a siege) */
   public void autoPromote() {
-    final int partysize = i.activeSquad.size();
+    final int partysize = i.activeSquad().size();
     if (partysize == 6) {
       return;
     }
     for (final Creature p : Filter.of(i.pool, Filter.livingIn(this))) {
-      if (p.squad().getNullable() != i.activeSquad && p.alignment() == Alignment.LIBERAL) {
-        i.activeSquad.add(p);
-        if (i.activeSquad.size() == 6) {
+      if (p.squad().getNullable() != i.activeSquad() && p.alignment() == Alignment.LIBERAL) {
+        i.activeSquad().add(p);
+        if (i.activeSquad().size() == 6) {
           return;
         }
       }
@@ -234,7 +235,7 @@ public @NonNullByDefault class Location implements Serializable {
     return days;
   }
 
-  public BusinessFronts frontBusiness() {
+  @Nullable public BusinessFronts frontBusiness() {
     return lcs.frontBusiness;
   }
 
@@ -388,7 +389,7 @@ public @NonNullByDefault class Location implements Serializable {
    * with what they're up to. */
   public void printLocationHeader() {
     final StringBuilder str = new StringBuilder();
-    if (i.activeSquad.location().exists()) {
+    if (i.activeSquad().location().exists()) {
       if (lcs.siege.siege) {
         if (lcs.siege.underAttack) {
           setColor(R.id.locationdate, Color.RED);
@@ -409,7 +410,7 @@ public @NonNullByDefault class Location implements Serializable {
         setColor(R.id.locationdate, Color.WHITE);
       }
     }
-    if (i.activeSquad.location().exists()) {
+    if (i.activeSquad().location().exists()) {
       addlocationname(str);
       str.append(", ");
       // } else if (i.currentLocation == null) {
@@ -421,7 +422,7 @@ public @NonNullByDefault class Location implements Serializable {
     str.append(i.score.date.longString());
     setText(R.id.locationdate, str.toString());
     setText(R.id.money, R.string.moneyString, i.ledger.funds());
-    setText(R.id.activity, i.activeSquad.squadActivity());
+    setText(R.id.activity, i.activeSquad().squadActivity());
   }
 
   public int rent() {

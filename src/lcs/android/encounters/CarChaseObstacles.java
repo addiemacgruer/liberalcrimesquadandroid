@@ -44,7 +44,7 @@ enum CarChaseObstacles {
         ui().text("You plow through the fruit stand!").color(Color.YELLOW).add();
         if (i.rng.chance(5)) {
           ui().text("The fruit-seller has been squashed!").color(Color.RED).add();
-          i.activeSquad.criminalizeParty(Crime.MURDER);
+          i.activeSquad().criminalizeParty(Crime.MURDER);
         }
       }
       return false;
@@ -80,7 +80,7 @@ enum CarChaseObstacles {
     for (int v = carChase.friendcar.size() - 1; v >= 0; v--) {
       passenger.clear();
       driver = null;
-      for (final Creature p : i.activeSquad) {
+      for (final Creature p : i.activeSquad()) {
         if (p.car().getNullable() == carChase.friendcar.get(v)) {
           if (p.isDriver()) {
             if (p.health().canWalk()) {
@@ -185,7 +185,7 @@ enum CarChaseObstacles {
             + carChase.friendcar.get(v).fullname(true)
             + i.rng.choice(" slams into a building!", " skids out and crashes!",
                 " hits a parked car and flips over!")).color(Color.MAGENTA).add();
-    final List<Creature> squadcopy = new ArrayList<Creature>(i.activeSquad);
+    final List<Creature> squadcopy = new ArrayList<Creature>(i.activeSquad());
     for (final Creature p : squadcopy) {
       if (p.car().getNullable() == carChase.friendcar.get(v)) {
         // Inflict injuries on Liberals
@@ -231,7 +231,7 @@ enum CarChaseObstacles {
                       " struggles free of the car, then collapses lifelessly.")).color(Color.RED)
               .add();
           // Remove dead Liberal from squad
-          i.activeSquad.remove(p);
+          i.activeSquad().remove(p);
         } else {
           // Inform the player of character survival
           ui().text(p.toString()).color(Color.YELLOW).add();
@@ -265,7 +265,7 @@ enum CarChaseObstacles {
     // GET RID OF CARS
     i.vehicle.remove(carChase.friendcar.get(v));
     carChase.friendcar.remove(v);
-    for (final Creature p : i.activeSquad) {
+    for (final Creature p : i.activeSquad()) {
       if (p == null) {
         continue;
       }
@@ -279,7 +279,7 @@ enum CarChaseObstacles {
     Creature driver;
     for (v = carChase.friendcar.size() - 1; v >= 0; v--) {
       driver = null;
-      for (final Creature p : i.activeSquad) {
+      for (final Creature p : i.activeSquad()) {
         if (p.car().getNullable() == carChase.friendcar.get(v) && p.isDriver()) {
           driver = p;
           break;

@@ -67,7 +67,7 @@ public @NonNullByDefault class SiteMap {
   public static void initsite(final Location loc) {
     // PREP
     i.currentEncounter(new EmptyEncounter());
-    for (final Creature p : i.activeSquad) {
+    for (final Creature p : i.activeSquad()) {
       p.forceIncapacitated(false);
     }
     i.groundLoot().clear();

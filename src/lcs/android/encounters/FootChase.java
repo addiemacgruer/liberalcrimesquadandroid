@@ -50,21 +50,21 @@ public @NonNullByDefault class FootChase extends Encounter {
     }
     i.mode(GameMode.CHASEFOOT);
     do {
-      final int partyalive = Filter.of(i.activeSquad, Filter.LIVING).size();
+      final int partyalive = Filter.of(i.activeSquad(), Filter.LIVING).size();
       setView(R.layout.hospital);
-      if (i.activeSquad.location().exists()) {
-        i.activeSquad.location().get().printLocationHeader();
+      if (i.activeSquad().location().exists()) {
+        i.activeSquad().location().get().printLocationHeader();
       }
       printEncounter();
-      i.activeSquad.printParty();
+      i.activeSquad().printParty();
       if (partyalive == 0) {
         fact("Reflect on your lack of skill.");
-        for (final Creature p : i.activeSquad) {
+        for (final Creature p : i.activeSquad()) {
           if (p.car().exists()) {
             i.vehicle.remove(p.car().get());
           }
         }
-        i.activeSquad.clear();
+        i.activeSquad().clear();
         EndGame.endcheck(null);
         i.mode(GameMode.BASE);
         return false;
@@ -75,13 +75,13 @@ public @NonNullByDefault class FootChase extends Encounter {
       ui(R.id.gcontrol).button('o').text("Order the party").add();
       final int c = getch();
       clearChildren(R.id.gcontrol);
-      if (i.activeSquad.displaySquadInfo(c)) {
+      if (i.activeSquad().displaySquadInfo(c)) {
         continue;
       }
       if (c == 'd') {
         if (creatures().get(0).type() == CreatureType.valueOf("COP")) {
           i.siteStory.addNews(NewsEvent.FOOT_CHASE);
-          i.activeSquad.criminalizeParty(Crime.RESIST);
+          i.activeSquad().criminalizeParty(Crime.RESIST);
         }
         evasiveRun();
         setView(R.layout.generic);
@@ -91,16 +91,16 @@ public @NonNullByDefault class FootChase extends Encounter {
       if (c == 'f') {
         if (creatures().get(0).type() == CreatureType.valueOf("COP")) {
           i.siteStory.addNews(NewsEvent.FOOT_CHASE);
-          i.activeSquad.criminalizeParty(Crime.RESIST);
+          i.activeSquad().criminalizeParty(Crime.RESIST);
         }
         setView(R.layout.generic);
         Fight.fight(Fighting.BOTH);
         Advance.creatureAdvance();
       }
       if (c == 'e') {
-        AbstractItem.equip(i.activeSquad.loot(), null);
+        AbstractItem.equip(i.activeSquad().loot(), null);
       }
-      final boolean liberalsAlive = Filter.any(i.activeSquad, Filter.LIVING);
+      final boolean liberalsAlive = Filter.any(i.activeSquad(), Filter.LIVING);
       final boolean enemiesAlive = Filter.any(creatures(), Filter.LIVING);
       if (liberalsAlive && !enemiesAlive) {
         fact("It looks like you've lost them!");
@@ -122,21 +122,21 @@ public @NonNullByDefault class FootChase extends Encounter {
     final Squad newSquad = new Squad();
     newSquad.add(liberal);
     liberal.car(null);
-    final Squad oldActiveSquad = i.activeSquad;
-    i.activeSquad = newSquad;
-    i.activeSquad.highlightedMember(0);
+    final Squad oldActiveSquad = i.activeSquad();
+    i.setActiveSquad(newSquad);
+    i.activeSquad().highlightedMember(0);
     final boolean escaped = encounter();
     if (escaped) {
       liberal.squad(oldSquad);
     } else if (oldSquad != null) {
       oldSquad.add(liberal);
     }
-    i.activeSquad = oldActiveSquad;
+    i.setActiveSquad(oldActiveSquad);
     return escaped;
   }
 
   private void evasiveRun() {
-    final List<Creature> living = Filter.of(i.activeSquad, Filter.LIVING);
+    final List<Creature> living = Filter.of(i.activeSquad(), Filter.LIVING);
     final int yourWorst = flavorTextForEvasion(Filter.lowest(living, Filter.SPEED));
     loseTheirSlowest(yourWorst);
     if (creatures().isEmpty()) {
@@ -146,7 +146,7 @@ public @NonNullByDefault class FootChase extends Encounter {
     final int theirbest = Filter.highest(creatures(), Filter.SPEED);
     /* This last loop can be used to have fast people in your i.squad() escape one by one just as
      * the enemy falls behind one by one */
-    for (final Creature liberal : Filter.of(i.activeSquad, Filter.LIVING)) {
+    for (final Creature liberal : Filter.of(i.activeSquad(), Filter.LIVING)) {
       if (liberal.speed() > theirbest) {
         escapeChase(liberal);
       }
@@ -155,7 +155,7 @@ public @NonNullByDefault class FootChase extends Encounter {
       }
       /* caught! */
       liberal.captureByPolice(Crime.RESIST);
-      i.activeSquad.remove(liberal);
+      i.activeSquad().remove(liberal);
       ui().text(liberal.toString()).color(Color.CYAN).add();
       if (creatures().get(0).type().ofType("COP")) {
         ui().text(" is seized, ").add();
@@ -228,15 +228,15 @@ public @NonNullByDefault class FootChase extends Encounter {
     if (liberal.prisoner().exists()) {
       if (liberal.prisoner().get().squad().exists()) {
         liberal.prisoner().get().removeSquadInfo();
-        liberal.prisoner().get().newHome(i.activeSquad.base().getNullable());
+        liberal.prisoner().get().newHome(i.activeSquad().base().getNullable());
       } else {
-        Interrogation.create(liberal.prisoner().get(), i.activeSquad.member(0));
+        Interrogation.create(liberal.prisoner().get(), i.activeSquad().member(0));
       }
       liberal.prisoner(null);
     }
     liberal.removeSquadInfo();
-    i.activeSquad.remove(liberal);
-    i.activeSquad.printParty();
+    i.activeSquad().remove(liberal);
+    i.activeSquad().printParty();
   }
 
   private static int flavorTextForEvasion(final int yourworst) {

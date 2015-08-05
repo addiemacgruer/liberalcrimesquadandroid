@@ -165,12 +165,12 @@ public @NonNullByDefault class Shop extends AbstractShopOption {
       setView(R.layout.generic);
       ui().text("Choose a Liberal squad member to SPEND.").add();
       int y = '1';
-      for (final Creature p : i.activeSquad) {
+      for (final Creature p : i.activeSquad()) {
         ui(R.id.gcontrol).button(y++).text(p.toString()).add();
       }
       final int c = getch();
       if (c >= '1') {
-        return i.activeSquad.member(c - '1');
+        return i.activeSquad().member(c - '1');
       }
     } while (true);
   }

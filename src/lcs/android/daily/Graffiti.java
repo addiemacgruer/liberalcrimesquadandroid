@@ -70,26 +70,29 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
       if (i.rng.chance(10) && !s.skill().skillCheck(Skill.STREETSENSE, CheckDifficulty.AVERAGE)) {
         s.crime().criminalize(Crime.VANDALISM);
         s.skill().train(Skill.STREETSENSE, 20);
-        if (ma.mural() != null) {
+        if (ma.mural != null) {
           ui().text(s + " was spotted by the police while working on the mural!").add();
           s.activity(new MuralActivity(Activity.GRAFFITI, null));
         } else {
           ui().text(s + " was spotted by the police while spraying an LCS tag!").add();
         }
         final NewsStory ns = new NewsStory(StoryType.GRAFFITIARREST);
-        ns.location(null);
+        ns.location(Location.none());
         ns.positive = false;
         i.newsStories.add(ns);
         i.siteStory = ns;
-        FootChase.attemptArrest(s, null);
-      } else if (ma.mural().exists()) {
+        FootChase.attemptArrest(s, "while working on a mural");
+      } else if (ma.mural != null) {
         power = 0;
         if (i.rng.chance(3)) {
-          issue = ma.mural().get();
+          issue = ma.mural;
           power = s.skill().skillRoll(Skill.ART) / 3;
-          ui().text(
-              s + " has completed a" + (power > 3 ? " beautiful" : "") + " mural about "
-                  + ma.mural().get().getview() + ".").add();
+          final Issue muralIssue = ma.mural;
+          if (muralIssue != null) {
+            ui().text(
+                s + " has completed a" + (power > 3 ? " beautiful" : "") + " mural about "
+                    + muralIssue.getview() + ".").add();
+          }
           s.activity(new MuralActivity(Activity.GRAFFITI, null));
           s.addJuice(power, power * 20);
           final int power1 = power;

@@ -16,9 +16,9 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
   }
 
   @Override public void shop(final Location loc) {
-    i.activeSquad.location(loc);
+    i.activeSquad().location(loc);
     final Shop deptstore = new Shop("deptstore.xml");
-    deptstore.enter(i.activeSquad);
+    deptstore.enter(i.activeSquad());
   }
 
   /**
